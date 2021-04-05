@@ -79,6 +79,38 @@ PUT은 POST와 다르게 멱등성(Idempotent, 연산을 여러 번 적용하더
   <img src="https://mdn.mozillademos.org/files/13827/HTTPMsgStructure2.png" alt="HTTP Message Structure"/>
 </p>
 
+## Web Browser (웹 브라우저)
+Web Server에서 이동하며 쌍방향으로 통신하고 HTML문서나 파일을 출력하는 GUI 기반의 응용소프트웨어이다.
+
+### 주요기능
+ - URI를 입력할 수 있는 주소표시줄
+ - 이전 버튼과 다음 버튼
+ - 북마크
+ - 새로고침 버튼과 문서 로드 중지 버튼
+ - 홈버튼
+
+### 기본구조
+<p align="center">
+  <img src="https://d2.naver.com/content/images/2015/06/helloworld-59361-1.png" alt="Web Browser Structure"/>
+</p>
+
+ - UI(사용자 인터페이스): 요청한 페이지를 보여주는 창을 제외한 나머지 모든 부분
+ - 브라우저 엔진: UI와 렌더링 엔진 사이의 동작을 제어
+ - 렌더링 엔진: 요청한 콘테츠 표시
+ - 통신: 네트워크 호출에 사용, 플렛폼에 독립적인 인터페이스
+ - JavaScript 해석기: JavaScript를 해석하고 실행
+ - UI 벡엔드: 기본적인 장치를 그림, 플렛폼에 명시하지 않은 일반적인 인터페이스로서 OS UI 체계 사용
+ - 자료저장소: 자료를 저장하는 계층, HTML5 명세에 브라우저가 지원하는 '웹 데이터베이스'가 있다.
+
+### 렌더링 엔진
+요청받은 내용을 브라우저 화면에 표시하는 역할을 한다. 주로 HTML문서를 통해 페이지를 표시한다.   
+ex) 파이어폭스가 사용하는 Gecko, 사파리와 크롬이 사용하는   Webkit
+
+### 동작과정
+<p align="center">
+  <img src="https://d2.naver.com/content/images/2015/06/helloworld-59361-2.png" alt="Web Rendering Engine Process"/>
+</p>
+
 ## Roadmap
 [github.com/kamranahmedse/developer-roadmap](https://github.com/kamranahmedse/developer-roadmap)
 
@@ -88,4 +120,6 @@ PUT은 POST와 다르게 멱등성(Idempotent, 연산을 여러 번 적용하더
 [위키백과 - HTTP](https://ko.wikipedia.org/wiki/HTTP)   
 [MDN - HTTP 메시지](https://developer.mozilla.org/ko/docs/Web/HTTP/Messages)   
 [MDN - HTTP 요청 메서드](https://developer.mozilla.org/ko/docs/Web/HTTP/Methods)   
-[MDN - HTTP 상태 코드](https://developer.mozilla.org/ko/docs/Web/HTTP/Status)
+[MDN - HTTP 상태 코드](https://developer.mozilla.org/ko/docs/Web/HTTP/Status)   
+[위키백과 - 웹 브라우저](https://ko.wikipedia.org/wiki/%EC%9B%B9_%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80)   
+[NAVER D2 - 브라우저는 어떻게 동작하는가?](https://d2.naver.com/helloworld/59361)
