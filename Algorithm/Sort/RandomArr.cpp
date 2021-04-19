@@ -1,4 +1,5 @@
 #include <random>
+#include <chrono>
 
 class RandomArr {
 private:
@@ -23,8 +24,7 @@ RandomArr::RandomArr(const int& len) {
     this->len = len;
     this->arr = new int[len];
 
-    std::random_device rd;
-    std::mt19937_64 gen(rd());
+    std::mt19937_64 gen(std::chrono::high_resolution_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<int> dis(0, len-1);
     for(int i=0; i<len; i++) arr[i] = dis(gen);
 }

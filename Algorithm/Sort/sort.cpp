@@ -5,14 +5,19 @@
 #include "CocktailSort.cpp"
 #include "SelectionSort.cpp"
 #include "InsertionSort.cpp"
+#include "MergeSort.cpp"
+#include "HeapSort.cpp"
+#include "QuickSort.cpp"
 
 int main() {
+    
     RandomArr ra(10000);
-    int time[4], i,
+    int time[7], i,
         *arr = ra.getArr(),
         len = ra.getLen();
-    std::string sort[4] = {
-        "bubble", "cocktail", "selection", "insertion"
+    std::string sort[7] = {
+        "bubble", "cocktail", "selection", "insertion",
+        "merge", "heap", "quick"
     };
 
     // before array print
@@ -48,7 +53,26 @@ int main() {
     std::cout << "\ntime: " << time[3] << std::endl;
     delete[] arr;
 
-    // after array print
+    arr = ra.getArr();
+    time[4] = mergeSort(arr,len);
+    std::cout << std::endl << sort[4] << ": ";
+    // for(int i=0; i<len; i++) std::cout << arr[i] << ' ';
+    std::cout << "\ntime: " << time[4] << std::endl;
+    delete[] arr;
+    
+    arr = ra.getArr();
+    time[5] = heapSort(arr,len);
+    std::cout << std::endl << sort[5] << ": ";
+    // for(int i=0; i<len; i++) std::cout << arr[i] << ' ';
+    std::cout << "\ntime: " << time[5] << std::endl;
+    delete[] arr;
+
+    arr = ra.getArr();
+    time[6] = quickSort(arr,len);
+    std::cout << std::endl << sort[6] << ": ";
+    // for(int i=0; i<len; i++) std::cout << arr[i] << ' ';
+    std::cout << "\ntime: " << time[6] << std::endl;
+    delete[] arr;
 
     return 0;
 }
