@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>HTML Attributes</title>
+  </head>
+  <body>
+    <h1>HTML Attributes</h1>
+    <ul>
+      <li>모든 요소는 속성을 가진다.</li>
+      <li>모든 요소는 id, class, title, style 속성을 가진다.</li>
+      <li>모든 속성은 요소의 시작 태그에 작성한다.</li>
+      <li>속성의 규칙은 name="value"로 작성한다.
+        <br>"value" or 'value' or value로 표시할 수 있으나 웹표준은 "value"를 권장한다.(오작동을 막기위해서 이다.)
+      </li>
+      <li>style은 html의 속성으로 css를 의미한다.</li>
+      <hr>
+    </ul>
+    <h2>a 태그는 Anchor의 준말로 하이퍼링크, 링크태그, Anchor태그, 하이퍼텍스트로 불린다.</h2>
+    <ol>
+      <li><a href="https://www.naver.com">네이버</a></li>
+      <li>a 태그의 속성 href는 HyperText Reference의 준말이며, value로 url을 가진다.</li>
+      <li>ex) a ref="url" 이때 지정된 url 주소로 전송된다.</li>
+      <li>비활성 링크(방문하지 않은 링크)는 밑줄과 파란색
+        <br>활성 링크(방문한 링크)는 밑줄과 보라색
+      </li>
+      <li>a 태그의 속성 target의 default 값은 "_self"이다.
+        <br>_self는 클릭한 링크와 동일한 창 or 탭에서 문서를 연다.
+        <br>_blank는 새 창이나 새 탭에서 문서를 연다.
+        <br><a href="https://www.naver.com" target="_self">네이버 target="_self"</a>
+        <br><a href="https://www.naver.com" target="_blank">네이버 target="_blank"</a>
+      </li>
+      <li>
+        <!-- sytle attribute는 요소를 꾸미는 역할을 한다. -->
+        <p style="color: #0000ff; text-decoration: underline; cursor: pointer;"
+          onmousedown="this.style.color='red'; window.location.href='https://www.naver.com';"
+          onmouseup="this.style.color='blue';">a 태그 흉내내기</p>
+        <!-- event 검사 -->
+        <p onclick="alert(this);">onclick event 검사 ( alert(value) )</p>
+        <p onclick="console.log(this);">onclick event 검사 ( console(...) )</p>
+      </li>
+    </ol>
+  </body>
+</html>
