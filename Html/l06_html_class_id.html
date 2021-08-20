@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>HTML class & id</title>
+<style>
+  .btn {
+    background-color: #52606d;
+    color: white;
+    font-weight: 800;
+    font-size: 15px;
+    text-decoration: none;
+    padding: 15px 25px;
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+  .btn:hover {
+    background-color: #212529;
+  }
+  .danger {
+    background-color: #e62137;
+  }
+  .danger:hover {
+    background-color: #a21424;
+  }
+  .info {
+    background-color: grey;
+  }
+  .info:hover {
+    background-color: #504f4f;
+  }
+</style>
+  </head>
+  <body>
+    <h1>HTML class & id</h1>
+    <p>모든 html elements는 class와 id attribute를 갖을 수 있다. 이때 두 속성은 선택자로 이용된다.</p>
+    <hr>
+    <h2>복수의 선택자 class</h2>
+    <p>모든 html 요소에 하나 이상의 이름을 가지는 것을 클래스라 한다. 이때 class는 중복가능하다.</p>
+    <ol>
+      <!-- class는 복수의 이름을 가질 수 있으며, 띄어쓰기(공백 문자)로 구분한다. -->
+      <li>html : &lt;tagname class="name1 name2 ..."&gt;&lt;/tagname&gt;</li>
+      <li>style : .name{ property: value; }</li>
+      <li>js : document.getElementsByClassName("className")[n]</li>
+      <li>배열의 자료형 [] 예)["토마토", 30, 0.12, "런던"] 길이가 4인 배열</li>
+      <li>class는 복수의 자료(Document Object)를 처리할 때 사용한다.</li>
+    </ol>
+    <div>
+      <h2>동일한 규격의 버튼 만들기</h2>
+      <input class="btn danger" type="button" value="인풋">
+      <input class="btn info" type="submit" value="제출">
+      <button class="btn" type="button">버튼</button>
+      <a class="btn" href="#">링크</a>
+    </div>
+    <hr>
+    <h2>유일한 선택자 id</h2>
+    <ol>
+      <li>
+        html : &lt;tagname id="idName"&gt;&lt;/tagname&gt;
+        <br><b>id="idName" (가능o, 권장o)</b>
+        <br>id="id_name" (가능o, 권장x)
+        <br>id="name" (가능o, 권장x)
+        <br>id="01idName" (가능o, 권장x)
+      </li>
+      <li>
+        아이디를 만들때는 단어와 단어의 조합으로 시작은 소문자, 조합되는 단어는 대문자로 작성한다.
+        <br>권장하는 방식이 document에서 유일할 가능성이 높고 가독성이 높다.
+      </li>
+      <li>style : #idName { property: value; }</li>
+      <li>js : document.getElementById("idName")</li>
+    </ol>
+  </body>
+</html>
