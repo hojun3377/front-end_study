@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/l04.css">
+    <title>HTML style css(Cascading Style Sheets)</title>
+    <style>
+      ul>li {
+        color: violet;
+      }
+      ul>li:last-child {
+        color: orange;
+      }
+      ul>li:first-child {
+        color: black !important;
+        /* 우선 순위를 무시하는 가장 중요한 설정 */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>HTML style css(Cascading Style Sheets)</h1>
+    <p>
+      style css는 레이아웃, 색상, 텍스트, 크기, 이미지, 배경,
+      RWD(Responsive Web Design) 등 HTML의 요소가 화면에 표
+      시되는 모든 방식을 제공한다.
+    </p>
+    <h2>css 구문(Syntax)</h2>
+    <ul>
+      <li style="color: red;">selector { property: "value"; (x) }</li>
+      <li style="color: blue;">selector { property: value; (o) }</li>
+      <li>선택자 { 요소: 값; 요소: 값; 요소: 값; ... }</li>
+      <li>예) h1 { color: red; background-color: gray; }</li>
+      <li>
+        h1 {
+          <br>color: red;
+          <br>background-color: gray;
+          <br>color: black;
+        <br>}
+        <br>-> h1은 블랙이된다. (나중에 선언한 것이 우선 적용)
+      </li>
+      <li>tagname style="property: 'value'; property: 'value' ... ;"</li>
+    </ul>
+    <h2>style HTML에 삽입하는 3가지 방법</h2>
+    <ol>
+      <li>inline css: &lt;tagname&gt; style="property: value;"&gt;&lt;/tagname&gt;</li>
+      <li>internal css: &lt;head&gt;selector { property: value; }&lt;/head&gt;</li>
+      <li>external css: &lt;head&gt;&lt;link rel="stylesheet" href="url"&gt;&lt;/head&gt;</li>
+      <li>요소에 동일한 스타일이 다르게 적용되었을때 우선순위 !important > 인라인(inline) > 내부(internal) > 외부(external)</li>
+    </ol>
+  </body>
+</html>
