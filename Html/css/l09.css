@@ -1,0 +1,45 @@
+.boxContainer {
+  min-width: 122px;
+  max-width: 763px;
+  background-color: rgb(50,50,50);
+  border: 1px solid rgb(0,0,0);
+}
+.box {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  /* display: block 은 가로를 모두 차지한다. */
+  display: inline-block;
+  /* 컨텐츠 즉 텍스트 내부에 포함되는 블럭이다. */
+  border: 1px solid rgb(255,255,255);
+  font-weight: bold;
+  text-align: center;
+  /* line-height 줄맞춤으로 텍스트의 높이를 중앙 정렬 */
+  line-height: 100px;
+  color: rgb(255,255,255);
+}
+.box:last-child {
+  color: black;
+}
+.box:hover {
+  opacity: .5;
+}
+
+.hj_galleryContainer {
+  min-width: 654px;
+}
+.hj_gallery {
+  display: inline-block;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}
+.hj_gallery img {
+  width: 200px;
+  height: 200px;
+}
+.hj_gallery .img_caption {
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+}
