@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/l07.css">
+    <title>HTML Block Elements</title>
+  </head>
+  <body>
+    <!-- main(sementic element)은 최상위 제목이 있는 섹션이다. 오직 하나만 있기를 기대한다. -->
+    <!-- h1 최상위 제목이다. 오직 하나만 쓴다.(검색엔진에서 h1을 검색할 수 있다.) -->
+    <main>
+      <h1>html의 화면을 구성하는 block</h1>
+      <p>상용 가능한 전체 넓이(가로 길이, width)와 컨텐츠 만큼의 높이(height)를 갖는 사각의 박스로 여러 요소를 구조적으로 구성할 수 있다.</p>
+      <article>
+        <h2>style로 본 block의 box model</h2>
+        <!-- div#boxContainer>div#boxModel>div#boxContents -->
+        <div id="boxContainer">
+          <div id="boxModel">
+            <div id="boxContents">
+              <strong>boxModel</strong><br>
+              <span>width: 200px</span><br>
+              <span>height: 150px</span><br>
+              <span>padding: 10px 30px 50px</span><br>
+              <span>border: 10px</span><br>
+              <span>margin: 40px auto</span><br>
+              <span>block을 정렬</span>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article>
+        <h2>Box Model 정리</h2>
+        <!-- ul>li{ : }*7 -->
+        <ul>
+          <li>box contents : 점선</li>
+          <li>padding : 점선과 파란선 사이</li>
+          <li>border : 파란선</li>
+          <li>margin : 회색 여백</li>
+          <li>block default 정렬(좌측 정렬) : margin-right: auto</li>
+          <li>block 우측 정렬 : margin-left: auto</li>
+          <li>block 중앙 정렬 : margin: auto</li>
+        </ul>
+      </article>
+      <article>
+        <h2>display: block 속성을 갖는 elements(tag)</h2>
+        <table class="hj_table hj_table_center hj_table_stripe">
+          <thead>
+            <tr>
+              <th>num</th>
+              <th>태그(tagName)</th>
+              <th>설명(Description)</th>
+              <th>기본스타일(default css)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- (tr>(td{$}+td*3))*10 -->
+            <!-- (tr>(td{$$}+td{ &lt; &gt; }+td*2))*16 -->
+            <!-- (tr>(td{$$}+td{ &lt &gt }+td+td{display: block;}))*16 -->
+            <tr>
+              <td>01</td>
+              <td> &lt div &gt </td>
+              <td>모든 요소의 부모인 컨테이너로 요소를 구조적을 만들 때 사용한다.</td>
+              <td>display: block;</td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td> &lt header &gt </td>
+              <td>제목, 저작권, 로고, 작성자, 작성일 등을 표시하고 article의 헤드라인으로 사용한다.</td>
+              <td>display: block;</td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td> &lt main &gt </td>
+              <td>문서에 하나 있기를 기대하며 페이지의 컨텐츠를 모두 포함하는 영역이다.</td>
+              <td>display: block;</td>
+            </tr>
+            <tr>
+              <td>04</td>
+              <td> &lt footer &gt </td>
+              <td>저작권, 연락처, 소셜미디어, 약관, 관련된 문서</td>
+              <td>display: block;</td>
+            </tr>
+            <tr>
+              <td>05</td>
+              <td> &lt section &gt </td>
+              <td>주제를 갖는 문서의 한 구문으로 여러 article을 포함한다.</td>
+              <td>display: block;</td>
+            </tr>
+            <tr>
+              <td>06</td>
+              <td> &lt article &gt </td>
+              <td>작은 단위의 내용을 포함하는 구문</td>
+              <td>display: block;</td>
+            </tr>
+            <tr>
+              <td>07</td>
+              <td> &lt aside &gt </td>
+              <td>주변 콘텐츠와 간접적으로 관련되는 내용으로 화면의 사이드로 배치하는 편이다.</td>
+              <td>display: block;</td>
+            </tr>
+            <tr>
+              <td>08</td>
+              <td> &lt nav &gt </td>
+              <td>탐색 링크의 집합인 navigation으로, 대체로 메뉴 리스트를 구성한다.</td>
+              <td>display: block;</td>
+            </tr>
+            <tr>
+              <td>09</td>
+              <td> &lt address &gt </td>
+              <td>이메일 주소, URL, 실제 주소, 전화번호, 소셜 미디어 같은 정보를 정의한다.</td>
+              <td>display: block; <br> font-style: italic;</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td> &lt form &gt </td>
+              <td>유저가 입력할 폼을 생성하는데 사용된다.</td>
+              <td>display: block; <br> margin-top: 0em;</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td> &lt figure &gt </td>
+              <td>그림, 도표, 사진, 코드 목록을 구성한다.</td>
+              <td>display: block; <br> margin: 1em 40px;</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td> &lt blockquote &gt </td>
+              <td>다른 소스에서 인용된 부분을 지정한다.</td>
+              <td>display: block; <br> margin: 1em 40px;</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td> &lt ul,ol,dl &gt </td>
+              <td>목록을 구성하며 스타일이 각각 다르다. ( list-style-type:(disc,decimal) )</td>
+              <td>display: block; <br> margin: 1em 0px; <br> padding-left: 40px;</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td> &lt p &gt </td>
+              <td>문서의 한 문단을 정의한다.</td>
+              <td>display: block; <br> margin: 1em 0;</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td> &lt h1-h6 &gt </td>
+              <td>문서의 제목이며 한 문단을 정의한다. h1은 검색에 활용됨으로 꼭 문서에 1개를 생성한다.</td>
+              <td>display: block; <br> margin: (0.67~2.3)em 0; <br> font-size: (2~0.67)em;</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td> &lt pre &gt </td>
+              <td>태그 내의 텍스트는 HTML 소스 코드에 작성된 그대로 표시된다.</td>
+              <td>display: block; <br> margin: 1em 0;</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+    </main>
+  </body>
+</html>

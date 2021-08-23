@@ -1,0 +1,54 @@
+#boxContainer {
+  border: 1px solid black;
+  background-color: rgb(220,220,220);
+}
+#boxModel {
+  width: 200px;
+  height: 150px;
+  padding: 10px 30px 50px;
+  border-top: 10px solid rgb(0,0,255);
+  border-right: 20px dotted rgb(0,255,0);
+  border-bottom: 30px double rgb(255,0,0);
+  border-left: 40px dashed rgb(0,0,0);
+  margin: 40px auto;
+  /* top right bottom left */
+  /* top (right,left) bottom */
+  /* (top,bottom) (right,left) */
+  /* (top,right,bottom,left) */
+  background-color: rgb(100,50,50);
+  color: rgb(255,255,255);
+}
+#boxContents {
+  border: 1px dotted;
+}
+
+/* hj_table */
+.hj_table {
+  width: 100%;
+  text-align: left;
+  background-color: rgb(220,220,220);
+  border-collapse: collapse;
+}
+.hj_table th, .hj_table td {
+  border: 1px solid rgb(70,70,70);
+  padding: 10px;
+}
+.hj_table.hj_table_center {
+  text-align: center;
+}
+
+/*  */
+.hj_table th {
+  background-color: #333333;
+  color: #eeeeee;
+  height: 30px;
+}
+.hj_table th:nth-child(2), .hj_table td:nth-child(2) {
+  min-width: 115px;
+}
+.hj_table th:nth-child(4), .hj_table td:nth-child(4) {
+  min-width: 177px;
+}
+.hj_table tr:nth-child(4n+3) {
+  border-top: 2px solid black;
+}
