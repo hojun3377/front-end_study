@@ -2,6 +2,13 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+<style>
+.textBox {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(150,150,150);
+}
+</style>
     <title>Window(BOM, Browser Object Model)</title>
   </head>
   <body>
@@ -175,26 +182,80 @@ function stopTime() {
       <hr>
       <h2>브라우저의 크기와 위치정보 (READ Only)</h2>
       <ul>
-        <li>screenX, screenY(screenLeft, screenTop) : 브라우저의 x,y좌표</li>
-        <li>outerWidth, outerHeight : 모든 인터페이스 요소를 포함한 브라우저의 너비와 높이</li>
-        <li>innerWidth, innerHeight : 스크롤 막대를 포함한 창의 크기(뷰포트)</li>
+        <li>
+          screenX, screenY(screenLeft, screenTop) : 브라우저의 x,y 좌표
+          <br>[현재 브라우저의 위치 (screenX, screenY) : (
+<script>
+document.write("<strong>"+window.screenX+", "+window.screenY+"</strong>");
+</script>
+) ]
+        </li>
+        <li>
+          outerWidth, outerHeight : 모든 인터페이스 요소를 포함한 브라우저의 너비와 높이
+          <br>[현재 브라우저의 크기 (outerWidth, outerHeight) : (
+<script>
+document.write("<strong>"+window.outerWidth+", "+window.outerHeight+"</strong>")
+</script>
+          )
+        </li>
+        <li>
+          innerWidth, innerHeight : 스크롤 막대를 포함한 창의 크기(뷰포트)
+          <br>[현재 뷰포트의 크기 (innerHeight, innerHeight) : (
+<script>
+document.write("<strong>"+window.innerWidth+", "+window.innerHeight+"</strong>")
+</script>
+          )
+        </li>
       </ul>
       <h2>브라우저의 방문 기록 (history)</h2>
       <p>window.history는 사용자가 방문한 url을 포함한다.</p>
       <ul>
         <li>
           history.length : history 목록에서 url 수 (max : 50, <strong>READ Only</strong>)
+          <br>[history 목록 길이 : (
+<script>
+document.write("<strong>"+window.history.length+"</strong>")
+</script>
+          )
         </li>
-        <li>history.back() : history 목록에서 이전 url을 로드 (뒤로가기)</li>
-        <li>history.foward() : history 목록에서 다음 url을 로드 (앞으로가기)</li>
-        <li>history.go(num) : history 목록에서 특정 url 로드</li>
+        <li>
+          history.back() : history 목록에서 이전 url을 로드 (뒤로가기)
+          <br><input type="button" value="뒤로가기" onclick="window.history.back()">
+        </li>
+        <li>
+          history.forward() : history 목록에서 다음 url을 로드 (앞으로가기)
+          <br><input type="button" value="앞으로가기" onclick="window.history.forward()">
+        </li>
+        <li>
+          history.go(num) : history 목록에서 특정 url 로드
+          <!-- 숫자 0을 기준으로 현재위치 -->
+          <!-- ex) history.go(-1)==history.back() (true) -->
+          <br><input type="button" value="뒤로 2번 가기" onclick="window.history.go(-2)">
+        </li>
       </ul>
       <h2>위치객체 (location)</h2>
       <p>window.location은 url정보가 포함되어있다.</p>
       <ul>
-        <li>location.href : 현재 페이지의 전체 url를 반환하고 특정 페이지로 이동할 수 있다.</li>
-        <li>location.hostname : 현재 url의 호스트 이름을 반환한다.</li>
-        <li>location.reload() : 현재 문서(페이지)를 새로고침한다.</li>
+        <li>
+          <!-- 페이지가 변한다는 점에서 location.replace는 location.href와 같지만, 차이점이 존재한다. -->
+          <!-- 첫번째로 replace는 메서드이고, href는 객체의 속성이다. -->
+          <!-- ex) location.replace('url'), location.href = 'url' -->
+          <!-- 두번째로 replace는 주소 히스토리에 기록되지 않으나, href는 주소 히스토리에 기록된다. -->
+          location.href : 현재 페이지의 전체 url를 반환하고 특정 페이지로 이동할 수 있다.
+          <br><input type="button" value="네이버" onclick="window.location.href='https://www.naver.com'">
+        </li>
+        <li>
+          location.hostname : 현재 url의 호스트 이름을 반환한다.
+          <br>[현재 url의 호스트 이름 :
+<script>
+document.write(window.location.hostname);
+</script>
+          ]
+        </li>
+        <li>
+          location.reload() : 현재 문서(페이지)를 새로고침한다.
+          <br><input type="button" value="새로고침" onclick="window.location.reload()">
+        </li>
       </ul>
     </main>
     <!-- ref) w3school html dom -->
