@@ -207,8 +207,8 @@
           </li>
           <li>
             type="week"
-            <br>value값 형식 : "2021-w34"
-            <br><input type="week" name="" value="2021-w34">
+            <br>value값 형식 : "2021-W34" ( W는 무조건 대문자 )
+            <br><input type="week" name="" value="2021-W34">
           </li>
           <li>
             type="time"
@@ -245,7 +245,7 @@
               </label>
             </p>
             <p>score : <input type="number" name="score" value="" min="0" max="100"></p>
-            <input type="reset" name="" value="재설정">
+            <input type="reset" name="rst" value="재설정">
             <input type="button" name="edit" value="회원수정">
           </fieldset>
         </form>
@@ -314,31 +314,48 @@
 <script>
 var memberTable=document.getElementById("memberTable");
 var member=memberTable.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-var memberInsertFrm=document.forms.memberInsert;
 // console.log(member);
+var memberInsertFrm=document.forms.memberInsert;
+var tempObj="";
+
+// 재설정
+// console.log(memberInsertFrm.rst);
+var rstBtn=memberInsertFrm.rst;
+rstBtn.addEventListener('click', function() {
+  if(tempObj!="") {
+    tempObj="";
+  }
+});
 
 // 회원수정
 // console.log(memberInsertFrm.edit);
+var editBtn=memberInsertFrm.edit;
+editBtn.addEventListener('click', function() {
+  // console.log(member);
+  if(tempObj!="") {
+    tempObj.children[0].innerText=memberInsertFrm.num.value;
+    tempObj.children[1].innerText=memberInsertFrm.id.value;
+    tempObj.children[2].innerText=memberInsertFrm.tel.value;
+    tempObj.children[3].innerText=memberInsertFrm.grade.value;
+    tempObj.children[4].innerText=memberInsertFrm.gender.value;
+    tempObj.children[5].innerText=memberInsertFrm.score.value;
+    console.log(memberInsertFrm.gender);
 
-// var editBtn=memberInsertFrm.edit;
-// editBtn.addEventListener('click', function() {
-//   console.log(member);
-//   if(memberInsertFrm.id!="") {
-//     // var obj=member.
-//     obj.children[0].innerText=memberInsertFrm.num.value;
-//     obj.children[1].innerText=memberInsertFrm.id.value;
-//     obj.children[2].innerText=memberInsertFrm.tel.value;
-//     obj.children[3].innerText=memberInsertFrm.grade.value;
-//     obj.children[4].innerText=memberInsertFrm.gender.value;
-//     obj.children[5].innerText=memberInsertFrm.score.value;
-//   }
-// });
+    // form 초기화
+    memberInsertFrm.num.value="";
+    memberInsertFrm.id.value="";
+    memberInsertFrm.tel.value="";
+    memberInsertFrm.grade.value="";
+    memberInsertFrm.gender.value="";
+    memberInsertFrm.gender[0].checked=false;
+    memberInsertFrm.gender[1].checked=false;
+    innerText=memberInsertFrm.score.value="";
+    tempObj=""
+  }
+});
 
 // 수정
-// of와 in 차이 물어보기
 for(memObj of member) {
-  // 클로저?
-  // 익명함수
   (function(obj) {
     var btn=obj.getElementsByTagName("button")[0];
     btn.addEventListener('click', function() {
@@ -350,6 +367,7 @@ for(memObj of member) {
       // console.log(memberInsertFrm.gender[0].value)
       memberInsertFrm.gender.value=obj.children[4].innerText;
       memberInsertFrm.score.value=obj.children[5].innerText;
+      tempObj=obj;
     });
   })(memObj);
 }
