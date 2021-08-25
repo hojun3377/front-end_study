@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>html form</title>
+  </head>
+  <body>
+    <main>
+      <h1>HTML 제출양식 form</h1>
+      <p>
+        HTML 양식은 사용자 입력을 수집하기 위해 사용된다.
+        <br>예) 설문조사, 회원가입, 로그인 ...
+      </p>
+      <p>양식(form)에 입력한 복수의 데이터 ( Parameter ) 는 처리를 위해 서버로 전송 ( method = POST ) 된다.</p>
+      <hr>
+      <article>
+        <h2>form 태그</h2>
+        <p>
+          form 요소는 사용자 입력을 위한 html 양식을 만드는 데 사용되며, 입력양식을 1개 이상 포함하는 컨테이너이다.
+          <br>이때 입력 양식에는 text field, checkboxs, radio, submit, ... 이 있다.
+          <br>form과 입력 요소는 모두 name을 가지고, 이 name이 parameter로 서버에 전송된다.
+          <br>ex) url?name=value&name2=value2 (method = GET)
+        </p>
+        <h5>form 내의 element 참조 방법</h5>
+        <ol>
+          <li>document.forms["formName"]["elementName"]</li>
+          <li>document.forms.formName.inputName.value</li>
+        </ol>
+        <p>여기서 formName은 id처럼 유일한 값이다.</p>
+        <h3>form 태그 속성</h3>
+        <ul>
+          <li>action : 양식을 제출하는 url 위치</li>
+          <li>
+            method : 양식 데이터를 보낼 때 통신(HTTP)할 방법
+            <ul>
+              <li>
+                method="GET" ( default ) : url에 parameter를 name/value 쌍으로 추가하는 방법으로 parameter가 안전하지 않다.
+                <br>ex) url?paramName1=value1&#38;paramName2=value2
+              </li>
+              <li>
+                method="POST" : parameter를 server에 보낼 때 HTTP POST Transaction에 추가해서 보내는 방법으로 GET방식에 비해 parameter가 안전하다.
+              </li>
+            </ul>
+          </li>
+          <li>name : html 문서에서 유일한 이름이어야 한다.</li>
+          <li>autocomplete : 입력 양식의 자동완성 ( autocomplete="on|off" )</li>
+          <li>novalidate : 양식 제출 시 유효성 검사를 하지 않도록 지정한다.</li>
+          <li>
+            target : 양식 제출 시 받은 response(응답)을 표시할 창의 위치를 지정한다. ( 양식을 서버에 제출하면 양식을 처리 후 이동할 페이지를 반환 )
+            <br>ex) 양식을 server에 제출하면 처리한 상태에 따라 이동할(response) 페이지가 다르다.
+            <br>( 로그인 실패 -> 로그인, 로그인 성공 -> 홈)
+            <ul>
+              <li>_self ( default ) : 동일한 프레임(창)에 표시</li>
+              <li>_blank : 새 창이나 프레임에 표시</li>
+              <li>_parent : 상위 프레임에 표시</li>
+              <li>_top : 창 전체에 표시</li>
+            </ul>
+          </li>
+          <li>
+            enctype : 양식 데이터를 서버에 제출할 때, 인코딩 방식을 지정한다.
+            <br>(GET-url 인코딩이 고정, POST만 변경 가능하다.)
+          </li>
+        </ul>
+      </article>
+      <hr>
+      <article>
+        <h2>입력 양식 요소</h2>
+        <p>
+          input은 입력양식요소의 대표이며 여러 type의 값을 전달할 수 있다.
+          <br>모든 입력양식요소는 name과 value를 가지며 양식을 제출(submit)할 때, url | post transaction에 추가된다.
+        </p>
+        <ul>
+          <li>
+            input : 다양한 type이 존재하는 입력 요소
+            <br><input type="time">
+            <br><input type="date">
+            <br><input type="datetime-local">
+          </li>
+          <li>
+            textarea : 여러 줄의 텍스트 영역 제공
+            <textarea name="" rows="2" cols="80" placeholder="안녕하세요">value는 여기에</textarea>
+          </li>
+          <li>
+            select : dropdown 목록 ( optgroup : 목록을 하나의 그룹으로 정의 )
+            <br><select class="" name="">
+              <optgroup label="frontend">
+                <option value="html">html</option>
+                <option value="css">css</option>
+                <option value="js">javascript</option>
+              </optgroup>
+              <optgroup label="backend">
+                <option value="java">JAVA</option>
+                <option value="c">C</option>
+                <option value="c#">C#</option>
+              </optgroup>
+            </select>
+          </li>
+          <li>
+            datalist : 입력하기 전에 미리 정의된 옵션 목록을 지정한다.
+            <!-- input의 list은 datalist의 id를 참조한다. -->
+            <br><input list="program">
+            <datalist id="program">
+              <option value="java">JAVA</option>
+              <option value="c">C</option>
+              <option value="c#">C#</option>
+            </datalist>
+          </li>
+          <li>
+            button : 클릭이 가능한 요소이다.
+            <br><button type="button" name="button">버튼</button>
+          </li>
+          <li>
+            label : 입력 요소에 label을 정의
+            <h5>사용방법</h5>
+            <ol>
+              <li>입력요소의 id와 label의 for을 동일하게 맞춘다</li>
+              <li>label안에 입력요소 삽입</li>
+              <li>
+                ex)
+                <br>
+                <label for="testCheck">
+                  test <input type="checkbox" name="test" id="testCheck" value="0">
+                  <br><label>test2 <input type="checkbox" name="test2" value="1"></label>
+                </label>
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>input 태그가 가지는 여러 타입의 입력요소</h2>
+        <ul>
+          <li>
+            type="text" : 한줄 텍스트를 정의
+            <br><input type="text" name="" value="">
+          </li>
+          <li>
+            type="search" : 검색 문자열을 입력하기 위한 필드
+            <br><input type="search" name="" value="">
+          </li>
+          <li>
+            <!-- email 형식이 아니면 제출 불가능 -->
+            <!-- ex) aaa@aaa.com -->
+            type="email" : 이메일을 입력하는 필드 ( 제출 시 유효성 검사 )
+            <form action="" method="post">
+              <input type="email" name="" value="">
+              <input type="submit" name="" value="제출">
+            </form>
+          </li>
+          <li>
+            <!-- url 형식이 아니면 제출 불가능 -->
+            <!-- ex) http://www.naver.com -->
+            type="url" : url을 입력하는 필드 ( 제출 시 유효성 검사 )
+            <form action="" method="post">
+              <input type="url" name="" value="">
+              <input type="submit" name="" value="제출">
+            </form>
+          </li>
+          <li>
+            type="password" : 입력한 문자를 암호화시킨다.
+            <br><input type="password" name="" value="">
+          </li>
+          <li>
+            type="number" : 숫자를 입력하는 필드
+            <br>이때, input의 step 속성은 증감하는 숫자 간격을 지정한다.
+            <br><input type="number" name="" value="" step="2">
+          </li>
+          <li>type="button" : 클릭이 가능한 버튼 (javascript로 정의한다.)</li>
+          <li>type="submit" : form의 action에 정의된 페이지(server)로 양식을 제출한다.</li>
+          <li>type="reset" : value를 재설정하는 버튼이다. ( reset() 실행 )</li>
+          <li>
+            type="range" : 범위를 제어하는 컨트롤 UI를 제공한다.
+            <br><input type="range" name="" value="70" max="100" min="10" step="10">
+          </li>
+          <li>
+            type="checkbox" : 선택한 parameter만 전달한다.
+            <br>( name, value 모두 다르게 설정한다. )
+            <br><label><input type="checkbox" name="checkTest1" value="param1">체크박스1</label>
+            <br><label><input type="checkbox" name="checkTest2" value="param2">체크박스2</label>
+            <br><label><input type="checkbox" name="checkTest3" value="param3">체크박스3</label>
+          </li>
+          <li>
+            type="radio" : 같은 이름의 parameter가 복수의 value 중 하나만 선택해서 전달한다.
+            <br>( 즉, name은 같게, value를 다르게 설정한다. )
+            <br><label><input type="radio" name="radioTest" value="1">라디오1</label>
+            <br><label><input type="radio" name="radioTest" value="3">라디오3</label>
+            <br><label><input type="radio" name="radioTest" value="2">라디오2</label>
+          </li>
+          <li>
+            type="color" : 색상 선택이 가능하다.
+            <br><input type="color" name="" value="">
+          </li>
+          <li>
+            type="datetime-local" : 날짜와 시간 선택이 가능하다.
+            <br>value값 형식 : "2021-08-21T17:06"
+            <br><input type="datetime-local" name="" value="2021-08-21T17:03">
+          </li>
+          <li>
+            type="date" : 날짜 선택이 가능하다.
+            <br>value값 형식 : "2021-08-21"
+            <br><input type="date" name="" value="2021-08-21">
+          </li>
+          <li>
+            type="month"
+            <br>value값 형식 : "2021-08"
+            <br><input type="month" name="" value="2021-08">
+          </li>
+          <li>
+            type="week"
+            <br>value값 형식 : "2021-w34"
+            <br><input type="week" name="" value="2021-w34">
+          </li>
+          <li>
+            type="time"
+            <br>value값 형식 : "hh:mm"
+            <br><input type="time" name="" value="17:35">
+          </li>
+          <li>
+            type="file" : 파일 업로드 ( 파일 탐색기 제공)
+            <br><input type="file" name="" value="">
+          </li>
+          <li>
+            type="hidden" : 숨겨진 parameter
+            <!-- paramter를 숨겨서 제출하기 위한 속성 -->
+            <br><input type="hidden" name="" value="">
+          </li>
+        </ul>
+      </article>
+      <hr>
+      <article>
+        <h2>form 양식 선택자 Test</h2>
+        <p>설명 : table 리스트에서 수정 버튼을 누르면 리스트의 회원정보를 회원수정 form 양식에 가져와라</p>
+        <form name="memberInsert" action="" method="post">
+          <fieldset>
+            <p>num : <input type="text" name="num" value="" readonly></p>
+            <p>id : <input type="text" name="id" value="" readonly></p>
+            <p>tel : <input type="text" name="tel" value=""></p>
+            <p>grade : <input type="number" name="grade" value="" min="0" max="5"></p>
+            <p>
+              gender :
+              <label>
+              Female <input type="radio" name="gender" value="F">
+              |
+              Male <input type="radio" name="gender" value="M">
+              </label>
+            </p>
+            <p>score : <input type="number" name="score" value="" min="0" max="100"></p>
+            <input type="reset" name="" value="재설정">
+            <input type="button" name="edit" value="회원수정">
+          </fieldset>
+        </form>
+        <h3>회원 리스트</h3>
+        <table id="memberTable">
+          <thead>
+            <tr>
+              <th>num</th>
+              <th>id</th>
+              <th>tel</th>
+              <th>grade[0,5]</th>
+              <th>gender(F or M)</th>
+              <th>score[0,100]</th>
+              <th>수정</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- (tr>(td{$$}+td{id_}+td{010}+td{0}+td{F}+td{50}+td>button))*5 -->
+            <tr>
+              <td>01</td>
+              <td>id_aaaa</td>
+              <td>01011111111</td>
+              <td>0</td>
+              <td>F</td>
+              <td>11</td>
+              <td><button type="button" name="btn">수정</button></td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>id_bbbb</td>
+              <td>01022222222</td>
+              <td>3</td>
+              <td>F</td>
+              <td>57</td>
+              <td><button type="button" name="btn">수정</button></td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td>id_cccc</td>
+              <td>01033333333</td>
+              <td>5</td>
+              <td>M</td>
+              <td>96</td>
+              <td><button type="button" name="btn">수정</button></td>
+            </tr>
+            <tr>
+              <td>04</td>
+              <td>id_dddd</td>
+              <td>01044444444</td>
+              <td>1</td>
+              <td>F</td>
+              <td>21</td>
+              <td><button type="button" name="btn">수정</button></td>
+            </tr>
+            <tr>
+              <td>05</td>
+              <td>id_eeee</td>
+              <td>01055555555</td>
+              <td>4</td>
+              <td>M</td>
+              <td>73</td>
+              <td><button type="button" name="btn">수정</button></td>
+            </tr>
+          </tbody>
+        </table>
+<script>
+var memberTable=document.getElementById("memberTable");
+var member=memberTable.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+var memberInsertFrm=document.forms.memberInsert;
+// console.log(member);
+
+// 회원수정
+// console.log(memberInsertFrm.edit);
+
+// var editBtn=memberInsertFrm.edit;
+// editBtn.addEventListener('click', function() {
+//   console.log(member);
+//   if(memberInsertFrm.id!="") {
+//     // var obj=member.
+//     obj.children[0].innerText=memberInsertFrm.num.value;
+//     obj.children[1].innerText=memberInsertFrm.id.value;
+//     obj.children[2].innerText=memberInsertFrm.tel.value;
+//     obj.children[3].innerText=memberInsertFrm.grade.value;
+//     obj.children[4].innerText=memberInsertFrm.gender.value;
+//     obj.children[5].innerText=memberInsertFrm.score.value;
+//   }
+// });
+
+// 수정
+// of와 in 차이 물어보기
+for(memObj of member) {
+  // 클로저?
+  // 익명함수
+  (function(obj) {
+    var btn=obj.getElementsByTagName("button")[0];
+    btn.addEventListener('click', function() {
+      // console.log(obj.children[0]);
+      memberInsertFrm.num.value=obj.children[0].innerText;
+      memberInsertFrm.id.value=obj.children[1].innerText;
+      memberInsertFrm.tel.value=obj.children[2].innerText;
+      memberInsertFrm.grade.value=obj.children[3].innerText;
+      // console.log(memberInsertFrm.gender[0].value)
+      memberInsertFrm.gender.value=obj.children[4].innerText;
+      memberInsertFrm.score.value=obj.children[5].innerText;
+    });
+  })(memObj);
+}
+</script>
+      </article>
+    </main>
+  </body>
+</html>
