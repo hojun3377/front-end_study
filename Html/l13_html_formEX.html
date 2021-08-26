@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+<style>
+#hoverTest:hover {
+  color: red;
+}
+:link {
+  color: rgb(0,150,0);
+}
+:visited {
+  color: yellow;
+}
+a:active {
+  color: red;
+}
+:target {
+  border: 1px solid blue;
+}
+:focus {
+  background-color: yellow;
+}
+:in-range {
+  background-color: green;
+}
+:out-of-range {
+  background-color: red;
+}
+:disabled {
+  border-color: red;
+}
+:enabled {
+  border-color: blue;
+}
+/* :read-only {
+  border-color: yellow;
+} */
+/* :checked {
+  width: 20px;
+  height: 20px;
+} */
+</style>
+  </head>
+  <body>
+    <main>
+      <h1>form 연습하기</h1>
+      <h2>css 의사 클래스(pseudo classes)</h2>
+      <p>요소의 상태를 표시한다.</p>
+      <hr>
+      <h3>동적 의사 클래스 (dynamic pseudo-classes)</h3>
+      <ul>
+        <li>
+          :hover - 마우스 커서가 요소 위에 올라있는 상태
+          <br>( <a id="hoverTest" href="#">a태그는 default로 설정되어 있다.</a> )
+        </li>
+        <li>
+          :link - 방문하지 않은 상태
+          <br>( <a href="#">green</a> )
+        </li>
+        <li>
+          :visited - 연결된 페이지에 방문한 상태
+          <br>( <a href="#">yellow</a> )
+        </li>
+        <li>
+          :active - 활성된 상태, 클릭하고 있는 상태
+          <br>( <a href="#">red</a> )
+        </li>
+        <li>
+          :target - 현재 활성화된 모든 요소 ( href="css선택자")
+          <br>( <a href="#hoverTest">:hover 예시에 border</a> )
+        </li>
+      </ul>
+      <h3>(입력요소) 상태 의사 클래스 ([Form] Ui element state pseudo-classes)</h3>
+      <ul>
+        <li>
+          :focus - 현재 포인팅 된 곳에 대한 상태
+          <br>( 초점이 맞춰진 input 요소 )
+          <br><input type="text">
+        </li>
+        <li>
+          :in-range - value가 범위 내의 값이면( type="number" min="minValue" max="maxValue" ) 상태가 변한다.
+          <br><input type="number" name="" value="8" min="5" max="10">
+        </li>
+        <li>
+          :out-of-range - value가 범위 밖의 값이면( type="number" min="minValue" max="maxValue" ) 상태가 변한다.
+          <br><input type="number" name="" value="15" min="5" max="10">
+        </li>
+        <li>
+          :disabled - 입력요소에 disabled가 있는 상태
+          <br>( 데이터가 서버로 정달되지 않는다. 즉, 사용 불가능한 input tag)
+          <br><input type="text" name="" value="" disabled>
+        </li>
+        <li>
+          :enabled - 사용할 수 있는 요소 ( <-> :disabled )
+          <br>( 따로 사용하지 않는 요소이다. )
+        </li>
+        <li>
+          :read-only - 읽기만 가능한 상태
+          <br><input type="text" name="" value="수정 불가능한 데이터" readonly>
+        </li>
+        <li>
+          :read-write - readonly가 없는 요소
+        </li>
+        <li>
+          :required - required 속성을 가지는 input 요소를 모두 선택한다.
+        </li>
+        <li>
+          :optional - required 속성을 가지지 않는 input 요소를 모두 선택한다.
+        </li>
+        <li>
+          :valid - 유효한 값을 가지는 input 요소를 모두 선택한다.
+        </li>
+        <li>
+          :invalid - 유효하지 않은 값을 가지는 input 요소를 모두 선택한다.
+        </li>
+        <li>
+          :checked - 체크된(checked) 상태의 input 요소를 모두 선택한다.
+          <br>( option selected )
+          <br><label>test <input type="radio"></label>
+        </li>
+      </ul>
+      <hr>
+      <h2>Select 입력요소 연습하기</h2>
+      <p>
+        Select 요소는 options라는 선택 속성이 있다.
+        <br>options는 document.querySelectorAll("select option")와 비슷하다.
+        <br>options.selectedIndex : 선택된 옵션의 index를 반환한다.
+        <br>options[index].text : innerText처럼 option의 text를 반환한다.
+        <br>
+      </p>
+      <p>
+        <label> 알파벳 선택 :
+          <select name="alphabet" onchange="alphChange(this)">
+            <option value="A">a</option>
+            <option value="B">b</option>
+            <option value="C">c</option>
+            <option value="D">d</option>
+            <option value="E">e</option>
+          </select>
+        </label>
+        <br><span>선택된 옵션( 순서, value, text ) : </span><b id="selectedOpTest"></b>
+      </p>
+<script>
+// this -> window (최상위 객체)
+function alphChange(selectObject) {
+  var selectOpTest=document.getElementById("selectedOpTest");
+  var index=selectObject.options.selectedIndex;
+  var selectedObj=selectObject.options[index];
+
+  selectedOpTest.innerText=index+", "+selectedObj.value+", "+selectedObj.text;
+}
+</script>
+      <p>
+        select multiple 시 여러 옵션을 선택하여 서버에 전송할 수 있다.
+        <br>그러나 선택된 여러 옵션을 일반적인 방법으로 알 수가 없다.
+        <br>( 선택된 옵션들 중 첫번째만 반환 )
+        <br>:checked 를 사용하면 선택된 복수의 옵션을 확인할 수 있다.
+      </p>
+      <p>
+        <label>
+          멀티옵션 선택:
+          <!-- 개발자도구 -> network -> header -> Query String Parameters -->
+
+          <!-- GET 방식 통신 : HTTPRequest 시 url에 parameters를 보내는 것 -->
+          <!-- <form class="" action="" method="GET"> -->
+            <!-- url?selectMulti=B&selectMulti=C&selectMulti=D -->
+            <!-- server에서 받는 데이터 : HTTPRequest(요청).getParameters("selectMulti")=["B","C","D"] -->
+
+          <!-- POST 방식 통신 : HTTPRequest 시 header에 meata data로 form data를 추가할 수 있다. -->
+          <form class="" action="" method="POST">
+            <!-- 개발자도구 -> network -> header -> Form Data -->
+
+            <!-- <select name="selectMulti" onchange="console.table(this.value)" multiple> -->
+            <!-- <select name="selectMulti" onchange="console.table(this.querySelectorAll(':checked'))" multiple> -->
+            <select name="selectMulti" onchange="multiTest(this)" multiple>
+              <option value="A">a</option>
+              <option value="B">b</option>
+              <option value="C">c</option>
+              <option value="D">d</option>
+              <option value="E">e</option>
+              <option value="F">f</option>
+            </select>
+            <button type="submit" name="button">제출</button>
+          </form>
+        </label>
+        <strong>제출될 데이터를 확인하세요( [{index:0,value="A",text="a"},{index:1,value="B",text="b"},...] )</strong>
+        <br><span id="multipleOptionText"></span>
+      </p>
+<script>
+function multiTest(selectObj) {
+  var checkedOptions=selectObj.querySelectorAll(":checked");
+  var multipleOptionText=document.getElementById("multipleOptionText");
+  var printText="";
+
+  // 1. 문자열
+  var i=0;
+  printText+="[";
+  for(var op of checkedOptions) {
+    printText+="{";
+    printText+="index:"+op.index+",";
+    printText+="value:"+op.index+",";
+    printText+="text:"+op.index;
+    printText+="}"
+    printText += (++i!=checkedOptions.length) ? "," : "";
+  }
+  printText+="]";
+  console.log("1 : "+printText);
+
+  // 2. array
+  // console.table(checkedOptions);
+  var checkedArr=[];
+  for(var op of checkedOptions) {
+    printText="{index:"+op.index+",value=\""+op.value+"\",text=\""+op.text+"\"}";
+    // console.log(printText);
+    checkedArr.push(printText);
+    // console.log(checkedArr);
+  }
+  console.log("2 : ["+checkedArr+"]");
+  // multipleOptionText.innerText="["+checkedArr+"]";
+
+  // 3. object
+  checkedArr=[];
+  for(var op of checkedOptions) {
+    var checkedObj=new Object();
+    checkedObj.index=op.index;
+    checkedObj.value=op.value;
+    checkedObj.text=op.text;
+    checkedArr.push(checkedObj);
+    // console.log(checkedObj);
+  }
+  printText=JSON.stringify(checkedArr);
+  console.log("3 : "+printText);
+
+  // console.log(checkedArr.toString());
+  multipleOptionText.innerText=printText;
+}
+</script>
+      <hr>
+      <h2>checkbox 연습하기</h2>
+      <h3>선택된 박스의 value 확인하기</h3>
+      <p>
+        과제1 : selectAll 선택 시 모든 checkbox 선택
+        <br>과제2 : 체크박스의 선택이 바뀔 때 마다 선택된 항목 출력
+      </p>
+      <form action="" name="checkBoxTest" method="post">
+        <label> 체크1 :
+          <!-- <input type="checkbox" name="test" value="box1" onclick="alert(event.target.value)"> -->
+          <input type="checkbox" name="test" value="box1">
+        </label>
+        <label> 체크2 :
+          <!-- <input type="checkbox" name="test" value="box2" onchange="alert(this.value)"> -->
+          <input type="checkbox" name="test" value="box2">
+        </label>
+        <label> 체크3 :
+          <input type="checkbox" name="test" value="box3">
+        </label>
+        <label> 전체선택 :
+          <input type="checkbox" name="selectAll" value="all">
+        </label>
+        <br><b>제출할 데이터 확인 ( [value,value,...] )</b>
+        <br><span></span>
+        <br><b>제출할 데이터 확인 ( [{key:value},{key:value},...] )</b>
+        <br><span></span>
+      </form>
+<script>
+var checkBoxTest = document.forms["checkBoxTest"];
+// console.log(checkBoxTest);
+var selectedText1=checkBoxTest.getElementsByTagName("span")[0];
+var selectedText2=checkBoxTest.getElementsByTagName("span")[1];
+
+// selectAll 이벤트 헨들러
+// console.log(checkBoxTest.test);
+checkBoxTest.selectAll.addEventListener('change', function() {
+  for(var el of checkBoxTest.test) {
+    if(this.checked) {
+      el.checked=true;
+    }
+    else {
+      el.checked=false;
+    }
+  }
+  selectedText1.innerText=checkEl1(checkBoxTest.test);
+  selectedText2.innerText=checkEl2(checkBoxTest.test);
+});
+
+// test 이벤트 헨들러
+for(var el of checkBoxTest.test) {
+  el.addEventListener('change', function() {
+    selectedText1.innerText=checkEl1(checkBoxTest.test);
+    selectedText2.innerText=checkEl2(checkBoxTest.test);
+  });
+}
+
+// 체크된 항목을 검사하여 list로 만드는 함수
+// 1. array
+function checkEl1(elementList) {
+  var checkedElList=[];
+  for(el of elementList) {
+    if(el.checked) {
+      checkedElList.push(el.value);
+    }
+  }
+  // console.log(checkedElList);
+
+  return (!checkedElList.length)?"":"["+checkedElList.toString()+"]";
+}
+
+// 2. object
+function checkEl2(elementList) {
+  var objList=[];
+
+  for(el of elementList) {
+    var checkObj=new Object();
+    if(el.checked) {
+      checkObj.value=el.value;
+      objList.push(checkObj);
+    }
+    console.log(checkObj);
+  }
+
+  console.log(objList);
+  console.log(JSON.stringify(checkObj));
+  return JSON.stringify(checkObj);
+}
+</script>
+    </main>
+  </body>
+</html>
