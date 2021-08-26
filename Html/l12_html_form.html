@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/l07.css">
     <title>html form</title>
   </head>
   <body>
@@ -250,73 +251,211 @@
           </fieldset>
         </form>
         <h3>회원 리스트</h3>
-        <table id="memberTable">
-          <thead>
-            <tr>
-              <th>num</th>
-              <th>id</th>
-              <th>tel</th>
-              <th>grade[0,5]</th>
-              <th>gender(F or M)</th>
-              <th>score[0,100]</th>
-              <th>수정</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- (tr>(td{$$}+td{id_}+td{010}+td{0}+td{F}+td{50}+td>button))*5 -->
-            <tr>
-              <td>01</td>
-              <td>id_aaaa</td>
-              <td>01011111111</td>
-              <td>0</td>
-              <td>F</td>
-              <td>11</td>
-              <td><button type="button" name="btn">수정</button></td>
-            </tr>
-            <tr>
-              <td>02</td>
-              <td>id_bbbb</td>
-              <td>01022222222</td>
-              <td>3</td>
-              <td>F</td>
-              <td>57</td>
-              <td><button type="button" name="btn">수정</button></td>
-            </tr>
-            <tr>
-              <td>03</td>
-              <td>id_cccc</td>
-              <td>01033333333</td>
-              <td>5</td>
-              <td>M</td>
-              <td>96</td>
-              <td><button type="button" name="btn">수정</button></td>
-            </tr>
-            <tr>
-              <td>04</td>
-              <td>id_dddd</td>
-              <td>01044444444</td>
-              <td>1</td>
-              <td>F</td>
-              <td>21</td>
-              <td><button type="button" name="btn">수정</button></td>
-            </tr>
-            <tr>
-              <td>05</td>
-              <td>id_eeee</td>
-              <td>01055555555</td>
-              <td>4</td>
-              <td>M</td>
-              <td>73</td>
-              <td><button type="button" name="btn">수정</button></td>
-            </tr>
-          </tbody>
-        </table>
+        <ol>
+          <li>
+            <!-- form태그는 백에서 넘어올 수 있는 형식 -->
+            <h4>버튼 외부에 데이터를 form을 만들어 데이터를 한번에 보내는 방법</h4>
+            <table id="memberTable_01">
+              <thead>
+                <tr>
+                  <th>num</th>
+                  <th>id</th>
+                  <th>tel</th>
+                  <th>grade[0,5]</th>
+                  <th>gender(F or M)</th>
+                  <th>score[0,100]</th>
+                  <th>수정</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- (tr>(td{$$}+td{id_}+td{010}+td{0}+td{F}+td{50}+td>button))*5 -->
+                <tr>
+                  <td>01</td>
+                  <td>id_aaaa</td>
+                  <td>01011111111</td>
+                  <td>0</td>
+                  <td>F</td>
+                  <td>11</td>
+                  <td>
+                    <form name="id_aaaa" action="" method="post">
+                      <input type="hidden" name="num" value="01">
+                      <input type="hidden" name="id" value="id_aaaa">
+                      <input type="hidden" name="tel" value="01011111111">
+                      <input type="hidden" name="grade" value="0">
+                      <input type="hidden" name="gender" value="F">
+                      <input type="hidden" name="score" value="11">
+                      <button type="button" name="btn">수정</button>
+                    </form>
+                  </td>
+                </tr>
+                <tr>
+                  <td>02</td>
+                  <td>id_bbbb</td>
+                  <td>01022222222</td>
+                  <td>3</td>
+                  <td>F</td>
+                  <td>57</td>
+                  <td>
+                    <form name="id_bbbb" action="" method="post">
+                      <input type="hidden" name="num" value="02">
+                      <input type="hidden" name="id" value="id_bbbb">
+                      <input type="hidden" name="tel" value="01022222222">
+                      <input type="hidden" name="grade" value="3">
+                      <input type="hidden" name="gender" value="F">
+                      <input type="hidden" name="score" value="57">
+                      <button type="button" name="btn">수정</button>
+                    </form>
+                  </td>
+                </tr>
+                <tr>
+                  <td>03</td>
+                  <td>id_cccc</td>
+                  <td>01033333333</td>
+                  <td>5</td>
+                  <td>M</td>
+                  <td>96</td>
+                  <td>
+                    <form name="id_cccc" action="" method="post">
+                      <input type="hidden" name="num" value="03">
+                      <input type="hidden" name="id" value="id_cccc">
+                      <input type="hidden" name="tel" value="01033333333">
+                      <input type="hidden" name="grade" value="5">
+                      <input type="hidden" name="gender" value="M">
+                      <input type="hidden" name="score" value="96">
+                      <button type="button" name="btn">수정</button>
+                    </form>
+                  </td>
+                </tr>
+                <tr>
+                  <td>04</td>
+                  <td>id_dddd</td>
+                  <td>01044444444</td>
+                  <td>1</td>
+                  <td>F</td>
+                  <td>21</td>
+                  <td>
+                    <form name="id_dddd" action="" method="post">
+                      <input type="hidden" name="num" value="04">
+                      <input type="hidden" name="id" value="id_dddd">
+                      <input type="hidden" name="tel" value="01044444444">
+                      <input type="hidden" name="grade" value="1">
+                      <input type="hidden" name="gender" value="F">
+                      <input type="hidden" name="score" value="21">
+                      <button type="button" name="btn">수정</button>
+                    </form>
+                  </td>
+                </tr>
+                <tr>
+                  <td>05</td>
+                  <td>id_eeee</td>
+                  <td>01055555555</td>
+                  <td>4</td>
+                  <td>M</td>
+                  <td>73</td>
+                  <td>
+                    <form name="id_eeee" action="" method="post">
+                      <input type="hidden" name="num" value="05">
+                      <input type="hidden" name="id" value="id_eeee">
+                      <input type="hidden" name="tel" value="01055555555">
+                      <input type="hidden" name="grade" value="4">
+                      <input type="hidden" name="gender" value="M">
+                      <input type="hidden" name="score" value="73">
+                      <button type="button" name="btn">수정</button>
+                    </form>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li>
+            <h4>푼 방법</h4>
+            <table id="memberTable">
+              <thead>
+                <tr>
+                  <th>num</th>
+                  <th>id</th>
+                  <th>tel</th>
+                  <th>grade[0,5]</th>
+                  <th>gender(F or M)</th>
+                  <th>score[0,100]</th>
+                  <th>수정</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- (tr>(td{$$}+td{id_}+td{010}+td{0}+td{F}+td{50}+td>button))*5 -->
+                <!-- 2. -->
+                <!-- <tr id="id_aaaa"> -->
+                <tr>
+                  <!-- 2. -->
+                  <!-- <td class="id">01</td> -->
+                  <td>01</td>
+                  <td>id_aaaa</td>
+                  <td>01011111111</td>
+                  <td>0</td>
+                  <td>F</td>
+                  <td>11</td>
+                  <td>
+                    <!-- 1. form을 추가하여 데이터 제어하기 -->
+                    <!-- 하나의 form을 만들어 안에 btn을 넣어 데이터를 제어한다. -->
+                    <!-- <form name="id_aaaa" action="index.html" method="post">
+                    <input type="hidden" name="num" value="">
+                    <input type="hidden" name="id" value="">
+                    <input type="hidden" name="tel" value="">
+                    <input type="hidden" name="grade" value="">
+                    <input type="hidden" name="gender" value="">
+                    <input type="hidden" name="score" value="">
+                    <button type="button" name="btn" onclick="console.log(this.form)">수정</button>
+                    </form> -->
+                    <!-- 2. tr에 id를 주어서 데이터를 제어하기 -->
+                    <!-- 이벤트 콜백함수는 매개변수로 id값을 주어 데이터를 제어한다. -->
+                    <!-- <button type="button" name="button" onclick="insertForm('id_aaaa')"></button> -->
+                    <button type="button" name="btn">수정</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>02</td>
+                  <td>id_bbbb</td>
+                  <td>01022222222</td>
+                  <td>3</td>
+                  <td>F</td>
+                  <td>57</td>
+                  <td><button type="button" name="btn">수정</button></td>
+                </tr>
+                <tr>
+                  <td>03</td>
+                  <td>id_cccc</td>
+                  <td>01033333333</td>
+                  <td>5</td>
+                  <td>M</td>
+                  <td>96</td>
+                  <td><button type="button" name="btn">수정</button></td>
+                </tr>
+                <tr>
+                  <td>04</td>
+                  <td>id_dddd</td>
+                  <td>01044444444</td>
+                  <td>1</td>
+                  <td>F</td>
+                  <td>21</td>
+                  <td><button type="button" name="btn">수정</button></td>
+                </tr>
+                <tr>
+                  <td>05</td>
+                  <td>id_eeee</td>
+                  <td>01055555555</td>
+                  <td>4</td>
+                  <td>M</td>
+                  <td>73</td>
+                  <td><button type="button" name="btn">수정</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ol>
 <script>
-var memberTable=document.getElementById("memberTable");
-var member=memberTable.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-// console.log(member);
 var memberInsertFrm=document.forms.memberInsert;
 var tempObj="";
+var num=0;
 
 // 재설정
 // console.log(memberInsertFrm.rst);
@@ -327,32 +466,78 @@ rstBtn.addEventListener('click', function() {
   }
 });
 
+// 수정 폼 초기화
+function initForm(frm) {
+  frm.num.value="";
+  frm.id.value="";
+  frm.tel.value="";
+  frm.grade.value="";
+  frm.gender.value="";
+  for(el of memberInsertFrm.gender) {
+    el.checked=false;
+  }
+  frm.score.value="";
+}
+
 // 회원수정
 // console.log(memberInsertFrm.edit);
 var editBtn=memberInsertFrm.edit;
 editBtn.addEventListener('click', function() {
   // console.log(member);
   if(tempObj!="") {
-    tempObj.children[0].innerText=memberInsertFrm.num.value;
-    tempObj.children[1].innerText=memberInsertFrm.id.value;
-    tempObj.children[2].innerText=memberInsertFrm.tel.value;
-    tempObj.children[3].innerText=memberInsertFrm.grade.value;
-    tempObj.children[4].innerText=memberInsertFrm.gender.value;
-    tempObj.children[5].innerText=memberInsertFrm.score.value;
-    console.log(memberInsertFrm.gender);
+    // 1
+    if(num==1) {
+      // console.log(tempObj.lastElementChild.children[0]);
+      // var tempFrm=tempObj.lastElementChild.children[0];
+      var tempFrm=tempObj.getElementsByTagName("form")[0];
+      // tempFrm.num.value=this.form.num.value;
+      // tempFrm.id.value=this.form.id.value;
+      tempFrm.tel.value=this.form.tel.value;
+      tempFrm.grade.value=this.form.grade.value;
+      tempFrm.gender.value=this.form.gender.value;
+      tempFrm.score.value=this.form.score.value;
+    }
+
+    // tempObj.children[0].innerText=this.form.num.value;
+    // tempObj.children[1].innerText=this.form.id.value;
+    tempObj.children[2].innerText=this.form.tel.value;
+    tempObj.children[3].innerText=this.form.grade.value;
+    tempObj.children[4].innerText=this.form.gender.value;
+    tempObj.children[5].innerText=this.form.score.value;
+    // console.log(memberInsertFrm.gender);
 
     // form 초기화
-    memberInsertFrm.num.value="";
-    memberInsertFrm.id.value="";
-    memberInsertFrm.tel.value="";
-    memberInsertFrm.grade.value="";
-    memberInsertFrm.gender.value="";
-    memberInsertFrm.gender[0].checked=false;
-    memberInsertFrm.gender[1].checked=false;
-    innerText=memberInsertFrm.score.value="";
+    initForm(memberInsertFrm);
     tempObj=""
+    num=0;
   }
 });
+
+// 1
+var memberTable01=document.getElementById("memberTable_01");
+var member01=memberTable01.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+
+// 수정
+for(memObj of member01) {
+  (function(obj) {
+    var btn=obj.getElementsByTagName("button")[0];
+    btn.addEventListener('click', function() {
+      memberInsertFrm.num.value=this.form.num.value;
+      memberInsertFrm.id.value=this.form.id.value;
+      memberInsertFrm.tel.value=this.form.tel.value;
+      memberInsertFrm.grade.value=this.form.grade.value;
+      memberInsertFrm.gender.value=this.form.gender.value;
+      memberInsertFrm.score.value=this.form.score.value;
+      tempObj=obj;
+      num=1;
+    });
+  })(memObj);
+}
+
+// 2
+var memberTable=document.getElementById("memberTable");
+var member=memberTable.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+// console.log(member);
 
 // 수정
 for(memObj of member) {
@@ -368,6 +553,7 @@ for(memObj of member) {
       memberInsertFrm.gender.value=obj.children[4].innerText;
       memberInsertFrm.score.value=obj.children[5].innerText;
       tempObj=obj;
+      num=2;
     });
   })(memObj);
 }
