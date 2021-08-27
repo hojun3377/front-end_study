@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>HTML canvas</title>
+  </head>
+  <body>
+    <main>
+      <h1>HTML canvas</h1>
+      <p>
+        canvas는 웹 페에지에 그래픽을 그려주는 컨테이너(container) 이다.
+        <br>javascript 기반으로 그래픽을 그린다.
+      </p>
+      <hr>
+      <article>
+        <h2>Rect (사각형)</h2>
+        <p>strokeRect(x1,y1,x2,y2)</p>
+        <ul>
+          <li>fillStyle : 색이 있는 사각형 색 지정</li>
+          <li>
+            fillRect : 색이 있는 사각형 그리기
+            <br>fillStyle을 먼저 선언해야 한다. ( default : rgb(0,0,0) )
+          </li>
+          <li>clearRect : 사각형 크기만큼 지우기</li>
+          <li>srokeRect : 테두리가 있는 사각형 그리기</li>
+        </ul>
+        <div class="canvas_container">
+          <canvas id="rectCanvas" width="300" height="300" style="border: 1px solid black;">
+            웹브라우저가 canvas를 지원하지 않습니다! ( 라는 문자만 출력 )
+          </canvas>
+        </div>
+      </article>
+<script>
+// canvasElementName.getContext("2d") : canvas를 제어 ( 즉, 붓과 비슷하다. )
+var rectCanvas=document.getElementById("rectCanvas").getContext("2d");
+// border Rect
+rectCanvas.strokeRect(10,10,200,200);
+
+// Color Rect
+rectCanvas.fillStyle="rgb(100,200,100)"; // fillRect 색 지정
+rectCanvas.strokeRect(160,160,100,100);
+// Color Rect + Border Rect
+rectCanvas.fillRect(160,160,100,100);
+
+// Eraser Rect
+rectCanvas.clearRect(80,80,100,100);
+</script>
+      <article>
+        <h2>stroke (선)</h2>
+        <ul>
+          <li>moveTo : 선이 시작되는 곳의 좌표</li>
+          <li>
+            lineTo : 선이 끝나는 곳의 좌표
+            <br>(연속으로 지정하여 한 붓 그리기가 가능하다.)
+          </li>
+          <li>
+            stroke : 선 그리기 시작
+            <br>(moveTo와 lineTo로 그린 선을 rendering한다.)</li>
+          </ul>
+          <div class="canvas_container">
+            <canvas id="lineToCanvas" width="300" height="300" style="border: 1px solid black;"></canvas>
+          </div>
+      </article>
+<script>
+var lineToCanvas=document.getElementById("lineToCanvas").getContext("2d");
+
+lineToCanvas.moveTo(0,0);
+lineToCanvas.lineTo(300,100);
+lineToCanvas.lineTo(0,300);
+lineToCanvas.lineTo(150,0);
+// lineToCanvas.lineTo(300,300);
+// lineToCanvas.lineTo(0,0);
+lineToCanvas.fillStyle="rgb(255,255,0)";
+lineToCanvas.fill();
+lineToCanvas.strokeStyle="rgb(255,0,0)";
+lineToCanvas.lineWidth="4";
+lineToCanvas.stroke(); // lineTo로 지정한 좌표를 순서대로 따라다니며 그린다.
+</script>
+      <hr>
+      <article>
+        <h2>Colors, Styles, Shadows 속성</h2>
+        <ul>
+          <li>fillStyle : 도형(요소) 내부의 색상(color), 공간기울기색상(gradient), 패턴(pattern)을 설정한다.</li>
+          <li>
+            strokeStyle : 선(line)의 색상(color), 공간기울기색상(gradient), 패턴(pattern)을 설정한다.
+            <br>(lineWidth로 두깨를 설정한다.)
+          </li>
+          <li>shadowColor : 그림자 색상</li>
+          <li>shadowBlur : 그림자 흐려짐 정도</li>
+          <li>shadowOffsetX : 그림자 수평 이동(양수 : 오른쪽, 음수 : 왼쪽)</li>
+          <li>shadowOffsetY : 그림자 수직 이동(양수 : 아래쪽, 음수 : 윗쪽)</li>
+        </ul>
+        <div class="canvas_container">
+          <canvas id="optionCanvas" width="300" height="300" style="border: 1px solid black;">
+            웹브라우저가 canvas를 지원하지 않습니다! ( 라는 문자만 출력 )
+          </canvas>
+        </div>
+      </article>
+<script>
+var optionCanvas=document.getElementById("optionCanvas").getContext("2d");
+
+// stroke rect shadow style
+optionCanvas.shadowBlur=5;
+optionCanvas.shadowOffsetX=-15;
+optionCanvas.shadowOffsetY=-15;
+optionCanvas.shadowColor="rgb(0,0,0)";
+
+// stroke style
+optionCanvas.strokeStyle="rgb(150,80,150)";
+optionCanvas.lineWidth=5;
+optionCanvas.strokeRect(75,75,150,150);
+
+// fill rect shadow style
+optionCanvas.shadowBlur=10;
+optionCanvas.shadowColor="rgb(50,10,50)";
+optionCanvas.shadowOffsetX=25;
+optionCanvas.shadowOffsetY=25;
+
+// fill style
+optionCanvas.fillStyle="rgba(200,100,200,.6)";
+optionCanvas.fillRect(75,75,150,150);
+</script>
+      <article>
+        <h2>Gradient(번지는 색상, 기울기 색상) 속성</h2>
+        <ul>
+          <li>
+            createLinearGradient(x0,y0,x1,y1) : gradient 객체 생성
+            <ul>
+              <li>x0 : gradient 시작점 x축 좌표</li>
+              <li>y0 : gradient 시작점 y축 좌표</li>
+              <li>x1 : gradient 끝점 x축 좌표</li>
+              <li>y1 : gradient 끝점 y축 좌표</li>
+            </ul>
+          </li>
+          <li>
+            addColorStop(0~1,"color") : gradient 색상 설정
+            <ul>
+              <li>0 : gradient 시작점 색상</li>
+              <li>1 : gradient 끝지점 색상</li>
+            </ul>
+          </li>
+        </ul>
+        <di class="canvas_container">
+          <canvas id="gradientCanvas" width="300" height="300" style="border: 1px solid black;"></canvas>
+        </di>
+      </article>
+<script>
+var gradientCanvas=document.getElementById("gradientCanvas").getContext("2d");
+var gradientText=gradientCanvas.createLinearGradient(0,0,200,0);
+var gradientRect=gradientCanvas.createLinearGradient(50,50,200,0);
+
+// gradient style option
+gradientText.addColorStop(0,"rgb(50,50,50)");
+gradientText.addColorStop(1,"rgb(250,100,100)");
+gradientRect.addColorStop(0,"rgb(50,50,50)");
+gradientRect.addColorStop(1,"rgb(200,200,200)");
+
+// canvas rect
+gradientCanvas.fillStyle=gradientRect;
+gradientCanvas.fillRect(75,75,150,150);
+
+// canvas text
+gradientCanvas.shadowBlur=10;
+gradientCanvas.shadowColor="rgb(50,10,50)";
+gradientCanvas.shadowOffsetX=8;
+gradientCanvas.shadowOffsetY=5;
+gradientCanvas.fillStyle=gradientText;
+gradientCanvas.font="40px Arial black";
+gradientCanvas.fillText("CANVAS",54,45);
+</script>
+    </main>
+  </body>
+</html>
