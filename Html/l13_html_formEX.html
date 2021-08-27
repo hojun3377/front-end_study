@@ -288,6 +288,15 @@ checkBoxTest.selectAll.addEventListener('change', function() {
 // test 이벤트 헨들러
 for(var el of checkBoxTest.test) {
   el.addEventListener('change', function() {
+    var checked=true;
+
+    for(obj of checkBoxTest.test) {
+      checked&=obj.checked;
+      // console.log(obj.checked);
+    }
+    // console.log(checked);
+    checkBoxTest.selectAll.checked=checked;
+
     selectedText1.innerText=checkEl1(checkBoxTest.test);
     selectedText2.innerText=checkEl2(checkBoxTest.test);
   });
@@ -317,12 +326,17 @@ function checkEl2(elementList) {
       checkObj.value=el.value;
       objList.push(checkObj);
     }
-    console.log(checkObj);
+    // console.log(checkObj);
   }
 
-  console.log(objList);
-  console.log(JSON.stringify(checkObj));
-  return JSON.stringify(checkObj);
+  // console.log(objList);
+  // console.log(JSON.stringify(objList));
+  if(objList.length) {
+    return JSON.stringify(objList);
+  }
+  else {
+    return "";
+  }
 }
 </script>
     </main>
