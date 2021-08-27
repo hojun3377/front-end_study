@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>HTML iframe</title>
+<style>
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: powderblue;
+}
+.iframe_container {
+  border: 4px solid rgba(0,0,0,.2);
+  margin: 10px 0px;
+  padding: 10px 20px;
+}
+.iframe_container:hover {
+  border-color: rgba(0,0,0,.4);
+}
+</style>
+  </head>
+  <body>
+    <h1 id="hrefSelectorTest">HTML iframe ( inline frame )</h1>
+    <p>iframe 은 다른 웹 페이지를 추가할 수 있다.</p>
+    <hr>
+    <div class="iframe_container">
+      <p>
+        src : 출력될 url, width : 너비, height : 높이
+        <br>( 모든 요소의 스타일 속성은 css와 class로 동일하게 적용가능하다. )
+      </p>
+      <iframe src="l01_html_intro.html" width="100%" height="550px">
+        출력되지 않을 때...( error )
+      </iframe>
+    </div>
+    <div class="iframe_container">
+      <p>
+        iframe 은 스타일( style )이 적용되고 border를 바꿀 수 있다.
+        <br>보통 border를 없애는 편이다.( border: none )
+      </p>
+      <iframe src="l02_html_basic.html" style="width: 100%; height: 100px; border: none;"></iframe>
+      <div class="">
+        <p>
+          iframe은 name attribute를 가진다.
+          <br>name은 a 요소의 target으로 지정할 수 있다.
+          <br>a요소의 target: _self(default) - 현재 창에서 이동, _blank - 새 창에서 이동, iframeName - iframe에서 이동
+          <br>ex) name: "targetTest"
+        </p>
+        <iframe src="http://www.hbiedu.co.kr/" name="targetTest" width="100%" height="100px" style="border: 1px solid blue;"></iframe>
+        <a href="l04_html_style.html" target="targetTest">target : targetTest</a>
+        <br><a href="l04_html_style.html" target="_self">target : _self</a>
+        <br><a href="l04_html_style.html" target="_blank">target : _blank</a>
+        <br><a href="#hrefSelectorTest">href : #hrefSelectorTest ( id 선택자만 권장 )</a>
+      </div>
+    </div>
+  </body>
+</html>
