@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript Number Type</title>
+  </head>
+  <body>
+    <main>
+      <h1>숫자와 부동 소수점을 포함하는 Number type</h1>
+      <p>number는 64bit의 부동 소수점인 숫자를 저장하는 기본 데이터 타입</p>
+      <ul>
+        <li>
+          number가 안전하게 표현할 수 있는 최대 정수(MAX_SAFE_INTEGER, 2<sup>53</sup>-1) :
+<script>
+document.write(Number.MAX_SAFE_INTEGER);
+</script>
+        </li>
+        <li>
+          number가 안전하게 표현할 수 있는 최소 정수(MIN_SAFE_INTEGER, -(2<sup>53</sup>-1)) :
+<script>
+document.write(Number.MIN_SAFE_INTEGER);
+</script>
+        </li>
+        <li>
+          javascript가 표현할 수 있는 가장 큰 수(MAX_VALUE) :
+<script>
+document.write(Number.MAX_VALUE);
+</script>
+        </li>
+        <li>
+          javascript가 표현할 수 있는 가장 작은 수(MIN_VALUE) :
+<script>
+document.write(Number.MIN_VALUE);
+</script>
+        </li>
+        <li>Number는 정수와 소수를 표현한 데이터 타입을 자바스크립트가 브라우저 동작시 생성한 객체</li>
+        <li>Number는 총 64bit(8byte)를 저장하고 분수는 0~51, 지수 52~62, 부호(.)가 63에 저장된다.</li>
+        <li>
+          0.2+0.1 :
+<script>
+document.write(0.2+0.1);
+</script>
+        </li>
+        <li>
+          888888888888888888888888888888888888888888888888 :
+<script>
+document.write(888888888888888888888888888888888888888888888888);
+</script>
+        </li>
+        <li>
+          let eNum=567e8 :
+<script>
+document.write(567e8);
+</script>
+        </li>
+        <li>
+          let eNum=567e-8 :
+<script>
+document.write(567e-8);
+</script>
+        </li>
+      </ul>
+      <article>
+        <h2>Number의 연산과 자동 형 변환</h2>
+        <p>
+          숫자는 연산을 하기 위해 존재하고, 자바스크립트의 숫자는 숫자가 아닌 것도 연산하기 위해 형변환을 시도한다. ("10"->10)
+        </p>
+        <hr>
+        <p>
+          + 연산은 문자열을 합치는 연산이기도 하다. 때문에 숫자의 + 연산 시 문자열이 있다면 숫자를 문자열로 형 변환한다.
+          <br>( 즉, +연산에서 숫자(number)보다 문자열(string)이 우선순위가 더 높다. )
+        </p>
+        <ul>
+          <li>
+            10+20 :
+<script>
+document.write(10+20);
+</script>
+          </li>
+          <li>
+            10+"20" :
+<script>
+document.write(10+"20");
+</script>
+          </li>
+          <li>
+            "10"+"20" :
+<script>
+document.write("10"+"20");
+</script>
+          </li>
+          <li>
+            "A"+10+20 :
+<script>
+document.write("A"+10+20);
+</script>
+          </li>
+          <li>
+            10+20+"A" :
+<script>
+document.write(10+20+"A");
+</script>
+          </li>
+          <li>
+            1+false :
+<script>
+document.write(1+false);
+</script>
+          </li>
+          <li>
+            1+true :
+<script>
+  document.write(1+true);
+</script>
+          </li>
+          <li>
+            1+null :
+<script>
+document.write(1+null);
+</script>
+          </li>
+          <li>
+            1+undefined :
+<script>
+document.write(1+undefined);
+</script>
+          </li>
+          <li>
+            1+NaN :
+<script>
+document.write(1+NaN);
+</script>
+          </li>
+        </ul>
+        <hr>
+        <p>
+           + 연산을 제외한 나머지 연산은 문자열이 나올 시 자동으로 문자열을 숫자로 형 변환을 시도한다. 만약 형 변환이 되지 않으면 숫자가 아니라는 뜻의 NaN가 된다.
+           <br>( false와 null은 0으로 변환되고, NaN과 undefined는 NaN이 된다. )
+        </p>
+        <ul>
+          <li>
+            10*20 :
+<script>
+document.write(10*20);
+</script>
+          </li>
+          <li>
+            10*"20" :
+<script>
+document.write(10*"20");
+</script>
+          </li>
+          <li>
+            "10"*"20" :
+<script>
+document.write("10"*"20");
+</script>
+          </li>
+          <li>
+            "A"*10*20 :
+<script>
+document.write("A"*10*20);
+</script>
+          </li>
+          <li>
+            10*20*"A" :
+<script>
+document.write(10*20*"A");
+</script>
+          </li>
+          <li>
+            1*false :
+<script>
+document.write(1*false);
+</script>
+          </li>
+          <li>
+            1*true :
+<script>
+  document.write(1*true);
+</script>
+          </li>
+          <li>
+            1*null :
+<script>
+document.write(1*null);
+</script>
+          </li>
+          <li>
+            1*undefined :
+<script>
+document.write(1*undefined);
+</script>
+          </li>
+          <li>
+            1*NaN :
+<script>
+document.write(1*NaN);
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>NaN ( Not a Number )</h2>
+        <p>숫자가 될 수 없는 것을 나타내는 기본 데이터 타입이다.</p>
+        <h4>Number(data) : data를 숫자로 명시적 형 변환</h4>
+        <ul>
+          <li>
+            Number("100") :
+<script>
+document.write(Number("100"));
+</script>
+          </li>
+          <li>
+            Number(null) :
+<script>
+document.write(Number(null));
+</script>
+          </li>
+          <li>
+            Number("안녕") :
+<script>
+document.write(Number("안녕"));
+</script>
+          </li>
+          <li>
+            Number(undefined) :
+<script>
+document.write(Number(undefined));
+</script>
+          </li>
+          <li>
+            Number(true) :
+<script>
+document.write(Number(true));
+</script>
+          </li>
+          <li>
+            Number(false) :
+<script>
+document.write(Number(false));
+</script>
+          </li>
+        </ul>
+        <hr>
+        <h4>isNan(data) : data가 NaN이면 true를 반환</h4>
+        <ul>
+          <li>
+            isNan(100) :
+<script>
+document.write(isNaN(100));
+</script>
+          </li>
+          <li>
+            isNan("백") :
+<script>
+document.write(isNaN("백"));
+</script>
+          </li>
+          <li>
+            isNan("100") :
+<script>
+document.write(isNaN("100"));
+</script>
+          </li>
+          <li>
+            isNan(NaN) :
+<script>
+document.write(isNaN(NaN));
+</script>
+          </li>
+        </ul>
+      </article>
+      <hr>
+      <article>
+        <h2>입력 요소에서 입력받은 value가 숫자인지 검사하기</h2>
+        <ul>
+          <li>
+            <!-- Time.year-age+1 -->
+            <input type="text" name="age" value="" placeholder="나이를 입력하세요" onchange="onChangeBirthYearAlert(event)" onkeydown="onKeyDownBirthYearAlert(event)">
+            <span id="ageTest" style="color: red;"></span>
+<script>
+function onChangeBirthYearAlert(e) {
+  // 1~120까지의 숫자만 받고 ( 다른 수가 넘어올 경우 "1~120 까지 숫자만 입력하세요." 출력)
+  //alert("당신이 태어난 해는 : "+(2021-e.target.value+1)+"년 입니다.")
+  // Date 클래스에서 브라우저가 실행중인 해 받아오기
+  let year=new Date().getFullYear();
+  if(e.target.value>=1 && e.target.value<=120) {
+    alert("당신이 태어난 해는 "+(year-e.target.value+1)+"년 입니다.")
+  }
+  else if(e.target.value<1 || e.target.value>120) {
+    alert("1~120까지의 숫자만 입력하세요.")
+  }
+}
+
+// 1~120까지의 숫자만 받고 ( 다른 수가 넘어올 경우 "1~120 까지 숫자만 입력하세요." 출력)
+//alert("당신이 태어난 해는 : "+(2021-e.target.value+1)+"년 입니다.")
+// Date 클래스에서 브라우저가 실행중인 해 받아오기
+function onKeyDownBirthYearAlert(e) {
+  let ageTest=document.getElementById("ageTest");
+  let nextInput;
+
+  // nextInput 설정
+  if(e.keyCode==8) {
+    nextInput=e.target.value.slice(0,-1);
+  }
+  else {
+    nextInput=e.target.value+e.keyCode;
+  }
+  console.log(nextInput);
+
+  // backspace를 눌렀을 경우
+  if(isNaN(nextInput)) {
+    // console.log(e.keyCode);
+    ageTest.innerText="숫자만 입력하세요.";
+  }
+  else {
+    ageTest.innerText="";
+  }
+}
+</script>
+          </li>
+        </ul>
+      </article>
+    </main>
+  </body>
+</html>
