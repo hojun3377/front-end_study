@@ -243,30 +243,42 @@ document.write(Number(false));
           </li>
         </ul>
         <hr>
-        <h4>isNan(data) : data가 NaN이면 true를 반환</h4>
+        <h4>isNaN(data) : data가 NaN이면 true를 반환</h4>
         <ul>
           <li>
-            isNan(100) :
+            isNaN(100) :
 <script>
 document.write(isNaN(100));
 </script>
           </li>
           <li>
-            isNan("백") :
+            isNaN("백") :
 <script>
 document.write(isNaN("백"));
 </script>
           </li>
           <li>
-            isNan("100") :
+            isNaN("100") :
 <script>
 document.write(isNaN("100"));
 </script>
           </li>
           <li>
-            isNan(NaN) :
+            isNaN(NaN) :
 <script>
 document.write(isNaN(NaN));
+</script>
+          </li>
+          <li>
+            isNaN(null) :
+<script>
+document.write(isNaN(null));
+</script>
+          </li>
+          <li>
+            isNaN("") :
+<script>
+document.write(isNaN(""));
 </script>
           </li>
         </ul>
@@ -277,47 +289,66 @@ document.write(isNaN(NaN));
         <ul>
           <li>
             <!-- Time.year-age+1 -->
-            <input type="text" name="age" value="" placeholder="나이를 입력하세요" onchange="onChangeBirthYearAlert(event)" onkeydown="onKeyDownBirthYearAlert(event)">
-            <span id="ageTest" style="color: red;"></span>
+            <!-- <input type="text" name="age" value="" placeholder="나이를 입력하세요" onchange="birthYearChange(event)" oninput="birthYearInput(event)"> -->
+            <input type="text" name="age" value="" placeholder="나이를 입력하세요">
+            <span id="ageTest"></span>
 <script>
-function onChangeBirthYearAlert(e) {
-  // 1~120까지의 숫자만 받고 ( 다른 수가 넘어올 경우 "1~120 까지 숫자만 입력하세요." 출력)
-  //alert("당신이 태어난 해는 : "+(2021-e.target.value+1)+"년 입니다.")
-  // Date 클래스에서 브라우저가 실행중인 해 받아오기
-  let year=new Date().getFullYear();
-  if(e.target.value>=1 && e.target.value<=120) {
-    alert("당신이 태어난 해는 "+(year-e.target.value+1)+"년 입니다.")
+/*
+Date 클래스에서 브라우저가 실행중인 해 받아오기
+  조건
+  1. 1~120까지의 숫자만 받는다. ( 다른 수가 넘어올 경우 "1~120 까지 숫자만 입력하세요." 출력)
+  2. "'당신이 태어난 해는 : '+(2021-e.target.value+1)+'년 입니다.'"
+*/
+const ageInput=document.getElementsByTagName("input")[0];
+const ageTest=document.getElementById("ageTest");
+
+let birthYearChange = (e) => {
+  let targetValue = e.target.value;
+  let year;
+
+  // console.log(Number.isNaN(targetValue));
+  if(Number.isNaN(targetValue*1)) {
+    ageTest.style.color = "rgb(255,0,0)";
+    ageTest.innerText = "문자열을 입력할 수 없습니다.";
+    // 입력요소에 입력되기 전의 value이기 때문에 입력 요소가 바뀌지 않는다.
+    // targetValue=""
+    e.target.value = "";
   }
-  else if(e.target.value<1 || e.target.value>120) {
-    alert("1~120까지의 숫자만 입력하세요.")
+  else if (targetValue*1<1 || targetValue*1>120) {
+    ageTest.style.color = "rgb(255,0,0)";
+    ageTest.innerText = "1~120까지의 숫자만 입력하세요.";
+  }
+  else {
+    year = new Date().getFullYear()
+    ageTest.style.color = "rgb(0,0,255)";
+    ageTest.innerText = "당신이 태어난 해는 "+(year-targetValue+1)+"년 입니다.";
   }
 }
 
-// 1~120까지의 숫자만 받고 ( 다른 수가 넘어올 경우 "1~120 까지 숫자만 입력하세요." 출력)
-//alert("당신이 태어난 해는 : "+(2021-e.target.value+1)+"년 입니다.")
-// Date 클래스에서 브라우저가 실행중인 해 받아오기
-function onKeyDownBirthYearAlert(e) {
-  let ageTest=document.getElementById("ageTest");
-  let nextInput;
+/*
+  숫자가 아닌 값을 입력 받았을 경우, 경고문을 띄우는 유효성검사
+  조건
+    1. 숫자를 제외한 문자를 받았을 경우 "숫자만 입력하세요." 출력
+    2. 입력을 제외한 키를 입력 받았을 경우 아무 경고창이 일어나지 않음
+*/
 
-  // nextInput 설정
-  if(e.keyCode==8) {
-    nextInput=e.target.value.slice(0,-1);
-  }
-  else {
-    nextInput=e.target.value+e.keyCode;
-  }
-  console.log(nextInput);
+// input event & 정규표현식 (RegExp)
+let birthYearInput = (e) => {
+  // console.log(e.target.value);
+  let targetValue = e.target.value;
+  let noNumberRegExp = /[^0-9]/g;
 
-  // backspace를 눌렀을 경우
-  if(isNaN(nextInput)) {
-    // console.log(e.keyCode);
+  if(noNumberRegExp.test(targetValue)) {
+    ageTest.style.color = "rgb(255,0,0)";
     ageTest.innerText="숫자만 입력하세요.";
   }
   else {
     ageTest.innerText="";
   }
 }
+
+ageInput.addEventListener("change", birthYearChange);
+ageInput.addEventListener("input", birthYearInput);
 </script>
           </li>
         </ul>
