@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript String</title>
+  </head>
+  <body>
+    <main>
+      <h1>문자들의 집합 문자열 ( String )</h1>
+      <p>String 객체는 문자들의 집합인 문자열을 조작하는 함수를 제공한다.</p>
+      <article>
+        <h2>문자열 생성 방법</h2>
+        <ul>
+          <li>let x = "abc"; ( string은 기본데이터 타입이다. )</li>
+          <li>let x = 'abc'; ( javascript는 char 타입이 없다. )</li>
+          <li>let x = `abc`; ( 템플릿 리터럴 ( Template literals ) 적용 문자 )</li>
+        </ul>
+      </article>
+      <article>
+        <h2>문자(char) 접근</h2>
+        <ul>
+          <li>
+            "string"[index]
+            <br> ex) "string"[2] :
+<script>
+document.write("string"[2]);
+</script>
+            <br> **string을 배열처럼 index로 접근 할 때, read만 가능하다. <br> ex) "string"[2] = "a"; (x)
+          </li>
+          <li>
+            "string".charAt(2) :
+<script>
+document.write("string".charAt(2));
+/*
+  String.charAt("string",2) 기본데이터 타입인 문자열에 함수를 가지고 있으면 데이터가 커질 수 있다.
+*/
+
+/*
+  Number vs. String
+    1. 10.MAX_VALUE (x)
+    2. (new Number(10)).MAX_VALUE (o)
+
+    3."string".charAt(2); (o)
+    4.new String("string").charAt(2); (o)
+
+  new 연산자로 생성하는 객체를 인스턴트 객체라 하는데, 기본데이터 타입 문자열은 인스턴트 객체 생성을 생략한다. ( 위 3,4번의 예제가 완전히 똑같지는 않다. )
+*/
+console.log("string");
+console.log(new String("string"));
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>기본 데이터 타입인 문자열과 인스턴트 객체인 문자열</h2>
+        <ul>
+          <li>
+            init
+            <br>let stringVal = "안녕하세요"; ( 기본 데이터 타입인 문자열 )
+            <br>let objectVal = new String("안녕하세요"); ( new 연산자로 생성한 인스턴트 객체 )
+<script>
+let stringVal = "안녕하세요";
+let objectVal = new String("안녕하세요");
+</script>
+          </li>
+          <li>
+            type
+            <br>typeof stringVal :
+<script>
+document.write(typeof stringVal);
+</script>
+            <br>typeof objectVal :
+<script>
+document.write(typeof objectVal);
+</script>
+          </li>
+          <li>
+            compare
+            <br>stringVal == objectVal :
+<script>
+document.write(stringVal==objectVal);
+</script>
+            <br>stringVal===objectVal :
+<script>
+document.write(stringVal===objectVal);
+</script>
+          </li>
+          <li>기본데이터 타입인 문자열에는 함수가 존재하지 않는다. 하지만 사용할 수 있는 이유는 사용할 때 인스턴트 객체 생성과 비슷한 일이 발생하기 때문이다.</li>
+        </ul>
+      </article>
+      <article>
+        <h2>escape sequence ( 이스케이프 시퀀스 )</h2>
+        <p>
+          특수 문자나 백슬러시(\), 줄바꿈(\n), 따옴표(") 등의 것을 출력 할 수 있다.
+        </p>
+        <ul>
+          <li>
+<script>
+document.write("큰 따옴표 시퀀스 : \"")
+</script>
+          </li>
+          <li>
+<script>
+document.write("작은 따옴표 시퀀스 : \'")
+</script>
+          </li>
+          <li>
+<script>
+document.write("백슬러시 시퀀스 : \\")
+</script>
+          </li>
+          <li>
+<script>
+document.write("줄바꿈 시퀀스 : string\nstring")
+</script>
+          </li>
+          <li>
+<script>
+document.write("탭 시퀀스 : string\tstring")
+</script>
+          </li>
+          <li>
+<script>
+document.write("백스페이스 시퀀스 : string\bstring")
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>Template literals ( 템플릿 리터럴, ${expression(표현식)} )</h2>
+        <p>
+          문자열을 ``(백틱)으로 선언하면 ${expression} (Template literals) 표현식을 사용한다는 선언이다.
+          <br>이때, 자바스크립트 문법을 expression에 사용할 수 있다.
+        </p>
+<script>
+let t = "test";
+let testVal = "자바스크립트 "+t+" 중입니다.";
+console.log(testVal);
+
+// expression에 javascript 구문이 사용된다.
+let testVal2 = `자바스크립트 ${t+'.ver'+(1+2)} 중입니다.`;
+console.log(testVal2);
+</script>
+      </article>
+    </main>
+  </body>
+</html>
