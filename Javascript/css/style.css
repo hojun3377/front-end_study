@@ -1,0 +1,14 @@
+/* table-style */
+.hj_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.hj_table, .hj_table th, .hj_table td{
+  border: 1px solid black;
+}
+.hj_table td:nth-child(1) {
+  text-align: center;
+}
+.hj_table td:nth-child(2) {
+  border-left-style: dotted;
+}
