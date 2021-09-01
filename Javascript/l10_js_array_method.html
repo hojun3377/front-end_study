@@ -144,87 +144,118 @@ document.write(`<br>testArr : ${testArr}
         </p>
         <p>
           <input type="text" name="colorInput" value="" placeholder="레몬, 화이트, ...">
-          <input type="reset" name="btnRst" value="초기화">
+          <input type="reset" name="rstBtn" value="초기화">
         </p>
       </form>
 <script>
 const colorCheckForm = document.forms["colorCheckForm"];
-const colorCheckBox = colorCheckForm.colorCheckBox;
+const colorCheckBoxs = colorCheckForm.colorCheckBox;
 const colorInput = colorCheckForm.colorInput;
-const btnRst = colorCheckForm.btnRst;
+const rstBtn = colorCheckForm.rstBtn;
 
 const checkedList = [];
-const checkBoxIdx = {
-  "블랙" : 0,
-  "레드" : 1,
-  "그린" : 2,
-  "블루" : 3,
-  "화이트" : 4,
-  "레몬" : 5,
-  "오렌지" : 6
-};
+// const colorCheckBoxIdx = {
+//   "블랙" : 0,
+//   "레드" : 1,
+//   "그린" : 2,
+//   "블루" : 3,
+//   "화이트" : 4,
+//   "레몬" : 5,
+//   "오렌지" : 6
+// };
+const colorCheckBoxIdx = {};
+for(let idx in colorCheckBoxs) {
+  colorCheckBoxIdx[colorCheckBoxs[idx].value]=idx;
+}
 
 // check -> input
-for(el of colorCheckBox) {
+for(let el of colorCheckBoxs) {
   // console.log(el);
   el.addEventListener('change', (e) => {
-    const eventTarget = e.target;
-
-    // 1. 체크박스 순서에 맞게 출력
-    // const printList = [];
-    // for(obj of colorCheckBox) {
-    //   if(obj.checked) {
-    //     // console.log(obj.checked);
-    //     printList.push(obj.value);
-    //   }
-    // }
-    // colorInput.value = printList.toString();
-
-    // 2. 체크된 순서대로 출력
-    if(eventTarget.checked) {
+    if(e.target.checked) {
       checkedList.push(e.target.value);
     }
     else {
-      // 2. for 문으로 search 후 삭제
-      for(idx in checkedList) {
-        if(eventTarget.value===checkedList[idx]) {
+      for(let idx in checkedList) {
+        if(e.target.value===checkedList[idx]) {
           checkedList.splice(idx,1);
           break;
         }
       }
     }
     colorInput.value = checkedList.toString();
-
   });
 }
 
 // input -> check
 colorInput.addEventListener('input', (e) => {
   const inputList = e.target.value.split(",");
+  const inputListFiltered = inputList.filter(val => colorCheckBoxIdx[val]!=undefined);
   let key;
+  
+  // checkedList push & pop
+  // console.log(inputListFiltered);
+  if(checkedList.length < inputListFiltered.length) {
+    // push
+    key = inputListFiltered.slice(-1).toString();
+    if(colorCheckBoxs[colorCheckBoxIdx[key]].checked == false)
+      checkedList.push(key);
+  }
+  else if(checkedList.length > inputListFiltered.length) {
+    // pop
+    checkedList.pop();
+  }
 
-  for(let el of colorCheckBox) {
+  // 입력 데이터 유효성 검사
+  // console.log(e);
+  // console.log(e.data);
+  if(e.data===",") {
+    e.target.value = checkedList.toString()+(checkedList.length ? "," : "");
+  }
+
+  for(let el of colorCheckBoxs) {
     el.checked = false;
   }
 
-  // console.log(inputList);
+  // console.log(checkedList);
 
   // 1. 이중 for문 비교
-  // for(let inputVal of inputList) {
-  //   for(let checkBoxEl of colorCheckBox) {
-  //
+  // for(let val of checkedList) {
+  //   for(let el of colorCheckBoxs) {
+  //     if(val===el.value) {
+  //       el.checked=true;
+  //       break;
+  //     }
   //   }
   // }
 
   // 2. json
-  // for(let val of inputList) {
-  //   key = checkBoxIdx[val];
-  //   // console.log(key);
-  //
-  //   if(key != undefined) {
-  //       colorCheckBox[key].checked=true;
-  //   }
-  // }
+  for(let val of checkedList) {
+    key = colorCheckBoxIdx[val];
+    // console.log(key);
+  
+    if(key != undefined) {
+      colorCheckBoxs[key].checked = true;
+    }
+  }
+
+  // console.log(checkedList);
+});
+colorInput.addEventListener("change", (e) => {
+  e.target.value = checkedList.toString();
+});
+
+// reset button
+rstBtn.addEventListener('click', (e) => {
+  // 배열 초기화
+  // 0. 빈배열 할당 ( 배열의 변수가 const인 경우 사용 불가능 )
+  // 1. splice
+  // checkedList.splice(0,checkedList.length);
+  // 2. pop
+  // while(checkedList.length>0) checkedList.pop();
+  // // 3. 배열 길이 설정
+  checkedList.length = 0;
+  // console.log(checkedList);
 });
 </script>
       <hr>
