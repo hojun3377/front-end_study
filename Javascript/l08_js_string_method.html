@@ -71,89 +71,257 @@ document.write("ABCD".charAt(0));
   </script>
             </td>
           </tr>
+<script>
+let foodList = "스파게티 피자 샌드위치";
+let test = "Brave new world";
+</script>
           <tr>
-            <td>slice(start,end)</td>
+            <td>slice(start, end=length)</td>
             <td>
               일부 문자를 추출할 때 사용한다.
-              <br>index : 0~string.length-1 혹은 -string.length~-1 ( iterable )
-              <br>start ~ end-1 문자 추출
+              <ul>
+                <li>양수 index : 0~string.length-1</li>
+                <li>음수 index : -string.length~-1</li>
+                <li>start ~ end-1 문자 추출</li>
+                <li>매개변수가 1개 : end는 string.length</li>
+                <li>start 위치는 end 위치보다 좌측에 위치</li>
+              </ul>
             </td>
             <td>
-              "spaghetti".slice(2,6) :
+              "스파게티 피자 샌드위치".slice(8,12) :
 <script>
-document.write("spaghetti".slice(2,6));
+document.write(foodList.slice(8,12));
 </script>
-              <br>"spaghetti".slice(2,-1) :
+              <br>"스파게티 피자 샌드위치".slice(8,-1) :
 <script>
-document.write("spaghetti".slice(2,-1));
+document.write(foodList.slice(8,-1));
 </script>
-              <br>"spaghetti".slice(-7,-1) :
+              <br>"스파게티 피자 샌드위치".slice(-4,-1) :
 <script>
-document.write("spaghetti".slice(-7,-1));
+document.write(foodList.slice(-4,-1));
+</script>
+              <br>"스파게티 피자 샌드위치".slice(8) :
+<script>
+document.write(foodList.slice(8));
+</script>
+              <br>"스파게티 피자 샌드위치".slice(-4) :
+<script>
+document.write(foodList.slice(-4));
+</script>
+              <hr>
+              "스파게티 피자 샌드위치".slice(12,8) :
+<script>
+document.write(foodList.slice(12,8));
 </script>
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
+            <td>substring(start, end=length)</td>
             <td>
-              <script>document.write();</script>
+              slice와 동일하지만 양수 index만 사용 가능하다.
+              <br>하지만 slice와 다르게 start 위치가 end 위치보다 우측에 위치해도 start와 end 사이의 문자열을 출력한다.
+            </td>
+            <td>
+              "스파게티 피자 샌드위치".substring(8,12) :
+<script>
+document.write(foodList.substring(8,12));
+</script>
+              <br>"스파게티 피자 샌드위치".substring(8,-1) :
+<script>
+document.write(foodList.substring(8,-1));
+</script>
+              <br>"스파게티 피자 샌드위치".substring(-4,-1) :
+<script>
+document.write(foodList.substring(-4,-1));
+</script>
+              <br>"스파게티 피자 샌드위치".substring(8) :
+<script>
+document.write(foodList.substring(8));
+</script>
+              <br>"스파게티 피자 샌드위치".substring(-4) :
+<script>
+document.write(foodList.substring(-4));
+</script>
+              <hr>
+              "스파게티 피자 샌드위치".substring(12,8) :
+<script>
+document.write(foodList.substring(12,8));
+</script>
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
+            <td>substr(start, len)</td>
             <td>
-              <script>document.write();</script>
+              일부 문자를 추출한다. 이때 시작점부터 길이만큼 반환한다.
+              len는 양수
+            </td>
+            <td>
+              "스파게티 피자 샌드위치".substr(8,4) :
+<script>
+document.write(foodList.substr(8,4));
+</script>
+              <br>"스파게티 피자 샌드위치".substr(-4,4) :
+<script>
+document.write(foodList.substr(-4,4));
+</script>
+              <br>"스파게티 피자 샌드위치".substr(8,-1) :
+<script>
+document.write(foodList.substr(8,-1));
+</script>
+              <br>"스파게티 피자 샌드위치".substr(-4,-1) :
+<script>
+document.write(foodList.substr(-4,-1));
+</script>
+              <br>"스파게티 피자 샌드위치".substr(8) :
+<script>
+document.write(foodList.substr(8));
+</script>
+              <br>"스파게티 피자 샌드위치".substr(-4) :
+<script>
+document.write(foodList.substr(-4));
+</script>
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
+            <td>startsWith(str, position=0)</td>
             <td>
-              <script>document.write();</script>
+              시작점부터(좌->우) 특정 문자열(str)로 시작하는지 여부 ( boolean )
+            </td>
+            <td>
+              "스파게티 피자 샌드위치".startsWith("스파") :
+<script>
+document.write(foodList.startsWith("스파"));
+</script>
+              <br>"스파게티 피자 샌드위치".startsWith("피자",5) :
+<script>
+document.write(foodList.startsWith("피자",5));
+</script>
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
+            <td>endsWith(str, position=length)</td>
+            <td>끝에서부터(우->좌) 특정 문자열(str)로 시작하는지 여부 ( boolean )</td>
             <td>
-              <script>document.write();</script>
+              "스파게티 피자 샌드위치".endsWith("샌드위치") :
+<script>
+document.write(foodList.endsWith("샌드위치"));
+</script>
+              <br>"스파게티 피자 샌드위치".endsWith("샌드") :
+<script>
+document.write(foodList.endsWith("샌드"));
+</script>
+              <br>"스파게티 피자 샌드위치".endsWith("피자",7) :
+<script>
+document.write(foodList.endsWith("피자",7));
+</script>
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
+            <td>includes(str, position=0)</td>
+            <td>특정 위치(position) 부터 특정 문자열(str)이 있는지 여부를 검색 ( boolean )</td>
             <td>
-              <script>document.write();</script>
+              foodList.includes("피자") :
+<script>
+document.write(foodList.includes("피자"));
+</script>
+              <br>foodList.includes("피자",6) :
+<script>
+document.write(foodList.includes("피자",6));
+</script>
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
+            <td>indexOf(str, position=0)</td>
             <td>
-              <script>document.write();</script>
+              특정 위치(position) 부터 특정 문자열(str) 이 있는지 검색 후  시작 지점의 index를 반환하고 탐색을 멈춤 ( 시작지점부터 찾음 )
+              <br>string이 없다면 -1 반환
+            </td>
+            <td>
+              "Brave new world".indexOf("new") :
+<script>
+document.write(test.indexOf("new"));
+</script>
+              <br>"Brave new world".indexOf("new",7) :
+<script>
+document.write(test.indexOf("new",7));
+</script>
+              <br>"Brave new world".indexOf("hello") :
+<script>
+document.write(test.indexOf("hello"));
+</script>
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
+            <td>lastIndexOf(str, position=length)</td>
             <td>
-              <script>document.write();</script>
+              특정 위치(position) 부터 특정 문자열(str) 이 있는지 검색 후 시작 지점의 index를 반환하고 탐색을 멈춤 ( 끝지점부터 찾음 )
+              <br>string이 없다면 -1 반환
+            </td>
+            <td>
+              "Brave new world".lastIndexOf("new") :
+<script>
+document.write(test.lastIndexOf("new"));
+</script>
+              <br>"Brave new world".lastIndexOf("new",5) :
+<script>
+document.write(test.lastIndexOf("new",5));
+</script>
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
+            <td>split(str, arrayLen)</td>
             <td>
-              <script>document.write();</script>
+              특정 문자열(str)을 기준으로 나누어 배열로 만든다.
+              <br>arrayLen : 배열에 넣을 나눠진 문자열의 개수
+              <br>만약 str이 기존 문자열에 포함된 문자열이 아니라면 기존 문자열을 원소로 가지는 문자열을 생성한다.
+<script>
+console.log(foodList);
+console.log(foodList.split(" "));
+console.log(foodList.split(" ").join(","));
+</script>
+            </td>
+            <td>
+              "스파게티 피자 샌드위치".split(" ") :
+<script>
+document.write(foodList.split(" "));
+</script>
+              <br>"스파게티 피자 샌드위치".split(" ",2) :
+<script>
+document.write(foodList.split(" ", 2));
+</script>
+              <br>"스파게티 피자 샌드위치".split(",") :
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
+            <td>replace(str1, str2)</td>
             <td>
-              <script>document.write();</script>
+              특정 문자열이나 정규식 패턴으로 검색 후 다른 문자열로 변환한 값을 반환
+              <br> **새로운 문자열을 반환 ( 즉, 기존 문자열을 변환하지 않는다. )
+              <br> **기존 문자열에서 가장 앞에있는 하나의 str1만 str2로 변환한다.
+            </td>
+            <td>
+              "스파게티 피자 샌드위치".replace("샌드위치","햄버거") :
+<script>
+document.write(foodList.replace("샌드위치","햄버거"));
+</script>
+              <br>"스파게티 피자 샌드위치".replace(" ",",") :
+<script>
+document.write(foodList.replace(" ",","));
+</script>
+            </td>
+          </tr>
+          <tr>
+            <td>replaceAll(str1, str2)</td>
+            <td>
+              특정 문자열이나 정규식 패턴으로 검색 한 모든 문자열을 다른 문자열로 변환한 값을 반환
+              <br> **새로운 문자열을 반환 ( 즉, 기존 문자열을 변환하지 않는다. )
+              <br> **기존 문자열에서 모든 str1을 str2로 변환한다.
+            </td>
+            <td>
+              "스파게티 피자 샌드위치".replaceAll(" ",",") :
+<script>
+document.write(foodList.replaceAll(" ",","));
+</script>
             </td>
           </tr>
         </tbody>
