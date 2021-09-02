@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript Logical Operator</title>
+  </head>
+  <body>
+    <main>
+      <h1>자바스크립트의 논리연산자</h1>
+      <p>&& (and), || (or), ! (not)</p>
+      <p>논리연산의 결과는 boolean 값으로만 나오지 않는다.</p>
+      <article>
+        <h2>|| (or)</h2>
+        <p>합집합을 의미하며 모두가 거짓이라도 하나만 진실이면 진실을 의미한다. 다른말로 모두 거짓이어야 거짓이다.</p>
+        <ul>
+          <li>
+<script>
+document.write(` false || false : ${false||false}`)
+</script>
+          </li>
+          <li>
+<script>
+document.write(` true || false : ${true||false}`)
+</script>
+          </li>
+          <li>
+<script>
+document.write(` false || true : ${false||true}`)
+</script>
+          </li>
+          <li>
+<script>
+document.write(` true || true : ${true||true}`)
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>&& (and)</h2>
+        <p>교집합을 의미하며 모두가 진실이라도 하나만 거짓이면 거짓을 의미한다. 다른말로 모두 진실이어야 진실이다.</p>
+        <ul>
+          <li>
+<script>
+document.write(` false && false : ${false&&false}`)
+</script>
+          </li>
+          <li>
+<script>
+document.write(` true && false : ${true&&false}`)
+</script>
+          </li>
+          <li>
+<script>
+document.write(` false && true : ${false&&true}`)
+</script>
+          </li>
+          <li>
+<script>
+document.write(` true && true : ${true&&true}`)
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>논리연산의 순서(우선순위)</h2>
+        <p>&&, || 는 우선순위가 존재한다. &&는 교집합으로 곱하기처럼 우선순위를 가진다. ||는 합집합으로 덧셈처럼 우선순위를 가진다.</p>
+        <ul>
+          <li>
+<script>
+document.write(` true && false || true && false : ${true&&false||true&&false}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(` ( true && false ) || ( true && false ) : ${(true&&false)||(true&&false)}`);
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>논리 연산 문제</h2>
+        <p>&&연산시 선택 순서 : NaN -> null -> undefined</p>
+        <ul>
+          <li>
+<script>
+document.write(`NaN || 2 : ${NaN||2}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`NaN || 2 || null : ${NaN||2||null}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`NaN && 2 || null : ${NaN&&2||null}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`NaN || 2 && null : ${NaN||2&&null}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`NaN && 2 && null : ${NaN&&2&&null}`);
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>! (not)</h2>
+        <p>여집합을 의미하며 모두가 진실이라도 하나만 거짓이면 거짓을 의미한다. 다른말로 모두 진실이어야 진실이다.</p>
+        <ul>
+          <li>
+<script>
+document.write(` !true : ${!true}`)
+</script>
+          </li>
+          <li>
+<script>
+document.write(` !false : ${!false}`)
+</script>
+          </li>
+          <li>
+<script>
+document.write(` !!true : ${!!true}`)
+</script>
+          </li>
+          <li>
+<script>
+document.write(` !!false : ${!!false}`)
+</script>
+          </li>
+          <li>
+<script>
+document.write(` Boolean(null) : ${Boolean(null)}`)
+</script>
+          </li>
+          <li>
+<script>
+document.write(` !null : ${!null}`)
+</script>
+          </li>
+        </ul>
+      </article>
+    </main>
+<script>
+a=0;
+a++&&a--
+console.log(a);
+</script>
+  </body>
+</html>
