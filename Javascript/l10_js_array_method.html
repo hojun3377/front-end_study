@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>JavaScript Array Method</title>
+    <link rel="stylesheet" href="./css/calendar.css">
   </head>
   <body>
     <main>
@@ -192,7 +193,7 @@ colorInput.addEventListener('input', (e) => {
   const inputList = e.target.value.split(",");
   const inputListFiltered = inputList.filter(val => colorCheckBoxIdx[val]!=undefined);
   let key;
-  
+
   // checkedList push & pop
   // console.log(inputListFiltered);
   if(checkedList.length < inputListFiltered.length) {
@@ -233,11 +234,13 @@ colorInput.addEventListener('input', (e) => {
   for(let val of checkedList) {
     key = colorCheckBoxIdx[val];
     // console.log(key);
-  
+
     if(key != undefined) {
       colorCheckBoxs[key].checked = true;
     }
   }
+
+  // 3. querySelector 사용
 
   // console.log(checkedList);
 });
@@ -261,6 +264,66 @@ rstBtn.addEventListener('click', (e) => {
       <hr>
       <h2>달력만들기</h2>
       <p>2021 달력을 반복문으로 출력하세요</p>
+      <div class="calendar">
+        <div class="month"></div>
+        <div class="btn"></div>
+        <div class="day item">
+          <span>일</span>
+        </div>
+        <div class="day item">
+          <span>월</span>
+        </div>
+        <div class="day item">
+          <span>화</span>
+        </div>
+        <div class="day item">
+          <span>수</span>
+        </div>
+        <div class="day item">
+          <span>목</span>
+        </div>
+        <div class="day item">
+          <span>금</span>
+        </div>
+        <div class="day item">
+          <span>토</span>
+        </div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+        <div class="date item"></div>
+      </div>
 <script>
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 console.log(new Date(2021,1,0).getDate());
