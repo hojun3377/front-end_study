@@ -176,6 +176,33 @@ console.time("switchTest time");
 switchTest(0);
 console.timeEnd("switchTest time");
 </script>
+      <article>
+        <h2>삼항연산자</h2>
+        <h4>작성법</h4>
+        <ol>
+          <li>
+            (condition) ? result1 : result2 ( == if( condition ){ true block } else{ false block } )
+            <br> ㄴcondition이 true이면 result1, false면 result2를 반환
+          </li>
+          <li>
+            let valriable = ( condition ) ? trueObj : falseObj;
+          </li>
+          <li>
+            (condition) ? result1 : ( (condition2) ? result2 : ( (condition3) ? result3 : result4 ) )
+            <br>( == if(condition){ result1 } else if(condition2){ result2 } else if(condition3){ result3 } else{ result4 } )
+          </li>
+        </ol>
+        <p>조건 파악이 편하고 코드가 간결해 프로그래밍 속도를 올려준다.</p>
+        <pre>
+ex)
+<script>
+document.write(
+  ` (true) ? "참입니다" : "거짓입니다" -> ${(true) ? "참입니다" : "거짓입니다"}
+  <br> (false) ? "참입니다" : "거짓입니다" -> ${(false) ? "참입니다" : "거짓입니다"}
+  <br> (1>0) ? true : false -> ${(1>0) ? true : false}`);
+</script>
+        </pre>
+      </article>
     </main>
   </body>
 </html>
