@@ -264,7 +264,7 @@ rstBtn.addEventListener('click', (e) => {
       <hr>
       <h2>달력만들기</h2>
       <p>2021 달력을 반복문으로 출력하세요</p>
-      <div class="calendar">
+      <div id="calendar">
         <div class="month"></div>
         <div class="btn"></div>
         <div class="day item">
@@ -328,6 +328,16 @@ rstBtn.addEventListener('click', (e) => {
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 console.log(new Date(2021,1,0).getDate());
 console.log(days[new Date("2021-01-01T00:00:00").getDay()])
+
+const calendar = document.getElementById('calendar');
+const calendarDayList = calendar.getElementsByClassName('day');
+const calendarMonthEl = calendar.getElementsByClassName('month')[0];
+const calendarDateList = calendar.getElementsByClassName('date');
+const calendarBtnList = calendar.getElementsByClassName('btn');
+
+// console.log(calendarDayList);
+// // calendarDayList[0].style.color = "rgba(255,0,0,.5)";
+// // calendarDayList[this.length].style.color = "rgba(255,0,0,.5)";
 </script>
     </main>
   </body>
