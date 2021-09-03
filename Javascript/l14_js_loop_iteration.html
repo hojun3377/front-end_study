@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript loop iteration</title>
+  </head>
+  <body>
+    <main>
+      <h1>자바스크립트의 루프와 반복</h1>
+      <p>for, for in, for of, while 반복문(iteration statements)이 있다</p>
+      <p>똑같은 명령을 일정 횟수만큼 반복하기 위해 작성되는 문법으로, 대체로 검사식에 많이 사용된다.</p>
+      <article>
+        <h2>for 반복문</h2>
+        <p>
+          for(startStatement; condition; endStatement) { block } : for는 조건이 true일 때 반복실행한다.
+          <br>실행순서 :
+          <br>startStatement -> LOOP: ( CMP: condition ->  block -> endStatement )
+        </p>
+<script>
+let n=0;
+
+console.log(`while문`);
+while(n<3) {
+  console.log(`n : ${n}`);
+  n++;
+}
+console.log(`for문`);
+for(let i=0; i<3; i++) console.log(`i : ${i}`);
+</script>
+        <ul>
+          <li>
+            [11,2,20,3,13,1,0,-20]의 max :
+<script>
+let testList = [11,2,13,1,0,-20,20,3];
+let max = -Infinity;
+
+for(let i=0; i<testList.length; i++) {
+  // max = max<a[i] ? testList[i] : max;
+  if(max<testList[i]) max=testList[i];
+}
+document.write(max);
+</script>
+          </li>
+          <li>
+            [11,2,13,1,0,-20,20,3] 내림차순 정렬
+            <pre>
+<script>
+// 기본 함수
+document.write(`내장 객체 함수 ( Array.sort() ) : [ ${testList.sort().toString()} ]`);
+
+// bubbleSort
+const bubbleSort = function(list) {
+  const tempList = list.slice(),
+        len = list.length;
+
+  for(let i=len; i>0; i--) {
+    for(let j=1; j<i; j++) {
+      let preJ = j-1;
+      if(tempList[j]>tempList[preJ]) {
+        [tempList[j],tempList[preJ]] = [tempList[preJ],tempList[j]];
+      }
+    }
+    console.log(tempList);
+  }
+
+  return tempList;
+}
+console.log(`버블정렬 : ${bubbleSort(testList)}`);
+
+// selectionSort
+const selectionSort = function(list) {
+  const tempList = list.slice(),
+        len = list.length;
+
+  for(let i=0; i<len-1; i++) {
+    let maxIdx = i;
+    for(let j=i+1; j<len; j++) {
+      if(tempList[j]>tempList[maxIdx]){
+        maxIdx = j;
+      }
+    }
+    [tempList[i],tempList[maxIdx]] = [tempList[maxIdx],tempList[i]];
+    console.log(tempList);
+  }
+
+  return tempList;
+}
+console.log(`선택정렬 : ${selectionSort(testList)}`);
+
+// mergeSort
+const mergeSort = function(list) {
+  const tempList = list.slice(),
+        resultList = [],
+        len = list.length,
+        mid = Math.floor(len/2);
+
+  // console.log(`${tempList} // ${len}`);
+  if(len==1) resultList.push(...tempList);
+  else {
+    const preList = mergeSort(tempList.slice(0,mid)),
+          postList = mergeSort(tempList.slice(mid,len));
+    // console.log(`${preList.toString()} , ${postList.toString()}`);
+
+    while(preList.length>0 && postList.length>0) {
+      if(preList[0]>=postList[0]) resultList.push(preList.shift());
+      else resultList.push(postList.shift());
+    }
+
+    if(postList.length==0) resultList.push(...preList);
+    else resultList.push(...postList);
+  }
+
+  console.log(resultList);
+  return resultList;
+}
+console.log(`합병정렬 : ${mergeSort(testList)}`);
+
+// heap sort
+const heapify = function(list, root, len) {
+  let child, parent;
+
+  // console.log(`${root}, ${len}`);
+
+  parent = root;
+  numParentWithChild = Math.floor(len/2);
+  while(parent < numParentWithChild) {
+    child = (parent+1)*2;
+
+    if(child==len || list[child]>=list[child-1]) child--;
+    // console.log(`${parent}, ${len/2}, ${child}, ${len}`);
+
+    if(list[parent] < list[child]) break;
+    [list[parent],list[child]] = [list[child],list[parent]];
+    console.log(list);
+
+    parent = child;
+  }
+}
+const heapSort = function(list) {
+  const tempList = list,
+      len = list.length;
+
+  // heapify
+  for(let i=len/2-1; i>-1; i--) heapify(tempList,i,len);
+  console.log(`heap : ${tempList}`);
+  // sort
+  for(let i=len-1; i>0; i--) {
+    [tempList[0],tempList[i]] = [tempList[i],tempList[0]];
+    heapify(tempList,0,i);
+  }
+
+  return tempList;
+}
+console.log(`힙정렬 : ${heapSort(testList)}`);
+</script>
+            </pre>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>for in 반복문</h2>
+        <p>for( key in iterableObject ) : key를 가진 객체가 key를 반환할 수 없을 때까지 반복을실행</p>
+        <p>
+          JSON{ key1 : value1, key1 : value1, ... } -> key를 반환
+          <br>Array[value1,value2,value3, ...] -> index를 반환
+          <br>"abcdef" -> 각 문자의 index를 반환
+        </p>
+        <ul>
+          <li>
+            Array : ["a","b","c"] ->
+<script>
+let testList2 = ["a","b","c"];
+for(key in testList2) {
+  document.write(`${key} `);
+}
+</script>
+          </li>
+          <li>
+            JSON : { name : "최호준", age : 25, email : "hojun3377@gmail.com" } ->
+<script>
+let testObj = {
+  name : "최호준",
+  age : 25,
+  email : "hojun3377@gmail.com"
+};
+for(key in testObj) {
+  document.write(`${key} `);
+}
+</script>
+          </li>
+          <li>
+            String : "abcdef" ->
+<script>
+let testStr = "abcdef";
+for(key in testStr) {
+  document.write(`${key} `);
+}
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>for of 반복문</h2>
+        <p>for( value of iterableObject ) : 반복 가능한 데이터 타입의 객체에서 value가 더이상 나오지 않을 때까지 반복 실행</p>
+        <p>iterableObject.next() : next()는 포인터가 객체 밖에 있다가 value가 있으면 true와 value를 JSON형식으로 반환하고, 포인터를 value로 옮긴다. 만약 value가 존재하지 않으면 false를 반환한다.</p>
+        <p>key값을 알아내기 힘들다.</p>
+        <p>
+          **JSON 형식은 next()를 지원하지 않아 동작되지 않는다.""
+          <br>MAP(JSON과 비슷), Set(복수의 값을 제거한 배열)
+          <br>Array[value1,value2,value3, ...] -> valueN을 반환
+          <br>"abcdef" -> 각 문자를 반환
+        </p>
+        <ul>
+          <li>
+            Array : ["a","b","c"] ->
+<script>
+for(val of testList2) {
+  document.write(`${val} `);
+}
+console.log(testList2.values());
+</script>
+          </li>
+          <li>
+            String : "abcdef" ->
+<script>
+for(val of testStr) {
+  document.write(`${val} `);
+}
+</script>
+          </li>
+        </ul>
+      </article>
+      <hr>
+      <article>
+        <h2>페이지 테마 변경시키기(background, color)</h2>
+        <p>JSON형식으로 테마객체를 만든 후 select box를 이용하여 테마 변경</p>
+        <select id="themaSelectBox">
+          <option value="default">기본</option>
+          <option value="black">블랙</option>
+          <option value="darkgray">메탈</option>
+          <option value="pink">핑크</option>
+        </select>
+<script>
+const thema = {
+  default : ["white","black"],
+  black : ["black","white"],
+  darkgray : ["darkgray","bisque"],
+  pink : ["lavender","indigo"],
+}
+const themaSelectBox = document.getElementById("themaSelectBox");
+themaSelectBox.addEventListener('change', (e) => {
+  // console.log(e.target.value);
+  document.body.style.backgroundColor = thema[e.target.value][0];
+  document.body.style.color = thema[e.target.value][1];
+});
+</script>
+      </article>
+      <hr>
+      <article>
+        <h2>마우스 커서를 올리면 숨겨진 요소 나오게하기</h2>
+        <p>
+          마우스커서를 갖다대는 이벤트 : mouseenter
+          <br>마우스커서를 빼는 이벤트 : mouseleave
+        </p>
+        <ui id="popNav">
+          <li>
+            html Study
+            <ul class="pop_nav" style="display: none;">
+              <li><a href="">intro</a></li>
+              <li><a href="">basic</a></li>
+              <li><a href="">attributes</a></li>
+              <li><a href="">style</a></li>
+            </ul>
+          </li>
+          <li>
+            js Study
+            <ul class="pop_nav" style="display: none;">
+              <li><a href="">intro</a></li>
+              <li><a href="">variable</a></li>
+              <li><a href="">data type</a></li>
+              <li><a href="">number</a></li>
+            </ul>
+          </li>
+        </ui>
+<script>
+const popNav = document.getElementById('popNav');
+
+popNav.addEventListener('mouseenter',(e) => {
+  const navList = e.target.getElementsByClassName('pop_nav');
+  // console.log(navList);
+
+  for(let el of navList) {
+    el.style.display="block";
+  }
+});
+popNav.addEventListener('mouseleave',(e) => {
+  const navList = e.target.getElementsByClassName('pop_nav');
+  // console.log(navList);
+
+  for(let el of navList) {
+    el.style.display="none";
+  }
+});
+</script>
+      </article>
+    </main>
+  </body>
+</html>
