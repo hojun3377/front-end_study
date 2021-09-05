@@ -16,16 +16,34 @@
 #calendar .btn {
   grid-column: 7/8;
 }
-#calendar .day {
-
+#calendar .month.container, #calendar .btn.container {
+  margin: auto;
 }
-#calendar .item {
+#calendar .day {
   background-color: rgba(150,150,150,0.5);
 }
-
+#calendar :nth-child(7n+3) {
+  color: rgba(255,0,0,.5);
+}
+#calendar :nth-child(7n+9) {
+  color: rgba(0,0,255,.5);
+}
 /* padding이 부모 element의 width 값을 기준으로 계산 */
-#calendar .item:after {
+#calendar .day:after, #calendar .date:after {
   content: "";
   display: block;
   padding-bottom: 100%;
+}
+#calendar .date {
+  background-color: rgba(150,150,150,0.5);
+}
+
+.container {
+  position: relative;
+}
+.container.center > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }

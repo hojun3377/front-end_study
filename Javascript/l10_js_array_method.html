@@ -265,79 +265,194 @@ rstBtn.addEventListener('click', (e) => {
       <h2>달력만들기</h2>
       <p>2021 달력을 반복문으로 출력하세요</p>
       <div id="calendar">
-        <div class="month"></div>
-        <div class="btn"></div>
-        <div class="day item">
+        <div class="month container">
+          <span></span>
+        </div>
+        <div class="btn container">
+          <button> &lt; 저번달</button>
+          <button>다음달 &gt; </button>
+        </div>
+        <div class="day container center">
           <span>일</span>
         </div>
-        <div class="day item">
+        <div class="day container center">
           <span>월</span>
         </div>
-        <div class="day item">
+        <div class="day container center">
           <span>화</span>
         </div>
-        <div class="day item">
+        <div class="day container center">
           <span>수</span>
         </div>
-        <div class="day item">
+        <div class="day container center">
           <span>목</span>
         </div>
-        <div class="day item">
+        <div class="day container center">
           <span>금</span>
         </div>
-        <div class="day item">
+        <div class="day container center">
           <span>토</span>
         </div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
-        <div class="date item"></div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
+        <div class="date container center">
+          <span></span>
+        </div>
       </div>
 <script>
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-console.log(new Date(2021,1,0).getDate());
-console.log(days[new Date("2021-01-01T00:00:00").getDay()])
 
 const calendar = document.getElementById('calendar');
-const calendarDayList = calendar.getElementsByClassName('day');
 const calendarMonthEl = calendar.getElementsByClassName('month')[0];
+const calendarBtnList = calendar.getElementsByClassName('btn')[0].children;
+const calendarDayList = calendar.getElementsByClassName('day');
 const calendarDateList = calendar.getElementsByClassName('date');
-const calendarBtnList = calendar.getElementsByClassName('btn');
 
-// console.log(calendarDayList);
-// // calendarDayList[0].style.color = "rgba(255,0,0,.5)";
-// // calendarDayList[this.length].style.color = "rgba(255,0,0,.5)";
+let nowMonthIdx = new Date().getMonth();
+
+const printCalendar = function(monthIdx = nowMonthIdx) {
+  let firstDay = new Date(2021,monthIdx,1).getDay();
+  let lastDate = new Date(2021,monthIdx+1,0).getDate();
+  
+  calendarMonthEl.children[0].innerText = `${monthIdx+1} ${months[monthIdx]}.`;
+  
+  // console.log(`${firstDay}, ${lastDate}`);
+  // console.log(calendarDateList);
+  for(let el of calendarDateList) {
+    el.children[0].innerText = "";
+  }
+  for(let i=1; i<=lastDate; i++) {
+    calendarDateList[firstDay++].children[0].innerText = i;
+  }
+};
+
+// console.log(calendarBtnList[0]);
+printCalendar();
+calendarBtnList[0].addEventListener('click', () => { printCalendar(--nowMonthIdx) });
+calendarBtnList[1].addEventListener('click', () => { printCalendar(++nowMonthIdx) });
+
 </script>
     </main>
   </body>

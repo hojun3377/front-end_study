@@ -45,8 +45,10 @@ document.write(max);
             [11,2,13,1,0,-20,20,3] 내림차순 정렬
             <pre>
 <script>
+console.log(`테스트 배열 : [ ${testList} ]`);
+  
 // 기본 함수
-document.write(`내장 객체 함수 ( Array.sort() ) : [ ${testList.sort().toString()} ]`);
+console.log(`내장 객체 함수 ( Array.sort() ) : [ ${testList.sort().toString()} ]`);
 
 // bubbleSort
 const bubbleSort = function(list) {
