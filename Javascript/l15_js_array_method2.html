@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>JavaScript array method 2</title>
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
     <main>
-      <h1>자바스크립트dml 배열 메소드 ( loop iteration 속성이 있는 메소드 )</h1>
+      <h1>자바스크립트의 배열 메소드 ( loop iteration 속성이 있는 메소드 )</h1>
       <p>배열의 메소드 중에 가장 유용한 3가지는 모두 반복문의 속성을 가진다.</p>
       <p>반복문 속성이 있는 배열의 메소드는 배열의 길이만큼 실행되고 실행될 때 익명함수를 재정의할 수 있는데, 이 함수를 콜백함수(callback)라 한다.</p>
       <p>array 메소드의 콜백함수 : function(value, index, self) { return }</p>
@@ -257,6 +258,262 @@ document.write(`nums2 = [ ${nums2.toString()} ]
           </li>
         </ul>
       </article>
+      <article>
+        <h2>reduce( function( resultValue, currentValue, idx, self ) { ... return result; }, resultValue )</h2>
+        <p>콜백함수를 통해 배열의 모든 요소를 하나의 값으로 줄인다.</p>
+        <p>
+          reduce의 두번째 매개변수로 resultValue의 값을 지정할 수 있다.
+          <br>만약 두번째 매개변수를 지정하지 않았다면 first iter의 resultVale = array[0], currentValue = arra[1], idx = 1이다.
+        </p>
+<script>
+document.write(`nums : [ ${nums.toString()} ]
+  <br> nums.reduce( (rVal,cVal) => rVal+cVal ) : ${nums.reduce((rVal,cVal) => rVal+cVal)}
+  <br> nums.reduce( (rVal,cVal) => (rVal+cVal)/2 ) : ${nums.reduce((rVal,cVal) => (rVal+cVal)/2)}
+  <br> nums.reduce( (rVal,cVal) => rVal-cVal ) : ${nums.reduce((rVal,cVal) => rVal-cVal)}
+`);
+</script>
+      </article>
+      <article>
+        <h2>find( function( value, idx, self ) { ... return boolean } )</h2>
+        <p>배열에서 boolean이 true인 첫번째 요소를 반환한다.</p>
+        <p>모든 요소가 조건이 맞지 않으면 undefined을 반환</p>
+        <ul>
+          <li>
+<script>
+document.write(`nums : [ ${nums.toString()} ]`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`nums.find( val => val==110 ) : ${nums.find(val => val==110)}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`nums.find( val => val>110 ) : ${nums.find(val => val>110)}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`['a','b','c','D','E','f'].find( val => val=='D' ) : ${['a','b','c','D','E','f'].find(val => val=='D')}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`['a','b','c','D','E','f'].find( val => val=='d' ) : ${['a','b','c','D','E','f'].find(val => val=='d')}`);
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>findIndex( function( value, idx, self ) { ... return boolean } )</h2>
+        <p>배열에서 boolean이 true인 첫번째 요소의 index를 반환한다.</p>
+        <p>모든 요소가 조건이 맞지 않으면 -1을 반환</p>
+        <ul>
+          <li>
+<script>
+document.write(`nums : [ ${nums.toString()} ]`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`nums.findIndex( val => val==110 ) : ${nums.findIndex(val => val==110)}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`nums.findIndex( val => val>110 ) : ${nums.findIndex(val => val>110)}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`['a','b','c','D','E','f'].findIndex( val => val=='D' ) : ${['a','b','c','D','E','f'].findIndex(val => val=='D')}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`['a','b','c','D','E','f'].findIndex( val => val=='d' ) : ${['a','b','c','D','E','f'].findIndex(val => val=='d')}`);
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>includes( data )</h2>
+        <p>배열의 data가 있으면 true 아니면 false를 반환한다.</p>
+        <ul>
+          <li>
+<script>
+document.write(`nums : [ ${nums.toString()} ]`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`nums.includes(110) : ${nums.includes(110)}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`nums.includes(111) : ${nums.includes(val => 111)}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`['a','b','c','D','E','f'].includes( val ) : ${['a','b','c','D','E','f'].includes('D')}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`['a','b','c','D','E','f'].includes( val ) : ${['a','b','c','D','E','f'].includes('d')}`);
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>indexOf( data )</h2>
+        <p>배열에 data가 있으면 해당 위치(index)를 반환한다. (첫번째 항목만)</p>
+        <p>모든 요소가 조건이 맞지 않으면 -1을 반환</p>
+        <ul>
+          <li>
+<script>
+document.write(`nums : [ ${nums.toString()} ]`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`nums.indexOf(110) : ${nums.indexOf(110)}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`nums.indexOf(111) : ${nums.indexOf(val => 111)}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`['a','b','c','D','E','f'].indexOf( val ) : ${['a','b','c','D','E','f'].indexOf('D')}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`['a','b','c','D','E','f'].indexOf( val ) : ${['a','b','c','D','E','f'].indexOf('d')}`);
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>lastIndexOf( data )</h2>
+        <p>배열에 data가 있으면 해당 위치를 반환한다. (마지막 항목만)</p>
+        <p>모든 요소가 조건이 맞지 않으면 -1을 반환</p>
+        <ul>
+          <li>
+<script>
+document.write(`nums : [ ${nums.toString()} ]`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`nums.lastIndexOf(110) : ${nums.lastIndexOf(110)}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`nums.lastIndexOf(111) : ${nums.lastIndexOf(val => 111)}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`['a','b','c','D','E','f'].lastIndexOf( val ) : ${['a','b','c','D','E','f'].lastIndexOf('D')}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`['a','b','c','D','E','f'].lastIndexOf( val ) : ${['a','b','c','D','E','f'].lastIndexOf('d')}`);
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>keys()</h2>
+        <p>반복과 관련된 객체인 Iterator를 반환한다.</p>
+        <p>Iterator에서 key(index)를 확인할 수 있다.</p>
+        <p>Iterator.next() : [반환되는 데이터, 반환할 데이터가 있는지] / for of에서 사용한다.</p>
+        <ul>
+          <li>
+<script>
+document.write(`nums : [ ${nums.toString()} ]`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`Object.keys(nums) : [ ${Object.keys(nums)} ]`);
+</script>
+          </li>
+          <li>
+<script>
+let numsKeys = nums.keys();
+document.write(`numsKeys ( = nums.key() ) : ${numsKeys}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`numsKeys.next() : ${numsKeys.next()}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`
+  <br>for(let key of numsKeys) {
+  <br>&nbsp;&nbsp;document.write(\`key : [ \${key} ] \`)
+  <br>}
+  <br>
+  `);
+for(let key of numsKeys) {
+  document.write(`key : [ ${key} ] `);
+}
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>Array.isArray( arr )</h2>
+        <p>
+          typeof arr 은 object를 반환하기 때문에 arr의 타입을 확인할 수 없다.
+          <br>따라서 arr은 Array.isArray( arr )구문을 통해 배열 타입을 확인한다.
+          <br>arr이 배열이면 true, 아니면 false를 반환한다.
+          <br>배열은 기본데이터타입이 아니기 때문에 리터럴한 입력을 사용해도 인스턴스 객체이다.
+        </p>
+        <ul>
+          <li>
+<script>
+document.write(`typeof [1,2,3,4] : ${typeof [1,2,3,4]}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`Array.isArray( [1,2,3,4] ) : ${Array.isArray([1,2,3,4])}`);
+</script>
+          </li>
+          <li>
+<script>
+document.write(`Array.isArray( new Array(1,2,3) ) : ${Array.isArray(new Array(1,2,3))}`);
+</script>
+          </li>
+          <li>
+            obj instanceof type : obj의 타입이 type인지를 비교한다. ( type은 parent도 포함된다. )
+            <br> ** <b>기본 데이터 타입은 비교하지 못한다.</b> **
+            <br>
+<script>
+document.write(`[1,2,3,4] instanceof Array : ${[1,2,3,4] instanceof Array}
+  <br>new Array(1,2,3) instanceof Array : ${new Array(1,2,3) instanceof Array}
+  <br>[1,2,3,4] instanceof Object : ${[1,2,3,4] instanceof Object}
+  <br>new Array(1,2,3) instanceof Object : ${new Array(1,2,3) instanceof Object}
+  <br>'string' instanceof String : ${'string' instanceof String}
+  <br>new String('string') instanceof String : ${new String('string') instanceof String}
+`);
+</script>
+          </li>
+        </ul>
+      </article>
       <hr>
       <article>
         <h2>모든 점수를 100점 만점에서 4.5점 만점으로 변경하세요.</h2>
@@ -272,14 +529,71 @@ document.write(`nums2 = [ ${nums2.toString()} ]
           <p><label>최소점수 : <input type="number" name="min" value="0" readonly></label><input type="button" name="scoreBtn" value="최소"></p>
           <p><label>최대점수 : <input type="number" name="max" value="0" readonly></label><input type="button" name="scoreBtn" value="최대"></p>
           <hr>
-          <p><label>낙재자 수(0/1) : <input type="number" name="is_f" value="0" readonly></label></p>
-          <p><label>만점자 수(0/1) : <input type="number" name="is_ten" value="0" readonly></label></p>
+          <p><label>낙재(0/1) : <input type="number" name="is_f" value="0" readonly></label></p>
+          <p><label>만점(0/1) : <input type="number" name="is_ten" value="0" readonly></label></p>
           <input type="button" name="revert" value="100 만점 변환">
           <input type="button" name="revert" value="4.5 만점 변환">
+          <input type="button" name="printTableBtn" value="표에 출력">
         </form>
+        <hr>
+        <table id="scoreTable" class="hj_table">
+          <thead>
+            <tr>
+              <th>과목</th>
+              <th>점수(100 만점)</th>
+              <th>점수(4.5 만점)</th>
+              <th>낙재</th>
+              <th>만점</th>
+              <th>성적</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
 <script>
 const scoreForm = document.forms.someTestForm;
 const scoreList = [];
+const scoreObj = {}
 let listFlag = false,
     flag = false;
 
@@ -288,6 +602,7 @@ const createScoreList = function() {
   scoreForm.querySelectorAll('[type=number].score').forEach(el => {
     if(listFlag) scoreList[idx++] = Number(el.value);
     else scoreList.push(Number(el.value));
+    scoreObj[el.name] = Number(el.value);
   });
   listFlag = true;
 };
@@ -295,7 +610,7 @@ const printFunc = {
   0 : function() {
     createScoreList();
     let total = 0;
-    scoreList.forEach((val,idx,self) => {
+    scoreList.forEach(val => {
       total += val
     });
     scoreForm.total.value = total;
@@ -310,20 +625,20 @@ const printFunc = {
     createScoreList();
     // let min = scoreList[0];
     // scoreList.forEach(val => {
-      //   if(val<min) min = val;
-      // });
-      // scoreForm.min.value = min;
-      scoreForm.min.value = Math.min(...scoreList);
+    //   if(val<min) min = val;
+    // });
+    // scoreForm.min.value = min;
+    scoreForm.min.value = Math.min(...scoreList);
     },
   3 : function() {
-  createScoreList();
-  // let max = scoreList[0];
-  // scoreList.forEach(val => {
-  //   if(val>max) max = val;
-  // });
-  // scoreForm.max.value = max;
-  scoreForm.max.value = Math.max(...scoreList);
-}
+    createScoreList();
+    // let max = scoreList[0];
+    // scoreList.forEach(val => {
+    //   if(val>max) max = val;
+    // });
+    // scoreForm.max.value = max;
+    scoreForm.max.value = Math.max(...scoreList);
+  }
 }
 
 scoreForm.revert[0].addEventListener('click', () => {
@@ -360,7 +675,7 @@ scoreForm.revert[1].addEventListener('click', () => {
     scoreList[idx] = result;
   });
 
-  for(let i in printFunc) (printFunc[i])();
+  for(let i in printFunc) printFunc[i]();
   scoreForm.is_f.value = Number(scoreList.some( val => val<50 ));
   scoreForm.is_ten.value = Number(scoreList.every( val => val==100 ));
 
@@ -369,6 +684,12 @@ scoreForm.revert[1].addEventListener('click', () => {
 for(idx in Array.from(scoreForm.scoreBtn)) {
   scoreForm.scoreBtn[idx].addEventListener('click', printFunc[idx]);
 }
+
+const printTableBtn = scoreForm.printTableBtn;
+const scoreTable = document.getElementById('scoreTable');
+
+// printTable.addEventListener('click',)
+
 </script>
       </article>
     </main>

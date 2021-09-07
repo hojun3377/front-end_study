@@ -433,16 +433,16 @@ const calendarDateList = calendar.getElementsByClassName('date');
 let nowYearIdx = new Date().getYear()+1900;
 let nowMonthIdx = new Date().getMonth();
 
-const printCalendar = function(yearIdx = nowYearIdx, monthIdx = nowMonthIdx) {
-  yearIdx += Math.floor(monthIdx/12);
-  if(monthIdx < 0) monthIdx = monthIdx%12+12;
-  else if(monthIdx>11) monthIdx %= 12;
-  console.log(`${yearIdx}, ${monthIdx}`);
+const printCalendar = function() {
+  nowYearIdx += Math.floor(nowMonthIdx/12);
+  if(nowMonthIdx < 0) nowMonthIdx = nowMonthIdx%13+12;
+  else if(nowMonthIdx>11) nowMonthIdx %= 12;
+  console.log(`${nowYearIdx}, ${nowMonthIdx}`);
 
-  let firstDay = new Date(yearIdx,monthIdx,1).getDay();
-  let lastDate = new Date(yearIdx,monthIdx+1,0).getDate();
+  let firstDay = new Date(nowYearIdx,nowMonthIdx,1).getDay();
+  let lastDate = new Date(nowYearIdx,nowMonthIdx+1,0).getDate();
 
-  calendarMonthEl.children[0].innerText = `${yearIdx}년 ${monthIdx+1} ${months[monthIdx]}.`;
+  calendarMonthEl.children[0].innerText = `${nowYearIdx}년 ${nowMonthIdx+1} ${months[nowMonthIdx]}.`;
 
   // console.log(`${firstDay}, ${lastDate}`);
   // console.log(calendarDateList);
@@ -456,8 +456,8 @@ const printCalendar = function(yearIdx = nowYearIdx, monthIdx = nowMonthIdx) {
 
 // console.log(calendarBtnList[0]);
 printCalendar();
-calendarBtnList[0].addEventListener('click', () => { printCalendar(nowYearIdx, --nowMonthIdx); });
-calendarBtnList[1].addEventListener('click', () => { printCalendar(nowYearIdx, ++nowMonthIdx); });
+calendarBtnList[0].addEventListener('click', printCalendar);
+calendarBtnList[1].addEventListener('click', printCalendar);
 
 </script>
     </main>
