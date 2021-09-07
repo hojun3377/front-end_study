@@ -241,6 +241,85 @@ document.write(Number.parseInt(" 3.14dasfsadf"));
 </script>
               </td>
             </tr>
+            <tr>
+              <td>numberData.toFixed(data)</td>
+              <td>
+                소수점 자릿수를 지정할 수 있다. (data는 0보다 큰 값)
+                <br>
+<script>
+document.write(`ex) 5.34567.toFixed(0) : ${5.34567.toFixed(0)} // typeof 5.34567.toFixed(0) : ${typeof 5.34567.toFixed(0)}
+  <br> ex) 5.34567.toFixed(1) : ${5.34567.toFixed(1)}
+  <br> ex) 5.34567.toFixed(2) : ${5.34567.toFixed(2)}
+  <br> ex) 5.34567.toFixed(3) : ${5.34567.toFixed(3)}
+  <br> ex) 5.34567.toFixed(4) : ${5.34567.toFixed(4)}
+  <br> ex) 5.34567.toFixed(5) : ${5.34567.toFixed(5)}
+  <br> ex) 5.34567.toFixed(6) : ${5.34567.toFixed(6)}
+  <br> ex) Number(5.34567.toFixed(2))+10 : ${Number(5.34567.toFixed(2))+10}`);
+</script>
+              </td>
+            </tr>
+            <tr>
+              <td>numberData.toExponential(data)</td>
+              <td>
+                data로 소수점 길이를 정하고 지수표기법으로 작성한다.
+                <br>이때 반환되는 숫자는 문자열 타입이다.
+                <br>
+<script>
+document.write(`ex) 50.34567.toExponential(0) : ${50.34567.toExponential(0)} // typeof 50.34567.toExponential(0) : ${typeof 50.34567.toExponential(0)}
+  <br> ex) 50.34567.toExponential(1) : ${50.34567.toExponential(1)}
+  <br> ex) 50.34567.toExponential(2) : ${50.34567.toExponential(2)}
+  <br> ex) 50.34567.toExponential(3) : ${50.34567.toExponential(3)}
+  <br> ex) 50.34567.toExponential(4) : ${50.34567.toExponential(4)}
+  <br> ex) 50.34567.toExponential(5) : ${50.34567.toExponential(5)}
+  <br> ex) 50.34567.toExponential(6) : ${50.34567.toExponential(6)}
+`);
+</script>
+              </td>
+            </tr>
+            <tr>
+              <td>numberData.toPrecision(data)</td>
+              <td>
+                숫자를 반올림하여 지정된 길이로 변환한다. (data는 1보다 큰 값)
+                <br>만약 정수부분 자릿수보다 data 값이 작으면 지수표현식으로 변환한다.
+                <br>
+<script>
+document.write(`ex) 95672.345.toPrecision(1) : ${95672.345.toPrecision(1)} // typeof 95672.345.toPrecision(1) : ${typeof 95672.345.toPrecision(1)}
+  <br> ex) 95672.345.toPrecision(2) ${95672.345.toPrecision(2)}
+  <br> ex) 95672.345.toPrecision(3) ${95672.345.toPrecision(3)}
+  <br> ex) 95672.345.toPrecision(4) : ${95672.345.toPrecision(4)}
+  <br> ex) 95672.345.toPrecision(5) : ${95672.345.toPrecision(5)}
+  <br> ex) 95672.345.toPrecision(6) : ${95672.345.toPrecision(6)}`);
+</script>
+              </td>
+            </tr>
+            <tr>
+              <td>Number(numberData).valueOf(data)</td>
+              <td>
+                인스턴스 객체인 Number에서 숫자 기본데이터 타입을 반환하는 함수이다.
+                <br>( typeof는 모든 인스턴스 객체는 object를 상속받기 때문에 object로 인식한다. )
+                <br>
+<script>
+document.write(` ex) typeof 13 : ${typeof 13}
+  <br> ex) typeof new Number(13) : ${typeof new Number(13)}
+  <br> ex) typeof new Number(13).valueOf() : ${typeof new Number(13).valueOf()}
+  <br> ex) 100 == new Number(100) : ${100 == new Number(100)}
+  <br> ex) 100 === new Number(100) : ${100 === new Number(100)}
+  <br> ex) 100 === new Number(100).valueOf() : ${100 === new Number(100).valueOf()}`);
+</script>
+              </td>
+            </tr>
+            <tr>
+              <td>Object.toString()</td>
+              <td>
+                Number 객체가 가지는 숫자값을 문자열로 반환한다.
+                <br>( 모든 객체는 toString()을 가지고 보통 객체의 설명을 출력하도록 재정의한다. )
+                <br>
+<script>
+document.write(`new Number(100).toString() : ${new Number(100).toString()}
+  <br>typeof new Number(100).toString() : ${typeof new Number(100).toString()}`);
+</script>
+              </td>
+            </tr>
           </tbody>
         </table>
       </article>

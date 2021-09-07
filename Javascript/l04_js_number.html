@@ -204,6 +204,7 @@ document.write(1*NaN);
         <h2>NaN ( Not a Number )</h2>
         <p>숫자가 될 수 없는 것을 나타내는 기본 데이터 타입이다.</p>
         <h4>Number(data) : data를 숫자로 명시적 형 변환</h4>
+        <p>문자열인 숫자를 변환하는데 사용. 정수, 소수 모두 가능하며 앞 뒤 공백까지 제거해준다.</p>
         <ul>
           <li>
             Number("100") :
@@ -240,6 +241,65 @@ document.write(Number(true));
 <script>
 document.write(Number(false));
 </script>
+          </li>
+          <li>
+            Number("true") :
+<script>
+document.write(Number("true"));
+</script>
+          </li>
+          <li>
+            Number("false") :
+<script>
+document.write(Number("false"));
+</script>
+          </li>
+          <li>
+            Number("   3.14   ") :
+<script>
+document.write(Number("   3.14   "));
+</script>
+          </li>
+          <li>
+            Number("Infinity") :
+<script>
+document.write(Number("Infinity"));
+</script>
+          </li>
+          <li>
+            Number("-Infinity") :
+<script>
+document.write(Number("-Infinity"));
+</script>
+          </li>
+          <li>
+            Number("1/100") :
+<script>
+document.write(Number("1/100"));
+</script>
+          </li>
+          <li>
+            Number("1*100") :
+<script>
+document.write(Number("1*100"));
+</script>
+          </li>
+          <li>
+            Number(new Date()) :
+<script>
+document.write(Number(new Date()));
+</script>
+          </li>
+          <li>
+            Number(new Date("1970-01-01")) :
+<script>
+document.write(Number(new Date("1970-01-01")));
+</script>
+          </li>
+          <li><b>test</b>
+            <br>
+            <input id="valTest" type="number" value="2110">
+            <input type="button" value="+100" onclick="alert(Number(document.getElementById('valTest').value)+100)">
           </li>
         </ul>
         <hr>
