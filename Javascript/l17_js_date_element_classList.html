@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript Date & Element.classList</title>
+  </head>
+  <body>
+    <main>
+      <h1>자바스크립트의 Date 와 Element.classList</h1>
+      <article>
+        <h2>Date 클래스</h2>
+        <ul>
+          <li>
+            new Date().toSting() :
+<script>
+document.write(new Date());
+</script>
+          </li>
+          <li>
+            Number(new Date()) :
+<script>
+document.write(Number(new Date()));
+</script>
+          </li>
+          <li>
+            Number(new Date("1970-01-01")) :
+<script>
+document.write(Number(new Date("1970-01-01")));
+</script>
+          </li>
+          <li>
+            new Date( year=현재년도, month=0, day=1, hours=0, min=0, s=0, ms=0 )
+            <br>year : 0~99는 1900~1999년으로 치환, 100~ 은 실제년도와 같음
+            <br>month : 1~12는 0~11로 치환하고 나머지 값 ( 음수 | 12이상 )은 year를 기준의 값으로 치환
+            <br>day : 1~현재 달의 마지막일 은 실제 일과 같고 나머지 값 ( 음수 | 실제 일이상 )은 year와 month를 기준의 값으로 치환
+          </li>
+          <li>
+            new Date(2021,8) :
+<script>
+document.write(new Date(2021,8));
+</script>
+          </li>
+          <li>
+            new Date(날짜).getYear() : 1900년을 기준으로 날짜의 년도
+            <br>new Date().getYear() :
+<script>
+document.write(new Date().getFullYear());
+</script>
+          </li>
+          <li>
+            new Date(날짜).getFullYear() : 날짜의 년도
+            <br>new Date(2021,8,1).getFullYear() :
+<script>
+document.write(new Date(2021,8,1).getFullYear());
+</script>
+          </li>
+          <li>
+            new Date(날짜).getDay() : 0~6(일~토)
+            <br>new Date(2021,8,1).getDay() :
+<script>
+document.write(new Date(2021,8,1).getDay());
+</script>
+          </li>
+          <li>
+            new Date(날짜).getDate() : 해당하는 day를 출력
+            <br>new Date(2021,8,1).getDate() :
+<script>
+document.write(new Date(2021,8,1).getDate());
+</script>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h2>Element.classList</h2>
+        <p>html 배열 타입으로 자바스크립트 배열과는 다른 함수를 제공한다.</p>
+        <p>요소는 복수의 클래스를 가질 수 있다.</p>
+        <p>Element.class = "a b c" (권장 x) : class들을 문자열로 받아온다.</p>
+        <p>Element.classList = [a, b, c] (권장 o) : class들을 배열로 받아온다.</p>
+        <p>스타일이 적용된 클래스를 추가 삭제하기 위해 많이 사용된다.</p>
+        <ul>
+          <li>classList.add("ClassName") : array.push() 비슷한 함수로 클래스를 추가한다.</li>
+          <li>classList.remove("ClassName") : array.slice() 비슷한 함수로 클래스를 제거한다.</li>
+          <li>classList.toggle("ClassName") : 해당 클래스가 있으면 삭제 없으면 추가</li>
+        </ul>
+      </article>
+    </main>
+  </body>
+</html>
