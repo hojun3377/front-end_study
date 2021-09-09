@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>JavaScript HTML document access</title>
+<style>
+.test {
+  border: 1px solid black;
+}
+</style>
   </head>
   <body>
     <main>
@@ -11,12 +16,13 @@
       <article>
         <h2>element.innerHTML</h2>
         <p>실제 html 문서를 변경시킨다.</p>
-        <hr>
-        <h3>test area</h3>
-        <ul id="testUl">
-          <li>기본 목록</li>
-        </ul>
-        <hr>
+        <p>document.innerHTML은 문자열 내부에 태그를 추가하거나 삭제하기 힘들다.</p>
+        <div class="test">
+          <h3>test area</h3>
+          <ul id="testUl">
+            <li>기본 목록</li>
+          </ul>
+        </div>
         <ul>
           <li>
             목록 뒤에 새로운 리스트 추가 : <button type="button" onclick="insertList()">뒤 목록 추가</button>
@@ -36,14 +42,14 @@ function insertList2() {
 </script>
           </li>
         </ul>
-        <hr>
-        <h3>test area</h3>
-        <ul id="testUl2">
-          <li>0</li>
-          <li>1</li>
-          <li>2</li>
-        </ul>
-        <hr>
+        <div class="test">
+          <h3>test area</h3>
+          <ul id="testUl2">
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+          </ul>
+        </div>
         <ul>
           <li>
             0.5 리스트 추가 : <button type="button" name="button" onclick="insertList3()">0.5 추가</button>
@@ -76,6 +82,112 @@ function insertList4() {
 </script>
           </li>
         </ul>
+      </article>
+      <hr>
+<script>
+// li_node는 생성된 node를 참조 ( 생성된 노드는 1개이다. )
+let li_node = document.createElement("li");
+li_node.append("추가된 내용");
+</script>
+      <article>
+        <h2>element.append()</h2>
+        <p>element 자식의 가장 앞에 문자열이나 html 노드를 추가할 수 있다.</p>
+        <p>document.createElement() 는 html 노드(요소) 객체를 생성한다.</p>
+        <div class="test">
+          <h3>test area</h3>
+          <ul id="appendTest">
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+          </ul>
+        </div>
+        <button type="button" onclick="
+        document.getElementById('appendTest').append(li_node)
+        ">append() test</button>
+      </article>
+      <hr>
+      <article>
+        <h2>element.prepend()</h2>
+        <div class="test">
+          <ul id="prependTest">
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+          </ul>
+        </div>
+        <button type="button" onclick="
+        document.getElementById('prependTest').prepend(li_node)
+        ">prepend() test</button>
+      </article>
+      <hr>
+<script>
+let h3_node = document.createElement("h3");
+h3_node.append("추가된 내용")
+</script>
+      <article>
+        <h2>element.before()</h2>
+        <p>선택자로 찾은 노드(요소, element)의 바로 앞에 문자열이나 node를 추가한다.</p>
+        <div class="test">
+          <h3>test area</h3>
+          <ul id="beforeTest">
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+          </ul>
+        </div>
+        <button type="button" onclick="
+        document.getElementById('beforeTest').before(h3_node)
+        ">before() test</button>
+      </article>
+      <hr>
+      <article>
+        <h2>element.after()</h2>
+        <p>선택자로 찾은 노드(요소, element) 의 바로 뒤에 문자열이나 node를 추가한다.</p>
+        <div class="test">
+          <h3>test area</h3>
+          <ul id="afterTest">
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+          </ul>
+        </div>
+        <button type="button" onclick="
+        document.getElementById('afterTest').after(h3_node)
+        ">after() test</button>
+      </article>
+      <hr>
+      <article>
+        <h2>1과 2 사이에 li 노드를 추가하세요</h2>
+        <div class="test">
+          <h3>test area</h3>
+          <ul id="test">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+          </ul>
+        </div>
+        <button type="button" onclick="addLi()">1과 2사이에 li 노드 추가</button>
+        <button type="button" onclick="removeLi()">1과 2사이에 li 노드 삭제</button>
+<script>
+const test = document.getElementById("test");
+let isNodeFlag = false;
+let test_li_node;
+function addLi() {
+  if(!isNodeFlag) {
+    test_li_node = document.createElement("li");
+    test_li_node.append("1.5");
+    test.children[0].after(test_li_node);
+    isNodeFlag = true;
+  }
+}
+function removeLi() {
+  if(isNodeFlag) {
+    test_li_node.remove();
+    isNodeFlag = false;
+  }
+
+}
+</script>
       </article>
     </main>
   </body>
