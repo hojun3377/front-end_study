@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript HTML document access</title>
+  </head>
+  <body>
+    <main>
+      <h1>자바스크립트 HTML 문서 조작</h1>
+      <hr>
+      <article>
+        <h2>element.innerHTML</h2>
+        <p>실제 html 문서를 변경시킨다.</p>
+        <hr>
+        <h3>test area</h3>
+        <ul id="testUl">
+          <li>기본 목록</li>
+        </ul>
+        <hr>
+        <ul>
+          <li>
+            목록 뒤에 새로운 리스트 추가 : <button type="button" onclick="insertList()">뒤 목록 추가</button>
+<script>
+function insertList() {
+  document.getElementById("testUl").innerHTML += "<li>뒤에 추가된 목록</li>";
+}
+</script>
+          </li>
+          <li>
+            목록 앞에 새로운 리스트 추가 : <button type="button" onclick="insertList2()">앞 목록 추가</button>
+<script>
+function insertList2() {
+  let str = "<li>앞에 추가된 목록</li>" + document.getElementById("testUl").innerHTML;
+  document.getElementById("testUl").innerHTML = str;
+}
+</script>
+          </li>
+        </ul>
+        <hr>
+        <h3>test area</h3>
+        <ul id="testUl2">
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+        </ul>
+        <hr>
+        <ul>
+          <li>
+            0.5 리스트 추가 : <button type="button" name="button" onclick="insertList3()">0.5 추가</button>
+<script>
+function insertList3() {
+  let testUl2 = document.getElementById("testUl2");
+
+  let ulHTMLStr = testUl2.innerHTML;
+  let ulHTMLArr = ulHTMLStr.trim().split("\n");
+  ulHTMLArr.splice(1,0,"<li>0.5</li>");
+
+  testUl2.innerHTML = ulHTMLArr.join("\n");
+
+  // console.log(ulHTMLStr.trim().replace(/ /g,"").split("\n"));
+}
+</script>
+          </li>
+          <li>
+            0 리스트 삭제 : <button type="button" name="button" onclick="insertList4()">0 삭제</button>
+<script>
+function insertList4() {
+  let testUl2 = document.getElementById("testUl2");
+
+  let ulHTMLStr = testUl2.innerHTML;
+  let ulHTMLArr = ulHTMLStr.trim().split("\n");
+  ulHTMLArr.splice(0,1);
+
+  testUl2.innerHTML = ulHTMLArr.join("\n");
+}
+</script>
+          </li>
+        </ul>
+      </article>
+    </main>
+  </body>
+</html>
