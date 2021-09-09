@@ -12,9 +12,10 @@
       <div class="controler-container">
         <div id="calendarControler" class="controler-content">
           <h2 class="month"></h2>
+          div.
           <div class="btn-container">
-            <input type="button" value="이전">
-            <input type="button" value="다음">
+            <button type="button" value="">이전</button>
+            <button type="button" value="">다음</button>
           </div>
         </div>
       </div>
@@ -563,6 +564,7 @@
             <div class="btn-container">
               <input type="button" name="closeBtn" value="닫기">
               <input type="button" name="submitBtn" value="확인">
+              <input type="button" name="addBtn" value="추가">
             </div>
           </form>
         </div>
@@ -571,7 +573,7 @@
   </body>
 <script>
 // ajax json
-let strJSON; // ajax로 받아온 json 문자열
+// const strJSON; // ajax로 받아온 json 문자열
 const scheduleJSON = {};
 
 // calendar
@@ -580,11 +582,7 @@ const calendarTable = document.getElementById("calendarTable");
 const calendarDateEl = calendarTable.getElementsByTagName("td");
 const calendarSchedule = calendarTable.getElementsByClassName("schedule");
 const preMonthBtn = calendarControler.getElementsByClassName("btn-container")[0].children[0];
-const postMonthBtn = calendarControler.getElementsByClassName("btn-container")[0].children[1];
-const nowDateObj = new Date();
-
-let nowYear = nowDateObj.getFullYear(),
-    nowMonth = nowDateObj.getMonth();
+const nextMonthBtn = calendarControler.getElementsByClassName("btn-container")[0].children[1];
 
 // modal
 const scheduleModal = document.getElementById("scheduleModal");
@@ -592,26 +590,45 @@ const modalDate = scheduleModal.getElementsByClassName("date")[0];
 const modalForm = document.forms.modalForm;
 let scheduleKey, currentScheduleEl;
 
-const dateClick = function(e) {
-  let date = this.getElementsByClassName("date")[0].innerText;
+const Calendar = function(year=new Date().getFullYear(),month=new Date().getMonth(),schedule={}) {
+  this.year = year;
+  this.month = month;
+  this.firstDay = new Date(year,month,1).getDay();
+  this.lastDate = new Date(year,month+1,0).getDate();
+  this.text = `${year}년 ${month+1}월`;
+  this.value = year+"-"+month;
+  this.preValue = `${month ? year : year-1}-${month ? month-1 : 12}`;
+  this.nextValue = `${year+Math.floor(month/12)}-${month%12+1}`;
+  this.schedule = schedule;
 
-  modalDate.innerText = `${nowYear}년 ${nowMonth+1}월 ${date}일`;
-  scheduleKey = `d_${nowYear}_${nowMonth+1}_${date}`;
-  scheduleJSON[scheduleKey].forEach((item, i) => {
-    modalForm.scheduleList[i].value = item;
+  this.setCalendar = (year,month) => {
+    year = Number(year);
+    month = Number(month);
+
+    this.year = year;
+    this.month = month;
+    this.firstDay = new Date(year,month,1).getDay();
+    this.lastDate = new Date(year,month+1,0).getDate();
+    this.text = `${year}년 ${month+1}월`;
+    this.value = year+"-"+month;
+    this.preValue = `${month ? year : year-1}-${month ? month-1 : 12}`;
+    this.nextValue = `${year+Math.floor(month/12)}-${month%12+1}`;
+  }
+}
+const initModal = function() {
+  modalDate.innerText = "";
+  Array.from(modalForm.scheduleList).forEach(el => {
+    el.value = "";
   });
-  currentScheduleEl = this.getElementsByClassName("schedule")[0];
-
-  scheduleModal.style.display = "block";
+  scheduleModal.style.display = "none";
 };
+const calendarPrint = function(calendar) {
+  calendarControler.children[0].innerText = calendar.text;
+  preMonthBtn.value = calendar.preValue;
+  nextMonthBtn.value = calendar.nextValue;
 
-const printCalendar = function() {
-  let firstDay = new Date(nowYear,nowMonth,1).getDay(),
-      lastDate = new Date(nowYear,nowMonth+1,0).getDate();
-
-  calendarControler.children[0].innerText = `${nowYear}년 ${nowMonth+1}월`
-  for(let i=0; i<firstDay; i++) {
-    let preMonthDate = new Date(nowYear,nowMonth,i-firstDay+1).getDate();
+  for(let i=0; i<calendar.firstDay; i++) {
+    let preMonthDate = new Date(year,month,i-firstDay+1).getDate();
     let dateEl = calendarDateEl[i].getElementsByClassName("date")[0];
 
     calendarDateEl[i].classList.remove("active");
@@ -619,9 +636,9 @@ const printCalendar = function() {
     calendarDateEl[i].removeEventListener("click", dateClick);
     dateEl.innerText = preMonthDate;
   }
-  for(let i=1; i<=lastDate; i++) {
+  for(let i=1; i<=calendar.lastDate; i++) {
     let dateEl = calendarDateEl[firstDay].getElementsByClassName("date")[0];
-    let scheduleKey = `d_${nowYear}_${nowMonth+1}_${i}`;
+    let scheduleKey = `d_${year}_${month+1}_${i}`;
 
     // ajax통신이 안되므로 대신 json을 만듬
     // 실제로는 json 객체로부터 그리기
@@ -646,41 +663,75 @@ const printCalendar = function() {
     dateEl.innerText=j;
   }
 };
-const initModal = function() {
-  modalDate.innerText = "";
-  Array.from(modalForm.scheduleList).forEach(el => {
-    el.value = "";
-  });
-  scheduleModal.style.display = "none";
+const calendarClickEventHandler = {
+  date : date => {
+    // let date = this.getElementsByClassName("date")[0].innerText;
+    modalDate.innerText = `${this.year}년 ${this.month+1}월 ${date}일`;
+    scheduleKey = `d_${this.year}_${this.month+1}_${date}`;
+    scheduleJSON[scheduleKey].forEach((item, i) => {
+      modalForm.scheduleList[i].value = item;
+    });
+    currentScheduleEl = this.getElementsByClassName("schedule")[0];
+
+    scheduleModal.style.display = "block";
+  },
+  preMonth : calendar => {
+    let newYear = calendar.preValue.split("-")[0],
+        newMonth = calendar.preValue.split("-")[1];
+    calendar.setCalendar(newYear,newMonth);
+    calendarPrint(newYear,newMonth);
+  },
+  nextMonth : calendar => {
+    let nowYear = preMonthBtn.value.split("-")[0],
+        nowMonth = preMonthBtn.value.split("-")[1];
+    calendar.setCalendar(nowYear,nowMonth);
+    calendarPrint(newYear,newMonth);
+  },
+  modalSubmit : (scheduleJSON,scheduleKey) => {
+    Array.from(modalForm.scheduleList).forEach((el, i) => {
+      scheduleJSON[scheduleKey][i] = el.value;
+      currentScheduleEl.children[i].innerText = el.value;
+    });
+
+    // ajax 통신
+    // strJSON = JSON.stringify(todoJSON);
+
+    initModal();
+  },
+  modalClose : () => {
+    initModal();
+  }
 }
 
-printCalendar();
-preMonthBtn.onclick = function(e) {
-  nowYear += Math.floor(--nowMonth/12);
-  nowMonth = nowMonth<0 ? nowMonth+12 : nowMonth%12;
-
-  printCalendar();
-}
-postMonthBtn.onclick = function(e) {
-  nowYear += Math.floor(++nowMonth/12);
-  nowMonth %= 12;
-
-  printCalendar();
-}
-modalForm.submitBtn.onclick = function(e) {
-  Array.from(modalForm.scheduleList).forEach((el, i) => {
-    scheduleJSON[scheduleKey][i] = el.value;
-    currentScheduleEl.children[i].innerText = el.value;
-  });
-
-  // ajax 통신
-  // strJSON = JSON.stringify(todoJSON);
-
-  initModal();
-};
-modalForm.closeBtn.onclick = function(e) {
-  initModal();
-};
+const calendar = new Calendar();
+calendarPrint(calendar);
+// preMonthBtn.onclick = () => {
+//   let newYear = calendar.preValue.split("-")[0],
+//       newMonth = calendar.preValue.split("-")[1];
+//   calendar.setCalendar(newYear,newMonth);
+//   calendar.print();
+// };
+// nextMonthBtn.onclick = () => {
+//   let newYear = calendar.nextValue.split("-")[0],
+//       newMonth = calendar.nextValue.split("-")[1];
+//   calendar.setCalendar(newYear,newMonth);
+//   console.log(calendar);
+//   calendar.print();
+// };
+// modalForm.submitBtn.onclick = function() {
+//   Array.from(modalForm.scheduleList).forEach((el, i) => {
+//     scheduleJSON[scheduleKey][i] = el.value;
+//     currentScheduleEl.children[i].innerText = el.value;
+//   });
+//
+//   // ajax 통신
+//   // strJSON = JSON.stringify(todoJSON);
+//
+//   initModal();
+// };
+// modalForm.closeBtn.onclick = function() {
+//   initModal();
+// };
 window.onclick = function(e) {
   if(e.target == scheduleModal) {
     initModal();
