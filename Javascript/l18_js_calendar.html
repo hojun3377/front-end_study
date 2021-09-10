@@ -595,10 +595,11 @@ const Calendar = function(year=new Date().getFullYear(),month=new Date().getMont
   this.month = month;
   this.firstDay = new Date(year,month,1).getDay();
   this.lastDate = new Date(year,month+1,0).getDate();
+  this.preMonthDate = new Date(year,month,0).getDate();
   this.text = `${year}년 ${month+1}월`;
   this.value = year+"-"+month;
-  this.preValue = `${month ? year : year-1}-${month ? month-1 : 12}`;
-  this.nextValue = `${year+Math.floor(month/12)}-${month%12+1}`;
+  this.preValue = `${month ? year : year-1}-${month ? month-1 : 11}`;
+  this.nextValue = `${year+(month==11 ? 1 : 0)}-${(month+1)%12}`;
   this.schedule = schedule;
 
   this.setCalendar = (year,month) => {
@@ -609,10 +610,11 @@ const Calendar = function(year=new Date().getFullYear(),month=new Date().getMont
     this.month = month;
     this.firstDay = new Date(year,month,1).getDay();
     this.lastDate = new Date(year,month+1,0).getDate();
+    this.preMonthDate = new Date(year,month,0).getDate();
     this.text = `${year}년 ${month+1}월`;
     this.value = year+"-"+month;
-    this.preValue = `${month ? year : year-1}-${month ? month-1 : 12}`;
-    this.nextValue = `${year+Math.floor(month/12)}-${month%12+1}`;
+    this.preValue = `${month ? year : year-1}-${month ? month-1 : 11}`;
+    this.nextValue = `${year+(month==11 ? 1 : 0)}-${(month+1)%12}`;
   }
 }
 const initModal = function() {
@@ -627,48 +629,55 @@ const calendarPrint = function(calendar) {
   preMonthBtn.value = calendar.preValue;
   nextMonthBtn.value = calendar.nextValue;
 
-  for(let i=0; i<calendar.firstDay; i++) {
-    let preMonthDate = new Date(year,month,i-firstDay+1).getDate();
-    let dateEl = calendarDateEl[i].getElementsByClassName("date")[0];
+  let dateNumElement,
+      dateNum;
+
+  dateNum=calendar.preMonthDate-calendar.firstDay+1;
+  for(let i=0; i<calendar.firstDay; i++,dateNum++) {
+    dateNumElement = calendarDateEl[i].getElementsByClassName("date")[0];
 
     calendarDateEl[i].classList.remove("active");
     calendarDateEl[i].classList.add("disable");
-    calendarDateEl[i].removeEventListener("click", dateClick);
-    dateEl.innerText = preMonthDate;
+    calendarDateEl[i].removeEventListener("click", calendarClickEventHandler.date);
+    dateNumElement.innerText = dateNum;
   }
-  for(let i=1; i<=calendar.lastDate; i++) {
-    let dateEl = calendarDateEl[firstDay].getElementsByClassName("date")[0];
-    let scheduleKey = `d_${year}_${month+1}_${i}`;
+  for(let i=calendar.firstDay,dateNum=1; dateNum<=calendar.lastDate; i++,dateNum++) {
+    let dateEl = calendarDateEl[i].getElementsByClassName("date")[0];
+    let scheduleKey = `d_${calendar.year}_${calendar.month+1}_${dateNum}`;
 
     // ajax통신이 안되므로 대신 json을 만듬
     // 실제로는 json 객체로부터 그리기
-    if(scheduleJSON[scheduleKey]===undefined) {
-      scheduleJSON[scheduleKey] = ["","","","",""];
+    if(calendar.schedule[scheduleKey]===undefined) {
+      calendar.schedule[scheduleKey] = [
+      ];
     }
-    Array.from(calendarSchedule[firstDay].children).forEach((el,i) => {
-      el.innerText = scheduleJSON[scheduleKey][i];
+    Array.from(calendarSchedule[i].children).forEach((el,i) => {
+      el.innerText = calendar.schedule[scheduleKey][i];
     });
 
-    calendarDateEl[firstDay].classList.remove("disable");
-    calendarDateEl[firstDay].classList.add("active");
-    calendarDateEl[firstDay++].addEventListener("click", dateClick);
-    dateEl.innerText=i;
+    calendarDateEl[i].classList.remove("disable");
+    calendarDateEl[i].classList.add("active");
+    calendarDateEl[i].addEventListener("click", () => {
+      calendarClickEventHandler.date(calendar)
+    });
+    dateEl.innerText=dateNum;
   }
-  for(let i=firstDay, j=1; i<calendarDateEl.length; i++,j++) {
+  dateNum=1;
+  for(let i=calendar.firstDay+calendar.lastDate; i<calendarDateEl.length; i++,dateNum++) {
     let dateEl = calendarDateEl[i].getElementsByClassName("date")[0];
 
     calendarDateEl[i].classList.remove("active");
     calendarDateEl[i].classList.add("disable");
-    calendarDateEl[i].removeEventListener("click", dateClick);
-    dateEl.innerText=j;
+    calendarDateEl[i].removeEventListener("click", calendarClickEventHandler.date);
+    dateEl.innerText=dateNum;
   }
 };
 const calendarClickEventHandler = {
-  date : date => {
-    // let date = this.getElementsByClassName("date")[0].innerText;
-    modalDate.innerText = `${this.year}년 ${this.month+1}월 ${date}일`;
-    scheduleKey = `d_${this.year}_${this.month+1}_${date}`;
-    scheduleJSON[scheduleKey].forEach((item, i) => {
+  date : calendar => {
+    let date = this.getElementsByClassName("date")[0].innerText;
+    modalDate.innerText = `${calendar.year}년 ${calendar.month+1}월 ${date}일`;
+    scheduleKey = `d_${calendar.year}_${calendar.month+1}_${date}`;
+    calendar.schedule[scheduleKey].forEach((item, i) => {
       modalForm.scheduleList[i].value = item;
     });
     currentScheduleEl = this.getElementsByClassName("schedule")[0];
@@ -679,13 +688,13 @@ const calendarClickEventHandler = {
     let newYear = calendar.preValue.split("-")[0],
         newMonth = calendar.preValue.split("-")[1];
     calendar.setCalendar(newYear,newMonth);
-    calendarPrint(newYear,newMonth);
+    calendarPrint(calendar);
   },
   nextMonth : calendar => {
-    let nowYear = preMonthBtn.value.split("-")[0],
-        nowMonth = preMonthBtn.value.split("-")[1];
-    calendar.setCalendar(nowYear,nowMonth);
-    calendarPrint(newYear,newMonth);
+    let newYear = calendar.nextValue.split("-")[0],
+        newMonth = calendar.nextValue.split("-")[1];
+    calendar.setCalendar(newYear,newMonth);
+    calendarPrint(calendar);
   },
   modalSubmit : (scheduleJSON,scheduleKey) => {
     Array.from(modalForm.scheduleList).forEach((el, i) => {
@@ -705,19 +714,8 @@ const calendarClickEventHandler = {
 
 const calendar = new Calendar();
 calendarPrint(calendar);
-// preMonthBtn.onclick = () => {
-//   let newYear = calendar.preValue.split("-")[0],
-//       newMonth = calendar.preValue.split("-")[1];
-//   calendar.setCalendar(newYear,newMonth);
-//   calendar.print();
-// };
-// nextMonthBtn.onclick = () => {
-//   let newYear = calendar.nextValue.split("-")[0],
-//       newMonth = calendar.nextValue.split("-")[1];
-//   calendar.setCalendar(newYear,newMonth);
-//   console.log(calendar);
-//   calendar.print();
-// };
+preMonthBtn.onclick = () => { calendarClickEventHandler.preMonth(calendar); };
+nextMonthBtn.onclick = () => { calendarClickEventHandler.nextMonth(calendar); };
 // modalForm.submitBtn.onclick = function() {
 //   Array.from(modalForm.scheduleList).forEach((el, i) => {
 //     scheduleJSON[scheduleKey][i] = el.value;
