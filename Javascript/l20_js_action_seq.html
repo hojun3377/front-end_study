@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript action sequence</title>
+    <script defer src="./js/l20_js_action_seq.js" charset="utf-8"></script>
+    <!-- <script src="./js/l20_js_action_seq.js" charset="utf-8"></script> -->
+    <!-- html node를 화면에 출력하다가 script 참조가 fetch & execution 될때까지 기다린다. -->
+    <!-- <script async src="./js/l20_js_action_seq.js" charset="utf-8"></script> -->
+    <!-- async : html 노드를 parsing과 참조문서(script) 다운(fetch)을 병렬적으로 진행하면서 참조문서가 모두 fetch되면 html의 parsing을 멈추고 참조문서를 실행하며, 참조문서 실행이 끝나면 멈췄던 html parsing을 다시 진행한다. -->
+    <!-- defer : html 노드를 parsing과 참조문서(script) 다운(fetch)을 병렬적으로 진행하지만, 실행(execution)은 html 문서가 parsinge되면 (출력될 준비가 된 상태, DOMContentLoaded전 상태) script 구문을 실행한다. ( 거의 모든 스크립트 참조시 사용한다. ) -->
+  </head>
+  <body>
+    <main>
+<script>
+// window객체가 load될 때 발생하는 이벤트 콜백함수
+// onload가 사용가능한 태그들
+// <body>, <frame>, <iframe>, <img>, <input type="image">, <link>, <script>, <style>
+// ref) https://www.w3schools.com/jsref/event_onload.asp
+window.onload = function() {
+  document.getElementById("headTitle").style.textDecoration="wavy underline powderblue";
+}
+
+// headTitle 노드가 생성되지 않은 시점이기 때문이다.
+document.getElementById("headTitle").style.color="red";
+
+function colorChange(color) {
+  document.getElementById("headTitle").style.color=color;
+}
+</script>
+      <h1 id="headTitle">자바스크립트 동작 순서</h1>
+      <ul id="eventTest">
+        <li>li에 마우스를 올리면 색이 바뀐다.</li>
+        <li>ul > li 노드에 mouseenter를 재정의한다.</li>
+      </ul>
+<script>
+// headTitle 노드가 생성된 시점이기 때문이다.
+document.getElementById("headTitle").style.backgroundColor="gray";
+
+// 함수를 실행하는 시점에는 노드 개체가 생성되었기 때문이다.
+colorChange("blue");
+
+// 이벤트 재정의
+const eventColorHandler = {
+  red : e => {
+    e.target.style.color="red";
+  },
+  black : e => {
+    e.target.style.color="black";
+  },
+  green : e => {
+    e.target.style.color="green";
+  }
+}
+document.querySelectorAll("ul#eventTest > li").forEach((item, i) => {
+  item.addEventListener("mouseenter", eventColorHandler.red);
+  item.addEventListener("mouseleave", eventColorHandler.black);
+});
+
+// li_node를 추가하기 전에 다른 li에 이벤트를 재정의했기 때문에 li_node는 이벤트가 재정의되지 않았다.
+let li_node = document.createElement("li");
+li_node.innerText = "추가된 리스트";
+document.getElementById("eventTest").append(li_node);
+
+// 위의 문제 해결 방법
+// 1. 노드를 생성할 때 마다 요소의 이벤트를 재정의한다.
+li_node.addEventListener("mouseenter", eventColorHandler.green);
+li_node.addEventListener("mouseleave", eventColorHandler.black);
+// 2. 노드를 이벤트를 재정의하기 전에 생성한다.
+</script>
+      <article>
+        <h2>HTML 문서에 선언된 스크립트의 동작 순서</h2>
+        <ol>
+          <li>브라우저는 HTML문서를 css와 병합해 DOMTree 구조를 생성한다.</li>
+          <li>브라우저가 병합된 구조를 보고 화면에 그래픽으로 순서대로 개체를 표현한다. (순차적언어)</li>
+          <li>개체를 출력하던 중 자바스크립트 구문을 발견하면 순서대로 자바스크립트를 실행한다.</li>
+          <li>이때 자바스크립트가 노드 개체를 검색하던 중이면 브라우저가 해당 노드 개체를 출력해야 찾을 수 있다.</li>
+        </ol>
+      </article>
+      <article>
+        <h2 id="secondTitle">순차적 언어인 HTML과 자바스크립트가 문제를 일으키지 않게 하는 방법</h2>
+        <ol>
+          <li>자바스크립트를 모든 노드가 생성된 시점이 body 아래에 작성한다. (링크를 한다)</li>
+          <li>
+            onload : 해당하는 노드가 생성되었는지 확인 / window.onload = function(){ 스크립트 작성 }
+            <br>window 객체가 완전히 생성된 시점. 즉, 노드가 모두 로드된 시점에 자바스크립트를 작성하면된다.
+          </li>
+          <li>script src="참조" 이때 defer를 지정하면 html 문서를 다 다운받고 로드한 시점에 참조된 문서를 다운로드한다.</li>
+        </ol>
+      </article>
+    </main>
+  </body>
+  <!-- script를 body 밑에 작성하면 모든 노드 개체가 생성되기 때문에 노드를 찾지 못하는 오류를 막을 수 있다. -->
+</html>
