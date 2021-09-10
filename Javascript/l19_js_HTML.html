@@ -160,7 +160,7 @@ h3_node.append("추가된 내용")
         <h2>1과 2 사이에 li 노드를 추가하세요</h2>
         <div class="test">
           <h3>test area</h3>
-          <ul id="test">
+          <ul id="testUl3">
             <li>1</li>
             <li>2</li>
             <li>3</li>
@@ -169,14 +169,14 @@ h3_node.append("추가된 내용")
         <button type="button" onclick="addLi()">1과 2사이에 li 노드 추가</button>
         <button type="button" onclick="removeLi()">1과 2사이에 li 노드 삭제</button>
 <script>
-const test = document.getElementById("test");
+const testUl3 = document.getElementById("testUl3");
 let isNodeFlag = false;
 let test_li_node;
 function addLi() {
   if(!isNodeFlag) {
     test_li_node = document.createElement("li");
     test_li_node.append("1.5");
-    test.children[0].after(test_li_node);
+    testUl3.children[0].after(test_li_node);
     isNodeFlag = true;
   }
 }
@@ -185,8 +185,74 @@ function removeLi() {
     test_li_node.remove();
     isNodeFlag = false;
   }
-
 }
+</script>
+      </article>
+      <hr>
+      <article>
+        <h2>원하는 위치에 내용을 추가</h2>
+        <p>ex) 1. 내용 / 내용:마지막</p>
+        <div class="test">
+          <h3>test area</h3>
+          <ul id="totalTest">
+            <li>0 <button>x</button></li>
+            <li>1 <button>x</button></li>
+            <li>2 <button>x</button></li>
+          </ul>
+        </div>
+        <input type="text" id="totalTestIpt" placeholder="숫자.내용">
+<script>
+const totalTest = document.getElementById("totalTest");
+const totalTestIpt = document.getElementById("totalTestIpt");
+
+// event handler
+const totalTestEventHandler = {
+  rmvParentElement : e => { e.target.parentElement.remove() },
+  addChildElement : e => {
+    if(e.target.value.trim()==false) return;
+
+    let inputValue = e.target.value;
+    let inputValueArr = inputValue.split("."),
+        li_node = document.createElement("li"),
+        liLen = totalTest.children.length;
+
+    li_node.style.color = "red";
+
+    if(inputValueArr.length == 2) {
+      li_node.innerHTML = "<b>"+inputValueArr[1]+"</b> ";
+      if(inputValueArr[0] <= 0) {
+        totalTest.prepend(li_node);
+        // totalTest.children[0].before(li_node);
+      }
+      else if(inputValueArr[0] < liLen) {
+        totalTest.children[inputValueArr[0]-1].after(li_node);
+      }
+      else {
+        totalTest.append(li_node);
+        // totalTest.children[liLen-1].after(li_node);
+      }
+    }
+    else if(inputValueArr.length == 1) {
+      li_node.innerHTML = "<b>"+inputValueArr[0]+"</b> ";
+      totalTest.append(li_node);
+    }
+    else {
+      alert("형식을 맞추세요");
+    }
+
+    let removeBtn = document.createElement("button");
+
+    removeBtn.innerText = "x";
+    removeBtn.onclick = totalTestEventHandler.rmvParentElement;
+    li_node.append(removeBtn);
+  }
+};
+
+// add event
+Array.from(totalTest.children).forEach(el => {
+  el.children[0].onclick=totalTestEventHandler.rmvParentElement;
+});
+totalTestIpt.onchange = totalTestEventHandler.addChildElement;
 </script>
       </article>
     </main>
