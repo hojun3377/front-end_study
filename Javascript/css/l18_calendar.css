@@ -70,9 +70,25 @@
   padding: 20px;
   background-color: #fefefe;
 }
-.modal-content .todo-container {
+.modal-content .modal-schedule {
+  margin: 20px auto;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
+}
+.modal-content .modal-schedule li {
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  text-align: center;
+}
+.modal-content .modal-schedule li > .date {
+  float: left;
+  margin-left: 5px;
+}
+.modal-content .modal-schedule li > .delete {
+  float: right;
+  margin-right: 5px;
 }
 .modal-content .btn-container {
   display: flex;
