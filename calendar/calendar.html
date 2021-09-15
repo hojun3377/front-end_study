@@ -3,19 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>Calendar</title>
-    <script defer type="text/javascript" src="./script/calendar.js"></script>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/calendar.css">
+    <script defer type="text/javascript" src="./script/calendar.js"></script>
   </head>
   <body>
     <main>
       <!-- table#calendarTable>(thead>tr>(th{일}+th{화}+th{화}+th{수}+th{목}+th{금}+th{토}))+(tbody>(tr>td(div.date-container>h5.date+ul.schedule>li*5)*7)*6) -->
       <div id="calendarControler" class="controler-container">
-        <h1 class="title"></h1>
+        <span class="title"></span>
         <div class="btn-container">
-          <button type="button" value="">이전</button>
+          <button type="button" value="">
+            <svg width="35px" height="35px">
+              <line x1="35" y1="0" x2="17.5" y2="17.5" style="color: rgb(202, 191, 171);"></line>
+              <line x1="35" y1="35" x2="17.5" y2="17.5" style="color: rgb(202, 191, 171);"></line>
+            </svg>
+          </button>
+          <button type="button" value="">&gt;</button>
           <input type="month">
-          <button type="button" value="">다음</button>
         </div>
       </div>
       <table id="calendarTable" class="table-container">

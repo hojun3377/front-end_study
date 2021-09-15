@@ -1,5 +1,7 @@
 body {
   font-size: 14px;
+  background-color: rgb(223, 216, 200);
+  color: rgb(82, 87, 93);
 }
 h1 {
   font-size: 2em;
@@ -16,27 +18,44 @@ h5 {
 
 #calendarControler.controler-container {
   width: 100%;
-  height: 13vh;
+  height: 50px;
   display: flex;
-  flex-direction: column;
-  margin: 2vh 0 3vh 0;
+  text-align: center;
+  padding: 15px 0;
 }
 .controler-container .title {
-  text-align: center;
-  margin-bottom: 2vh;
+  margin: auto 10px auto;
+  font-size: 1.7em;
 }
 .controler-container .btn-container {
+  margin-left: 10px;
   height: 100%;
-  margin: 0 auto;
   display: flex;
 }
 .controler-container .btn-container > input {
-  margin: 0 10px;
+  margin: auto 10px;
 }
 .controler-container .btn-container > button {
-  border-radius: 100%;
+  margin: auto 3px;
+  width: 35px;
+  height: 35px;
+  background-color: rgba(82, 87, 93, .5);
+  border: solid 1px rgba(202, 191, 171, .5);
+  border-radius: 50%;
+  line-height: 33px;
+  font-size: 1.2em;
+  color: rgb(200, 200, 200);
 }
+
+
+/*
+  table은 가로크기가 가변이다. -> table-layout: auto;
+  table-layout: fixed;
+  width: 700px;
+  table > tr > td 직접적으로 가로를 지정하는 것이 좋다.
+*/
 .table-container {
+  /* table-layout: fixed; */
   width: 100%;
   height: 80vh;
   border-collapse: collapse;
@@ -74,18 +93,18 @@ h5 {
   color: rgb(0,0,255);
 }
 
-#calendarTable .schedule {
+/* #calendarTable .schedule {
   visibility: hidden;
-}
+} */
 #calendarTable .schedule > li {
   list-style-position: inside;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-#calendarTable td.active:hover .schedule {
+/* #calendarTable td.active:hover .schedule {
   visibility: visible;
-}
+} */
 
 .controler-content {
   display: flex;
