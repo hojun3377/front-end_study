@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS Box Modeling</title>
+    <link rel="stylesheet" href="./css/l02_css_box_modeling.css">
+  </head>
+  <body>
+    <h1>박스 모델링</h1>
+    <div class="block-box">
+      <h2>block의 박스 모델링</h2>
+      <p>특징 : 가로, 세로, 높이가 있고, margin으로 block을 정렬하는 성질이 있다.
+      <br>( width, height, padding, border, outline, margin )</p>
+      <div class="test-box">
+        <p class="ex">p block</p>
+      </div>
+    </div>
+    <div class="inline_block-box">
+      <h2>inline-block의 박스 모델링</h2>
+      <p>특징 : block과 같지만, block처럼 쌓이지 않고 text와 같이 정렬(inline)되며, margin으로 정렬되지 않는다.</p>
+      <div class="test-box">
+        <span>안녕</span><img src="./img/cat.jpg" alt="img error" class="ex"><span>하세요</span>
+      </div>
+    </div>
+    <div class="inline-box">
+      <h2>inline의 박스 모델링</h2>
+      <p>padding, border, outline 만 있기 때문에 box로 볼 수 없고, 가로 세로가 컨텐츠 크기만큼만 설정된다.</p>
+      <div class="test-box">
+        <strong class="ex">strong inline box</strong>
+      </div>
+    </div>
+    <hr>
+    <div class="border_percent">
+      <h2>border-radius: &lt;percentage&gt;</h2>
+      <p>
+        백분율 값을 이용해 원의 반지름 또는 타원의 짧은 반지름과 긴 반지름을 지정
+        <br>음의 값은 유효하지 않음
+      </p>
+      <div class="test-box">
+        <p class="ex"></p>
+      </div>
+    </div>
+    <div class="border_length">
+      <h2>border-radius: &lt;length&gt;</h2>
+      <p>
+        length를 이용해 원의 반지름 또는 타원의 짧은 바지름과 긴 반지름을 지정
+        <br>음의 값은 유효하지 않음
+      </p>
+      <div class="test-box">
+        <p class="ex"></p>
+      </div>
+    </div>
+    <div class="box-shadow">
+      <h2>box-shadow</h2>
+      <p>
+        box의 그림자를 생성한다.
+        <br>value: left|top|width|color, ...
+        <br>마찬가지로 text-shadow는 요소의 text에 그림자를 생성한다.
+      </p>
+      <div class="test-box">
+        <p class="ex">box-shadow: -5px -5px 10px black, 5px 5px 10px blue;</p>
+      </div>
+    </div>
+  </body>
+</html>

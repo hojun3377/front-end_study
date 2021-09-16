@@ -1,0 +1,41 @@
+.test-box {
+  width: 700px;
+  height: 500px;
+  border: 1px solid black;
+}
+
+.block-box .ex,
+.inline-box .ex,
+.inline_block-box .ex,
+.box-shadow .ex {
+  width: 200px;
+  height: 200px;
+  padding: 50px;
+  border: 1px solid black;
+  outline: 1px dotted red;
+  outline-offset: 20px;
+  margin: 50px auto;
+}
+
+.border_percent .ex,
+.border_length .ex{
+  width: 400px;
+  height: 200px;
+  padding: 50px;
+  border: 1px solid black;
+  outline: 1px dotted red;
+  outline-offset: 20px;
+  margin: 50px auto;
+}
+.border_percent .ex,
+.box-shadow .ex {
+  border-radius: 100%;
+}
+.border_length .ex {
+  border-radius: 100px;
+}
+.box-shadow .ex {
+  background-color: rgba(255,0,0,.1);
+  box-shadow: -5px -5px 10px black, 5px 5px 10px blue;
+  text-shadow: -1px -1px 2px black;
+}
