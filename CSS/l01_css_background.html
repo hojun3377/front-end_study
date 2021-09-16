@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS Background</title>
+    <link rel="stylesheet" href="./css/l01_css_background.css">
+    <script type="text/javascript" src="./script/l01_css_background.js" defer></script>
+  </head>
+  <body>
+    <h1>CSS Background</h1>
+    <div id="testBox" class="test-box">
+      <!-- <img src="./img/cat.jpg" alt="고양이"> -->
+      <h2>Test Box 입니다.</h2>
+    </div>
+    <div id="selectBox" class="select-container">
+      <div class="select-bg">
+        <h4>배경 속성 선택</h4>
+        <label><input type="radio" name="select-bg" value="background-color">background-color: green</label>
+        <br>
+        <label><input type="radio" name="select-bg" value="background-color">background-image: url("../img/cat.jpg")</label>
+        <br>
+        <label><input type="radio" name="select-bg" value="background-color">&lt;img src="./img/cat.jpg" alt="고양이"&gt;</label>
+      </div>
+      <div class="select-bg-property">
+
+      </div>
+    </div>
+    <hr>
+    <div class="property-detail">
+      <div class="bg-detail">
+        <div>
+          background-color: value
+          <br>&nbsp;해당 요소의 style property로 배경의 색상을 지정
+          <h5>value</h5>
+          <ul>
+            <li>rgb([0-255], [0-255], [0-255])</li>
+            <li>#[000000-ffffff]</li>
+            <li>hsl([0-360], [0-100]%, [0-100]%)</li>
+          </ul>
+        </div>
+        <div>
+          &lt;img src=value alt=value&gt;
+          <br>&nbsp;display: inline-block인 독립적인 노드 객체
+          <h5>value</h5>
+          <ul>
+            <li>
+              src value: path
+              <br>&nbsp;img의 위치에 대한 경로</li>
+            <li>
+              alt value: alternative text value
+              <br>&nbsp;img가 정상적으로 로드되지 않을 경우 출력되는 text</li>
+          </ul>
+        </div>
+        <div>
+          background-image: url("path1"), url("path2") ...
+          <br>&nbsp;해당 요소의 style property로 배경에 이미지를 삽입
+          <h5>value</h5>
+          <ul>
+            <li>path: img의 위치에 대한 경로</li>
+            <li>url: path를 지정해 위치를 찾아주는 css 함수</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <ul id="bgTestList">
+      <li>
+        background-repeat: value
+        <br>(default: repeat)
+        <br>background-image가 반복할지 정한다.
+        <ul>
+          <li>repeat: 배경 이미지를 반복한다.</li>
+          <li>no-repeat: 배경 이미지를 반복하지 않는다.</li>
+        </ul>
+      </li>
+      <li>
+        background-size : width height
+        <br>background 의 다운받은 이미지 전부의 크기를 설정한다.
+        <br>default: auto
+        <ul>
+          <li>contain : 이미지 비율을 유지하면서 노드의 크기만큼 자동으로 크기 조절한다.</li>
+          <li>
+            cover : 이미지 비율을 유지하면서 노드의 요소를 최대한 가리기 위해 크기를 조절한다.
+            <br>(이미지가 잘린다, 부족한 축을 auto, 다른 축을 100%를 주는 것이다.)
+          </li>
+        </ul>
+      </li>
+      <li>
+        background-clip: value
+        <br>value는 배경이 나타내는 영역이다.
+        <br>default: border-box
+        <ul>
+          <li>padding-box: padding을 포함한 영역</li>
+          <li>content-box: padding을 제외한 영역</li>
+          <li>border-box: border를 포함한 영역</li>
+        </ul>
+      </li>
+      <li>
+        background-origin
+        <br>value는 배경 이미지가 나타내는 영역이다.
+        <br>origin은 background-image가 적용된 경우에만 동작한다.
+        <br>default: padding-box
+        <ul>
+          <li>padding-box: padding을 포함한 영역</li>
+          <li>content-box: padding을 제외한 영역</li>
+          <li>border-box: border를 포함한 영역</li>
+        </ul>
+      </li>
+      <li>background-position</li>
+      <li>background-attachment</li>
+    </ul>
+  </body>
+</html>
