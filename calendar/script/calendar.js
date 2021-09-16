@@ -47,11 +47,11 @@ const Calendar = function (year=0, month=1, scheduler=new Scheduler(year, month)
   this.nextValue = `${year + (month==12 ? 1 : 0)}-${month==12 ? 1 : month+1}`;
   this.schedule = undefined;
   this.scheduler = scheduler;
-  
+
   this.setCalendar = (year, month) => {
     year = Number(year);
     month = Number(month);
-    
+
     this.year = year;
     this.month = month;
     this.firstDay = new Date(year, month-1, 1).getDay();
@@ -111,11 +111,11 @@ const Scheduler = function(year=0, month=1, date=1) {
 };
 const calendarPrint = function (calendar) {
   calendarTitle.innerText = calendar.title;
-  
+
   crtMonthIpt.value = calendar.value;
   preMonthBtn.value = calendar.preValue;
   nextMonthBtn.value = calendar.nextValue;
-  
+
   let activeFlag,
     firstIdx = calendar.firstDay,
       lastIdx = calendar.firstDay+calendar.lastDate-1;
@@ -137,7 +137,10 @@ const calendarPrint = function (calendar) {
 
       if (calendar.schedule[date.innerText] !== undefined) {
         for (let key in calendar.schedule[date.innerText]) {
-          let scheduleList = document.createElement("li");
+          let scheduleList = document.createElement("li"),
+              time = document.createElement("b"),
+              schedule = document.createElement("span"),
+              deleteBtn = document.createElement("button");
           scheduleList.innerText = calendar.schedule[date.innerText][key];
           calendarSchedule[i].append(scheduleList);
         }
@@ -148,8 +151,8 @@ const calendarPrint = function (calendar) {
       item.addEventListener("click", calendarClickEventHandler.date);
     }
     else {
-      if (i < firstIdx) date.innerText = i + calendar.preMonthStartDate;
-      else date.innerText = i - lastIdx;
+      if (i < firstIdx) date.innerText = i+calendar.preMonthStartDate;
+      else date.innerText = i-lastIdx;
       item.value = undefined;
 
       item.classList.remove("active");
@@ -162,10 +165,10 @@ const calendarClickEventHandler = {
   date: e => {
     calendar.scheduler.setTarget(e.currentTarget);
     calendar.scheduler.setDate(e.currentTarget.value);
-    
+
     let date = calendar.scheduler.date;
     calendar.scheduler.setSchedule(JSON.stringify(calendar.schedule[date]));
-    
+
     modalForm.addTime.value = "00:00";
     modalForm.addSchedule.value = "";
     modalForm.addSchedule.placeholder = "추가 스케줄 입력";
@@ -179,22 +182,22 @@ const calendarClickEventHandler = {
               date = document.createElement("b"),
               schedule = document.createElement("span"),
               deleteBtn = document.createElement("button");
-  
+
           date.classList.add("time");
           date.innerText = (Number.parseInt(time/60)+"").padStart(2,0)+":"+ (time%60+"").padStart(2,0);
-  
+
           schedule.innerText = todo;
-  
+
           deleteBtn.type = "button";
           deleteBtn.value = `{"time":${time},"index":${i}}`;
           deleteBtn.classList.add("delete");
           deleteBtn.innerText = "x";
           deleteBtn.onclick = calendarClickEventHandler.modalDltSchedule;
-  
+
           scheduleList.append(date);
           scheduleList.append(schedule);
           scheduleList.append(deleteBtn);
-  
+
           modalSchedule.append(scheduleList);
         });
       }
@@ -262,7 +265,7 @@ const calendarClickEventHandler = {
     let key = JSON.parse(e.target.value),
         el = e.target.parentElement,
         schedule = calendar.scheduler.schedule;
-    
+
     schedule[key.time].splice(key.index, 1);
     if (!schedule[key.time].length) {
       delete schedule[key.time];
@@ -274,10 +277,10 @@ const calendarClickEventHandler = {
       let nextKey = JSON.parse(nextBtn.value);
 
       if(key.time!=nextKey.time) break;
-      
+
       nextKey.index--;
       nextBtn.value = JSON.stringify(nextKey);
-      
+
       nextEl = nextEl.nextElementSibling;
     }
 
