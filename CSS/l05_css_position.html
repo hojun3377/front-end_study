@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS position</title>
+<style>
+.test-container {
+  width: 200px;
+  height: 200px;
+  background-color: gray;
+}
+.test-container.po-re {
+  position: relative;
+}
+.test-container.of-auto {
+  overflow: auto;
+}
+
+.test-box {
+  width: 150px;
+  height: 150px;
+  color: white;
+  position: relative;
+  opacity: .5;
+  transition: all 2s;
+}
+.test-box.po-re {
+  position: relative;
+}
+.test-box.po-ab {
+  position: absolute;
+}
+.test-box.po-re,
+.test-box.po-ab {
+  top: 0;
+  left: 0;
+}
+.test-box.po-fi,
+.test-box.po-st {
+  width: 100%;
+  height: initial;
+}
+.test-box.po-fi {
+  position: fixed;
+  bottom: 0;
+}
+.test-box.po-st {
+  position: sticky;
+  top: 5px;
+}
+
+.test-box.top-0 {
+  top: 0;
+}
+.test-box.bottom-0 {
+  bottom: 0;
+}
+.test-box.left-0 {
+  left: 0;
+}
+.test-box.top-100 {
+  top: 100px;
+}
+.test-box.left-100 {
+  left: 100px;
+}
+.test-box.top-1000 {
+  top: 1000px;
+}
+.test-box.left-300 {
+  left: 300px;
+}
+
+.test-box.bgc-blue {
+  background-color: blue;
+}
+.test-box.bgc-black {
+  background-color: black;
+}
+</style>
+  </head>
+  <body>
+    <h1>position</h1>
+    <p>
+      요소, 노드 개체의 위치를 정의한다.
+      <br>static, relative, absolute, fixed, stiky
+    </p>
+    <hr>
+    <article>
+      <h2>position: static</h2>
+      <p>
+        모든 요소 노드 개체는 위치를 static으로 정의한다.
+        <br>position: static ( default )
+      </p>
+      <ul>
+        <li>요소의 배치는 순차적이며 ( 위에서 부터 아래로 ) <b>좌</b>에서부터 <b>우</b>로 배치된다.</li>
+        <li>자식요소는 부모요소의 위치를 기준으로 배치된다.</li>
+        <li>top, bottom, left, rigth를 사용할 수 없다.</li>
+      </ul>
+    </article>
+    <hr>
+    <article>
+      <h2>position: relative ( 상대적 위치 )</h2>
+      <div class="test-container">
+        <div id="relativeBox" class="test-box bgc-blue po-re"></div>
+      </div>
+      <p>자식 박스를 상대적 위치로 왼쪽 위 100px 씩 이동</p>
+      <button type="button" onclick="relativeBox.classList.add('top-100')">아래로 100px 이동</button>
+      <button type="button" onclick="relativeBox.classList.add('left-100')">우측으로 100px 이동</button>
+      <ul>
+        <li>상대적 위치 relative는 정적위치 static을 기준으로 노드를 이동시킨다.</li>
+        <li>상대적 위치로 이동한 노드 개체는 다른 노드에 영향을 주지 않는다.</li>
+      </ul>
+    </article>
+    <hr>
+    <article>
+      <h2>position: absolute ( 절대적 위치 )</h2>
+      <p>부모가 static</p>
+      <div class="test-container">
+        <div id="absoluteBox" class="test-box bgc-blue po-ab"></div>
+      </div>
+      <p>자식 박스를 상대적 위치로 왼쪽 위 100px 씩 이동</p>
+      <button type="button" onclick="absoluteBox.classList.add('top-1000')">아래로 1000px 이동</button>
+      <button type="button" onclick="absoluteBox.classList.add('left-300')">우측으로 300px 이동</button>
+      <p>부모가 relative</p>
+      <div class="test-container po-re">
+        <div id="absoluteBox2" class="test-box bgc-blue po-ab"></div>
+      </div>
+      <p>자식 박스를 상대적 위치로 왼쪽 위 100px 씩 이동</p>
+      <button type="button" onclick="absoluteBox2.classList.add('top-100')">아래로 100px 이동</button>
+      <button type="button" onclick="absoluteBox2.classList.add('left-100')">우측으로 100px 이동</button>
+      <ul>
+        <li>상위 노드 중에 relative, absolute, fixed인 개체가 있을 경우 그 개체를 기준으로 위치를 지정한다.</li>
+        <li>상위 노드 중에 relative, absolute, fixed인 개체가 없을 경우 body를 기준으로 위치가 지정된다.</li>
+        <li>부유 객체로 다른요소를 밀거나 당기지 않고 덮어쓰는 형태로 존재한다.</li>
+      </ul>
+    </article>
+    <hr>
+    <article>
+      <h2>position: fixed</h2>
+      <div class="test-container po-re of-auto">
+        <h3 class="test-box bgc-black po-fi">부모가 relative이고 overflow: auto인 노드의 fixed 된 제목</h3>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+      </div>
+      <ul>
+        <li>부모 요소와 아무런 상관 없이 viewport(브라우저 화면)를 기준으로 노드 개체의 위치를 지정한다.</li>
+        <li>absolute처럼 개체의 넓이와 높이가 content에 맞게 변경된다.</li>
+        <li>부유 객체로 다른요소를 밀거나 당기지 않고 덮어쓰는 형태로 존재한다.</li>
+      </ul>
+    </article>
+    <hr>
+    <article>
+      <h2>position: stiky</h2>
+      <div class="test-container po-re of-auto">
+        <h3 class="test-box bgc-black po-st top-0">top: 0, position: sticky인 제목</h3>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+        <p>아무내용없음</p>
+        <h3 class="test-box bgc-black po-st bottom-0">bottom: 0, position: sticky인 제목</h3>
+      </div>
+      <ul>
+        <li>부모 요소와 아무런 상관 없이 viewport(브라우저 화면)를 기준으로 노드 개체의 위치를 지정한다.</li>
+        <li>absolute처럼 개체의 넓이와 높이가 content에 맞게 변경된다.</li>
+        <li>부유 객체로 다른요소를 밀거나 당기지 않고 덮어쓰는 형태로 존재한다.</li>
+      </ul>
+    </article>
+  </body>
+</html>
