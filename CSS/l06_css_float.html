@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS float</title>
+<style>
+.test-container {
+  width: 100%;
+  /* height: fit-content; */
+  border: 1px solid black;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.img-container {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: rgb(255,255,255);
+  text-align: center;
+}
+.img-container.coffee {
+  background-image: url("./img/coffee.jpg");
+}
+.img-container.cat {
+  background-image: url("./img/cat.jpg");
+  float: right;
+}
+.img-container.f_left {
+  float: left;
+}
+.img-container.f_right {
+  float: right;
+}
+</style>
+  </head>
+  <body>
+    <h1>css float으로 블럭 정렬</h1>
+    <p>
+      float은 글자(inline)가 여러줄 있을 때 그 사이 왼쪽이나 오른쪽에 block을 삽입하기 위해 존재한다.
+      <br>display: inline-block은 글자가 한 줄 있을 때 삽입하기에 유용하다. block의 높이와 상관없이 한줄에 삽입되기 때문이다.
+    </p>
+    <article class="test-container">
+      못할 사라지지 거친 두기 가진 따뜻한 얼마나 그들의 피다. 청춘을 있는 작고 충분히 못하다 이 이것이다. 발휘하기 구하기 내는 그리하였는가? 속에서 힘차게 하는 위하여 심장은 그것은 원대하고, 때에, 그리하였는가? 이상을 놀이 피가 그들은 날카로우나 있다.
+      <div class="img-container coffee">coffee</div>
+      것은 얼음이 얼마나 것이다. 피가 얼음 반짝이는 가치를 주는 위하여, 그들의 이것이다. 오아이스도 하여도 실로 평화스러운 따뜻한 것이다. 살 이상, 듣기만 꾸며 것이다. 노년에게서 과실이 가장 것이다. 품고 봄바람을 방황하였으며, 같은 눈이 천지는 봄바람이다. 품으며, 낙원을 품고 사람은 고행을 이것이다. 동산에는 눈에 얼마나 장식하는 가치를 너의 내는 청춘이 끓는다. 기관과 열락의 황금시대의 곳으로 이상은 낙원을 것은 인간에 있는가? 뜨고, 바이며, 무엇을 불러 있는 안고, 옷을 반짝이는 있는 그리하였는가? 우리의 뭇 유소년에게서 천고에 위하여, 현저하게 있는가? 얼음 간에 이는 인생의 같은 황금시대다. 인간은 희망의 찾아 가슴이 것이다. 웅대한 것은 투명하되 것이다. 피가 우리 때에, 가치를 모래뿐일 그들의 꽃이 피에 힘있다. 보내는 청춘의 그것은 아름다우냐? <div class="img-container cat">cat</div>갑 가치를 밝은 속잎나고, 그러므로 모래뿐일 청춘 옷을 끓는다. 같이, 하는 안고, 위하여서 이것이다. 넣는 청춘의 투명하되 이상이 설산에서 심장의 사랑의 풍부하게 인생의 이것이다. 같이, 피가 영원히 힘있다. 구할 것은 같은 바로 귀는 사랑의 든 청춘의 것이다. 거친 피는 사람은 이것이다. 위하여, 피가 같으며, 수 사람은 그와 간에 이것이다. 든 청춘의 피고, 같으며, 청춘을 위하여서. 노년에게서 없으면, 피고 타오르고 약동하다. 인생을 피가 얼음이 동산에는 뿐이다. 그들을 속에 심장은 놀이 약동하다. 불러 용감하고 인류의 반짝이는 수 얼마나 원질이 인간에 우리 아름다우냐? 가는 두기 이는 같이, 이것을 가치를 운다. 없으면, 커다란 사랑의 실현에 봄날의 구하지 꾸며 아니다. 듣기만 창공에 갑 주며, 보라. 일월과 구하지 트고, 심장의 용기가 힘있다. 군영과 충분히 그들을 품에 보배를 위하여서. 행복스럽고 관현악이며, 그들은 것이다. 얼마나 것이다.보라, 가지에 열매를 봄바람을 착목한는 품고 더운지라 것이다.
+    </article>
+    <hr>
+    <article>
+      <h2>float이 가진 문제</h2>
+      <ol>
+        <li>
+          상위 노드가 float를 가진 하위 노드를 content로 인지하지 않는다.
+          <div class="test-container">
+            test-container: 상위 block
+            <div class="img-container f_left">float-left</div>
+          </div>
+          <div class="clearfix"></div>
+        </li>
+        <li>
+
+        </li>
+      </ol>
+    </article>
+    <hr>
+    <article>
+      <h2>해결방안</h2>
+      <p>해결방안 1: 상위 노드에 <b>overflow 속성에 visible을 제외한 값</b>을 준다.</p>
+      <div class="test-container" style="overflow: hidden">
+        test-container: 상위 block
+        <div class="img-container f_left">float-left</div>
+      </div>
+      <div class="clearfix"></div>
+      <hr>
+      <p>해결방안 2: 상위 노드에 <b>의사클래스 after로 clear:both</b>를 준다.</p>
+      <div class="test-container clearfix">
+        test-container: 상위 block
+        <div class="img-container f_left">float-left</div>
+      </div>
+    </article>
+    <hr>
+    <article>
+      <h2>float으로 정렬</h2>
+      <h5>1,2 box는 float: left, 3,4 box는 float: rigth</h5>
+      <div class="test-container clearfix">
+        <div class="img-container f_left">1</div>
+        <div class="img-container f_left">2</div>
+        <div class="img-container f_right">3</div>
+        <div class="img-container f_right">4</div>
+      </div>
+      <br>
+      <h5>1,2 box 둘 다 float: left이며, width는 각각 40%, 60%</h5>
+      <div class="test-container clearfix">
+        <div class="img-container f_left" style="width: 40%;">1</div>
+        <div class="img-container f_left" style="width: 60%;">2</div>
+      </div>
+    </article>
+  </body>
+</html>
