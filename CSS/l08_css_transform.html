@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS transform</title>
+<style>
+.test-container {
+  border: 1px solid black;
+}
+.test-container.d3 {
+  perspective: 300px;
+}
+.test-container.d3 > .box {
+  display: inline-block;
+}
+.test-container.d3:nth-of-type(2) > .box{
+  margin: 5px 20px;
+  transform: rotateY(20deg);
+}
+.test-container.d3:nth-of-type(3) {
+  display: flex;
+  justify-content: space-around;
+}
+.test-container.d3:nth-of-type(3) > .box.rtx:hover {
+  transform: rotateX(360deg);
+}
+.test-container.d3:nth-of-type(3) > .box.rty:hover {
+  transform: rotateY(360deg);
+}
+.test-container.d3:nth-of-type(3) > .box.rtz:hover {
+  transform: rotateZ(360deg);
+}
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  box-shadow: 3px 3px 5px black;
+  color: white;
+  text-align: center;
+  transition: transform 1s;
+  vertical-align: middle;
+}
+</style>
+  </head>
+  <body>
+    <h1>transform</h1>
+    <h3>transform 2D</h3>
+    <div class="test-container">
+      <div class="box" onclick="this.style.transform='scale(2,2) translate(100%,0) rotate(360deg)'">
+        click
+      </div>
+    </div>
+    <h3>transform 3D</h3>
+    <div class="test-container d3">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <br>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <br>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <h3>3D transition</h3>
+    <div class="test-container d3">
+      <div class="box rtx">
+        click ( rotateX )
+      </div>
+      <div class="box rty">click ( rotateY )</div>
+      <div class="box rtz">click ( rotateZ )</div>
+    </div>
+  </body>
+<script>
+
+</script>
+</html>
