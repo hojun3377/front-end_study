@@ -7,6 +7,63 @@
   </head>
   <body>
     <h1>자바스크립트 class</h1>
-    <p></p>
+    <p>
+      객체를 생성하기 위한 템플릿. 데이터와 이를 조작하는 코드를 하나로 추상화한다.
+      <br>console 창으로 실습 확인
+    </p>
+    <article>
+      <h4>class를 선언하는 이유</h4>
+      <ol>
+        <li>
+          캡슐화: 사용할 객체를 사용하지 않는것과 분리(은닉)
+          <br>언어적 측면에서 접근 지정자에 의해 정의된 변수나 멤버 변수에 의해 오류가 발생할 것을 사전에 방지하는 행위 ( name = null 은 기계적 오류 X )
+        </li>
+        <li>
+          재사용: 상속으로 class를 재사용 가능
+        </li>
+        <li>
+          유지보수: 선언된 class를 수정하면 참조하는 모든 class가 변경된다. 따라서 유지보수가 용이하다.
+        </li>
+      </ol>
+      <h4>class의 단점</h4>
+      <ol>
+        <li>
+          설계 시 개발 속도를 느리게 한다.(개발자의 능력)
+        </li>
+        <li>
+          객체가 많고 설계가 잘못되면 용량이 커진다.(개발자의 능력)
+        </li>
+        <li>
+          자바스크립트는 class를 function의 대용품으로 사용
+          <br>함수가 클래스인 척 하고있다. (모든 브라우저에서 동작 X, 자바스크립트에 대해 깊이있는 이해가 필요하다.)
+        </li>
+      </ol>
+    </article>
+    <hr>
+    <article>
+      <h2>getter, setter, private</h2>
+      <p>class의 은닉을 위한 getter setter private</p>
+      <ul>
+        <li>getter setter는 프로그래머가 만든 약속</li>
+        <li>은닉화된 전역변수(멤버, 필드)를 필요한 부분만 드러내기위해 만들었다.</li>
+        <li>javascript에서 'get 멤버() { return 멤버 }' 형태의 getter지원 </li>
+        <li>javascript에서 'set 멤버(param) { this.멤버 = param }' 형태의 setter지원</li>
+        <li>private(#): 은닉화된 전역변수로 클래스 내부에서만 참조가능하다.</li>
+        <li>public(default): 클래스 내부와 외부 모두에서 참조가능하다.</li>
+      </ul>
+    </article>
+    <hr>
+    <article>
+      <h2>extends ( 상속 )</h2>
+      <p>상속은 부모의 타입(멤버)을 물려받는 것</p>
+      <ul>
+        <li>상속 받았을 때 부모가 생성자를 작성한 경우 꼭 부모의 생성자를 호출해야한다. ( super() )</li>
+        <li>get 멤버 선언하면 멤버 속성이 추가된다.( 멤버로 한번 더 선언하면 안된다. )</li>
+        <li>class A { name; get name(){}; name(){}; } (X)</li>
+        <li>class B { #name; get name(){}; } (O)</li>
+        <li>자바스크립트에서 getter setter를 선언한 멤버는 private 하다.</li>
+        <li>부모의 함수를 재정의하려면 함수에서 부모의 함수를 다시 호출해야한다.</li>
+      </ul>
+    </article>
   </body>
 </html>
