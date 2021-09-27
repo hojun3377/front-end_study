@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS intersection observer</title>
+    <script defer src="./script/l09_css_intersection_observer.js"></script>
+<style>
+.box {
+  background-color: blue;
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  transition: background 1s;
+}
+</style>
+  </head>
+  <body>
+    <h1>IntersectionObserver</h1>
+    <p>화면에 노드가 나타나는 것을 확인</p>
+    <ul>
+      <li>let observer = new IntersectionObserver ((entries, observe) => { ... }, option)</li>
+      <li>observer.observe(target) : target이 화면에 나타나는지 확인</li>
+    </ul>
+    <div class="container">
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <div id="observeTest" class="box"></div>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+  </body>
+</html>
