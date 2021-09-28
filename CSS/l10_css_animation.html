@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS animation</title>
+    <link rel="stylesheet" href="./css/l10_css_animation.css">
+  </head>
+  <body>
+    <h1>CSS animation으로 만드는 애니매이션</h1>
+    <p>animation은 javascript의 setinterval로 만드는 동작을 간단하게 작성할 수 있다.</p>
+    <ul>
+      <li>animation: name duration ... : 모든 프로퍼티를 작성 ( shorthand syntax, 권장x )</li>
+      <li>
+        animation-name: name : @keyframes 이름을 지정
+        <br>이벤트로 애니매이션을 등록할 때 등록할 요소에 animation-name을 추가한다.
+        <br>만약 동작하지 않으면 이름이 정의된 클래스를 추가하면 된다.
+      </li>
+      <li>@keyframes animation-name : 애니매이션이 동작하는 단계를 나눠서 설정</li>
+      <li>animation-delay: time : 요소가 시작될 시점 ( delay &lt; 0인 경우 : 애니매이션이 동작된 미래를 나타낸다. )</li>
+      <li>animation-duration: time : 한 싸이클의 애니매이션이 소유되는 시간 ( s | ms, default 0 )</li>
+      <li>animation-timing-function: timing-function : 애니매이션의 속도를 나타내는 함수 ( default ease )</li>
+      <li>animation-iteration-count: count : 애니매이션의 재생 횟수 ( infinite: 무한히 반복, default 1 )</li>
+      <li>animation-play-state: state : 애니매이션의 재생 상태 ( running | paused, default: running )</li>
+      <li>
+        animation-direction: direction : 애니매이션의 방향
+        <br><b>direction value</b>
+        <ul>
+          <li>normal(default) : form->to</li>
+          <li>reverse : to->from</li>
+          <li>alternate : 홀수번 cycle - normal & 짝수번 cycle - reverse</li>
+          <li>alternate-reverse : 홀수번 cycle - reverse & 짝수번 cycle - normal</li>
+        </ul>
+      </li>
+      <li>
+        animation-fill-mode: mode : 애니매이션 실행 전과 후에 대상에 스타일을 적용하는 방법을 지정
+        <br><b>mode value</b>
+        <ul>
+          <li>
+            none(default) :  원래 스타일을 적용하고 animation-delay기간 동안 이 값을 유지
+            <br>애니매이션이 종료되면 원래 상태로 되돌리고 종료
+          </li>
+          <li>forwards : 마지막 keyframe에 의해 설정된 계산된 값을 유지</li>
+          <li>backwards : 첫 keyframe에 정의된 값을 적용하고 animation-delay기간 동안 이 값을 유지</li>
+          <li>both : forwords와 backwords 모두 적용</li>
+        </ul>
+      </li>
+    </ul>
+    <hr>
+    <h4>transition으로 박스를 움직이고 색 바꾸기</h4>
+    <div class="container">
+      <div class="box move" onclick="this.classList.toggle('active')">Click</div>
+    </div>
+    <br>
+    <h4>animation으로 박스를 움직이고 색 바꾸기</h4>
+    <div class="container">
+      <div class="box" onclick="this.classList.add('box-move')">Click</div>
+    </div>
+    <br>
+    <hr>
+    <h2>animation-fill-mode test</h2>
+    <h4>none</h4>
+    <div class="container">
+      <div class="box turn-move fill_none" onclick="this.classList.add('active')">Click</div>
+    </div>
+    <br>
+    <h4>forwards</h4>
+    <div class="container">
+      <div class="box turn-move fill_forwards" onclick="this.classList.add('active')">Click</div>
+    </div>
+    <br>
+    <h4>backwards</h4>
+    <div class="container">
+      <div class="box turn-move fill_backwards" onclick="this.classList.add('active')">Click</div>
+    </div>
+    <br>
+    <h4>both</h4>
+    <div class="container">
+      <div class="box turn-move fill_both" onclick="this.classList.add('active')">Click</div>
+    </div>
+    <br>
+    <hr>
+    <h2>move around box</h2>
+    <div>
+      <span>animation-direction :</span>
+      <select id="directionSelect">
+        <option value="normal">normal</option>
+        <option value="reverse">reverse</option>
+        <option value="alternate">alternate</option>
+        <option value="alternate-reverse">alternate-reverse</option>
+      </select>
+    </div>
+    <br>
+    <div class="container" style="height: 600px">
+      <div id="aroundBox" class="box around-move"></div>
+    </div>
+    <br>
+    <hr>
+    <h2>card</h2>
+    <div style="display: flex">
+      <div class="card-container">
+        <div class="box card"></div>
+        <div class="box card_label"></div>
+      </div>
+      <div class="card-container">
+        <div class="box card2"></div>
+      </div>
+    </div>
+  </body>
+<script>
+aroundBox.style.animationDirection = directionSelect.value;
+directionSelect.addEventListener('change',(e) => {
+  aroundBox.style.animationDirection = e.target.value;
+});
+</script>
+</html>
