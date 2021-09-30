@@ -69,7 +69,7 @@ const testPerson = new Person();
 console.log("인스턴스 객체 멤버함수 실행 ( testPerson.callName() )\n", testPerson.callName());
 
 // Person 함수의 property로 callName2 함수를 선언한다.
-// Person 함수 객체 property로 추가하는 것이므로 실제 선언된 함수가 변경되지 않으며,
+// Person 함수 객체 property로 추가하는 것이며 선언된 함수는 정적이기 때문에 선언된 함수가 변경되지 않는다.
 // Person.prototype.constructor를 확인하면 프로퍼티로 추가됨을 알 수 있다. (함수의 메타데이터)
 Person.callName2 = function() {
   // Person.callName2()를 실행시 Person.prototype.constructor.callName2() 가 실행되므로
@@ -86,6 +86,7 @@ console.groupEnd();
 /////////////////////////////////////////////////////////////////////////////////////////
 console.group("bind 함수");
 
+// Function.prototype.bind() : bind(object)는 함수의 멤버(this)를 object로 bind 한다.
 // 함수가 객체 testPerson을 바인딩 한다.
 console.log("callName2를 인스턴스 객체 testPerson에 bind 후 실행 ( Person.callName2.bind(testPerson)() )\n", Person.callName2.bind(testPerson)());
 
@@ -104,17 +105,17 @@ function TestFunction(name="이름없음",age=0) {
   let _name = name;
   let _age = age;
 
-  return {
-    getName: () => { return _name; },
-    getAge: () => { return _age; },
-    setName: (name) => { _name = name; },
-    setAge: (age) => { _age = age; }
+  return function() {
+    this.getName = () => { return _name; };
+    this.getAge = () => { return _age; };
+    this.setName = (name) => { _name = name; };
+    this.setAge = (age) => { _age = age; };
   }
 }
 
-const tf = new TestFunction("tf_최호준", 25);
+const tf = new (TestFunction("tf_최호준", 25))();
 tf.setName("최호준")
-console.log("function과 closure를 이용한 변수 은닉\n", tf);
+console.log("function과 closure를 이용한 변수 은닉 ( tf )\n", tf);
 console.log("tf의 변수 접근( tf.getName(), tf.getAge() )\n",`name : ${tf.getName()}, age : ${tf.getAge()}`);
 
 console.groupEnd();
