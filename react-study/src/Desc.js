@@ -9,6 +9,8 @@ function Desc() {
       <li>터미널에 설치할 폴더를 드래그해서 넣으세요.</li>
       <li>window: npx create-react-app my-app(이름)</li>
       <li>linux: sudo npx create-react-app my-app(이름)</li>
+      <li>cd my-app</li>
+      <li>npm start ( 라이브 서버가 my-app인 페이지 실행 )</li>
       <br />
       <li>리액트는 독자적인 element(jsx)를 구성한다.</li>
       <li>리액트의 element는 html element로 render로 다시 출력되기 때문에 그 구성이 비슷하다.</li>
