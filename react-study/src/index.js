@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './Header';
 import Desc from './Desc';
+import Dropdown from './dropdown/DropdownComponent';
 import Calculator from './Calculator';
 
 ReactDOM.render(
@@ -13,6 +14,7 @@ ReactDOM.render(
         { text: "계산기", url: "#calculator"}
       ]}/>
     <Desc />
+    <Dropdown />
     <Calculator />
   </React.StrictMode>,
   document.getElementById('root')
