@@ -1,0 +1,57 @@
+.calculator{
+    display: block;
+    width: fit-content;
+    background-color: rgba(255,255,255,.6);
+    padding: 10px;
+    margin: 50px auto;
+    border: 1px solid rgba(0,0,0,.2);
+    box-shadow: 15px 15px 30px rgba(0,0,0,.3)
+                ,-15px -15px 30px rgba(255,255,255,.9);
+    .container{
+        width: fit-content;
+        margin: auto;
+        display: grid;
+        &.screen{
+            textarea{
+                box-sizing: border-box;
+                resize: none;
+                text-align: end;
+                padding: 10px 20px;
+                width: 450px;
+                color: white;
+                background-color: rgba(0,0,0,.5);
+                border: 0;
+                &.process{
+                    font-size: 2em;
+                }
+                &.result{
+                    font-size: 3em;
+                }
+                &::placeholder{
+                    color: white;
+                }
+            }
+        }
+        &.button{
+            padding: 10px;    
+            background-color: rgb(100,100,200,.1);
+            grid-template-columns: auto auto auto auto;
+            row-gap: 10px;
+            column-gap: 10px;
+            justify-content: center;
+            .selfOperator{
+                background-color: rgba(255, 60, 0, 0.6);
+            }
+            .operator{
+                background-color: rgba(255,170,0,.6);
+            }
+            .control{
+                background-color: rgba(0,0,0,.4);
+            }
+            .num{
+                background: rgba(255,255,255,.6);
+                color: darkgray;
+            }
+        }
+    } 
+}
