@@ -22,6 +22,4 @@ window.onload=function() {
       menu.classList.toggle("active");
     });
   });
-
-
 }
