@@ -51,7 +51,9 @@ class Calculator extends React.Component {
       result: buffer,
       isInit: false,
       isDot: (this.state.isDot || e.target.value===".") ? true : false,
-      isLastIptOp: false
+      isLastIptOp: false,
+      nums: this.state.isInit ? [] : this.state.nums,
+      operator: this.state.isInit ? [] : this.state.operator
     });
 
     console.log("num", this.state);
@@ -59,35 +61,47 @@ class Calculator extends React.Component {
 
   rstHandler(e) {
     let op = this.state.operator[0], 
-        buffer = this.state.isLastIptOp ? this.state.nums[0] : Number(this.state.result), 
-        prc = "";
+        num1, num2, prc, buffer;
 
-    if(!this.state.isLastIptOp) this.state.nums.push(Number(this.state.result));
-    buffer = this.state.nums[0];
-
-    prc += buffer.toString();
-
+    if(op) {
+      if(this.state.isLastIptOp) {
+        num1 = Number(this.state.result);
+        num2 = this.state.nums[0];
+      }
+      else {
+        num1 = this.state.nums.pop();
+        num2 = Number(this.state.result);
+        this.state.nums.push(num2);
+      }
+      buffer = this.calculate(num1,num2,op);
+      prc = num1+op+num2;
+    }
+    else {
+      buffer = Number(this.state.result);
+      this.state.nums.push(buffer);
+      prc = buffer.toString();
+    }
+    
+    prc += e.target.value;
     this.setState({
-      process: prc+e.target.value,
-      result: this.calculate(Number(this.state.result),buffer,op),
+      process: prc,
+      result: buffer,
       isInit: true,
       isDot: false,
       isLastIptOp: true
     })
-
-    console.log("rst", this.state);
   }
 
   selfopHandler(e) {
     let op = e.target.value,
-        num = Number(this.state.buffer),
-        crtProcess = this.state.operator.length ? this.state.nums[0]+this.state.operator[0] : "",
-        selfStr = this.state.self ? this.state.self : num;
+        num = Number(this.state.result),
+        prc = this.state.operator.length ? this.state.nums[0]+this.state.operator[0] : "",
+        str;
 
     switch(op) {
       case "fraction":
         num = 1/num;
-        selfStr = `1/(${selfStr})`;
+        str = `1/(${str})`;
         break;
       // case "sqr":
       //   selfStr = `sqr(${num})`;
@@ -106,8 +120,7 @@ class Calculator extends React.Component {
     }
     
     this.setState({
-      process: crtProcess+selfStr,
-      self: selfStr,
+      process: prc,
       buffer: num
     });
   }
@@ -117,12 +130,20 @@ class Calculator extends React.Component {
         buffer = Number(this.state.result),
         prc = this.state.process ? this.state.process : buffer.toString();
 
+    // =이 끝난경우
+    if(this.state.isInit) {
+      this.state.nums.pop();
+      this.state.operator.pop();
+      prc = buffer.toString();
+    }
+
     // 전에 들어온 값이 op인지 확인
-    if(this.state.isLastIptOp) {
+    if(this.state.isLastIptOp && !this.state.isInit) {
       prc = prc.slice(0,-1); // process 확인
       this.state.operator.pop(); // 마지막에 들어간 연산자 삭제
     }
     else this.state.nums.push(buffer); // num 스택에 숫자 추가
+
     this.state.operator.push(op); // operator에 연산자 추가
 
     // process 관리
@@ -143,6 +164,7 @@ class Calculator extends React.Component {
     this.setState({
       process: prc,
       result: buffer,
+      isInit: false,
       isDot: false,
       isLastIptOp: true
     });
@@ -158,10 +180,9 @@ class Calculator extends React.Component {
         this.setState({result: "0", isDot: false, isLastIptOp: false});
         break;
       case "DEL":
-        let buf = this.state.buffer.slice(0,-1);
+        let buffer = this.state.isInit ? this.state.result : this.state.result.slice(0,-1);
         this.setState({
-          buffer: buf,
-          result: buf ? buf : "0"
+          result: buffer ? buffer : "0"
         });
         break;
       default:
