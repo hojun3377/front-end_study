@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Javascript Ajax</title>
+  <script src="./js/l24_js_ajax.js" defer></script>
+</head>
+<body>
+  <h1>비동기적으로 페이지 호출하기</h1>
+  <button id="loadRoot">root 바디 불러오기</button>
+  <div id="printRoot"></div>
+  <hr>
+  <article>
+    <h2>통신과 비동기 통신</h2>
+    <ul>
+      <li>통신 : 어떤 것을 주고 받는 행위</li>
+      <li>http 통신 : html문서를 요청하고 받는 행위</li>
+      <li>브라우저의 통신 : http 통신</li>
+      <li>브라우저의 동기식 통신 : 브라우저의 주소창에서 주소 html문서를 요청하고, html문서를 받으면 화면이 해당 페이지로 전환되는 것</li>
+      <li>브라우저의 비동기식 통신(AJAX) : html 문서에서 다른 페이지(xml, html, json, text)를 불러오기 위해 http통신을 하는 것</li>
+      <li>iframe을 이용한 비동기식 통신 : iframe 태그 안에서 다른 페이지를 불러오는 것</li>
+    </ul>
+  </article>
+  <article>
+    <h2>XMLHttpRequest 객체와 비동기식 통신</h2>
+    <ul>
+      <li>html 문서 안에서 다른 페이지를 호출하고 처리하기 위해 사용하는 객체</li>
+      <li>XMLHttpRequest.open(method, url, async(default: true)) : 요청할 페이지를 준비</li>
+      <li>XMLHttpRequest.onreadystatechange = callback function : 통신하는 event가 발생할 때 실행되는 함수 ( 통신에 실패해도 실행된다. )</li>
+      <li>XMLHttpRequest.send() : 실제로 통신하여 페이지를 불러온다.</li>
+    </ul>
+  </article>
+  <article>
+    <h2>XMLHttpRequest.status ( HTTP response status codes )</h2>
+    <p>
+      통신의 응답 상태로 모든 http 통신에서 사용되는 코드다.
+      <br>http 응답 상태 코드는 http 요청이 성공적인지 확인하는 코드로 총 5단계로 나뉜다.
+    </p>
+    <ul>
+      <li>100 ~ 199 : 정보 응답</li>
+      <li>200 ~ 299 : 성공적인 응답</li>
+      <li>
+        200 : OK ( 오류 없이 전송 성공 )
+        <ul>
+          <li>GET : server가 request message를 받은 후 새로운 resource를 전송 ( response )</li>
+          <li>POST : 요청 헤더에 메시지(파라미터)를 전송 후 처리</li>
+        </ul>
+      </li>
+      <li>300 ~ 399 : 메세지</li>
+      <li>400 ~ 499 : 클라이언트 오류</li>
+      <li>400 : 요청하는 방식이 잘못되었음 ( method )</li>
+      <li>404 : 요청하는 페이지가 없음</li>
+      <li>500 ~ 599 : 서버 오류</li>
+    </ul>
+  </article>
+  <article>
+    <h2>XMLHttpRequest.readyState</h2>
+    <p>요청의 처리상태로서 XMLHttpRequest는 통신을 위해 총 5단계의 실행을 거친다.</p>
+    <ul>
+      <li>0(UNSENT) : 미전송 상태로 XMLHttpRequest 객체를 생성하기만 한 상태</li>
+      <li>
+        1(OPENED) : open 메소드를 실행한 상태로 요청 헤더( setRequestHeader() )를 사용할 수 있는 상태
+        <br>( <strong>send()로 request message를 전송하기 전 상태</strong> )
+      </li>
+      <li>2(HEADERS_RECEIVED) : send()를 호출하고 응답헤더가 수신한 상태 ( onreadystatechange가 실행 )</li>
+      <li>3(LOADING) : 본문을 수신하고 해석(parsing)하는 중인 상태 ( onreadystatechange가 실행 )</li>
+      <li>4(DONE) : 응답( response )을 완료한 상태</li>
+    </ul>
+  </article>
+</body>
+</html>
