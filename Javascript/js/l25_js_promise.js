@@ -1,5 +1,5 @@
 // 자바스크립트는 순차적 언어로 순서대로 실행한다.
-// 자바스크립트는 multi threading을 지원하지 않는다.
+// 자바스크립트는 multi threading을 지원하지 않는다. ( single thread )
 // 오래 걸리거나 반복되는 실행이 있으면, 그 실행은 따로 하고 나머지를 계속 실행한다.
 // ref) https://stackoverflow.com/questions/12187393/why-javascript-settimeout-is-not-multithreaded
 
@@ -9,7 +9,7 @@
 // 때문에 특정 실행들을 동기화 하려면 Promise 객체를 이용한다.
 console.group("순차실행");
 console.log("1");
-new Promise((resolve, reject)=>{
+new Promise(resolve=>{
   window.setTimeout(()=>{
     console.group("resolve로 동기화 ( 1초 후 실행 )");
     console.log("2");
