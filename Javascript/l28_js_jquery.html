@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Javascript jQuery</title>
+
+  <script src="http://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js" defer></script>
+  <script src="./js/l28_js_jquery.js" defer></script>
+  
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<style>
+.active {
+  background-color: darkred;
+  color: rgb(177,189,189);
+}
+.ui-selecting {
+  background-color: gray;
+}
+.ui-selected {
+  background-color: darkgray;
+  color: white;
+}
+#selectableTest {
+  list-style: none;
+}
+</style>
+</head>
+<body>
+  <h1>jQuery 라이브러리</h1>
+  <ul class="jq_ul">
+    <li>$(selectorStr) : 제이쿼리 선택자 ( == document.querySelectAll(selectorStr) )</li>
+    <li>$(".jq_ul li").click( function(props){ ... } ) == document.querySelectAll(".jq_ul li").foreach(li=>{ li.onclick = function(props){ ... } })</li>
+    <li>제이쿼리는 이벤트를 chain 할 수 있다.</li>
+    <li>제이쿼리는 복수의 선택자로 찾은 dom을 반복문 없이 재정의할 수 있다. ( 반복문 생략 )</li>
+    <li>제이쿼리를 시작하려면 꼭 $()를 작성해야한다.</li>
+  </ul>
+  <article>
+    <h2>jQuery UI</h2>
+    <div id="dialogTest" title="Dialog Title">
+      <p>jQuery UI의 dialog</p>
+    </div>
+    <h3>datepicker</h3>
+    <p>Data: <input type="text" id="datePicker"></p>
+    <h3>selectable</h3>
+    <ul id="selectableTest">
+      <li>01:00 일정</li>
+      <li>02:00 일정</li>
+      <li>03:00 일정</li>
+      <li>04:00 일정</li>
+      <li>05:00 일정</li>
+      <li>06:00 일정</li>
+      <li>07:00 일정</li>
+      <li>08:00 일정</li>
+      <li>09:00 일정</li>
+      <li>10:00 일정</li>
+      <li>11:00 일정</li>
+      <li>12:00 일정</li>
+    </ul>
+  </article>
+</body>
+</html>
